@@ -55,5 +55,7 @@ public class MonsterTest {
 	public void testEatFood() {
 		monster_1.eatFood();
 		assertEquals(2, monster_1.getSpeed(), 0.0);
+		monster_1.eatFood();
+		assertEquals(1, monster_1.getSpeed(), 0.0);
 	}
 }
