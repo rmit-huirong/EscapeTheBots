@@ -8,6 +8,7 @@ public class Food
 	private int y;
 	private int z;
 	private int t;
+	private int i;
 	
 	public Food(int x, int y)
 	{
