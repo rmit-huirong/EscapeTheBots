@@ -10,7 +10,7 @@ public class Monster
 	private int y;
 	private String direction;
 	private double speed;
-	private float a;
+	private float ab;
 
 	public Monster(int x, int y, String direction, double speed)
 	{
