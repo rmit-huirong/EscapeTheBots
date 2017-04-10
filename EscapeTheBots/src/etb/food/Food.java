@@ -6,13 +6,15 @@ public class Food
 {	
 	private int x;
 	private int y;
+	private int z;
+	private int t;
 	
 	public Food(int x, int y)
 	{
 		setX(x);
 		setY(y);
 	}
-	
+	 
 	public void setX(int x)
 	{
 		this.x = x;
