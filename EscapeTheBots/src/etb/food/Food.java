@@ -1,7 +1,5 @@
 package etb.food;
 
-import etb.monster.Monster;
-
 public class Food 
 {	
 	private int x;
