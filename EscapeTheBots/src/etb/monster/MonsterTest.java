@@ -37,8 +37,8 @@ public class MonsterTest {
 
 	@Test
 	public void testSetSpeed() {
-		assertEquals(4, monster_1.getSpeed(), 0.0);
-		assertEquals(4, monster_2.getSpeed(), 0.0);
+		assertEquals(4, monster_1.getSpeed());
+		assertEquals(4, monster_2.getSpeed());
 	}
 
 	@Test
@@ -56,14 +56,14 @@ public class MonsterTest {
 	@Test
 	public void testEatFood() {
 		monster_1.eatFood();
-		assertEquals(2, monster_1.getSpeed(), 0.0);
+		assertEquals(2, monster_1.getSpeed());
 	}
 	
 	@Test(timeout = 2000)
 	public void testPoisoned() {
 		monster_1.eatFood();
 		monster_1.posioned();
-		assertEquals(2, monster_1.getSpeed(), 0.0);
+		assertEquals(2, monster_1.getSpeed());
 	}
 	
 	@Test
@@ -71,6 +71,6 @@ public class MonsterTest {
 		monster_1.eatFood();
 		monster_1.posioned();
 		monster_1.restoreSpeed();
-		assertEquals(4, monster_1.getSpeed(), 0.0);
+		assertEquals(4, monster_1.getSpeed());
 	}
 }

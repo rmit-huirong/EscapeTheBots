@@ -4,14 +4,14 @@ import etb.util.Timer;
 
 public class Monster
 {
-	private final double MAX_SPEED_MONSTER = 4;
+	private final int MAX_SPEED_MONSTER = 4;
 
 	private int x;
 	private int y;
 	private String direction;
-	private double speed;
+	private int speed;
 
-	public Monster(int x, int y, String direction, double speed)
+	public Monster(int x, int y, String direction, int speed)
 	{
 		setX(x);
 		setY(y);
@@ -34,7 +34,7 @@ public class Monster
 		this.direction = direction;
 	}
 
-	public void setSpeed(double speed)
+	public void setSpeed(int speed)
 	{
 		this.speed = speed;
 	}
@@ -54,7 +54,7 @@ public class Monster
 		return direction;
 	}
 
-	public double getSpeed()
+	public int getSpeed()
 	{
 		return speed;
 	}
