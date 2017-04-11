@@ -83,9 +83,20 @@ public class Monster
 
 	public boolean eatFood()
 	{
-		Timer posionTime = new Timer(2);
 		setSpeed(getSpeed() / 2);
+		
+		return true;
+	}
+	
+	public boolean posioned()
+	{
+		Timer posionTime = new Timer(2);
 		do {} while (!posionTime.timeUP());
+		return true;
+	}
+	
+	public boolean restoreSpeed()
+	{
 		setSpeed(getSpeed() * 2);
 		return true;
 	}

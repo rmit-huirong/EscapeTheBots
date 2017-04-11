@@ -53,12 +53,24 @@ public class MonsterTest {
 		assertEquals("east", monster_2.getDirection());
 	}
 	
-	@Ignore
+	@Test
 	public void testEatFood() {
-		Timer time = new Timer(2);
 		monster_1.eatFood();
 		assertEquals(2, monster_1.getSpeed(), 0.0);
+	}
+	
+	@Test(timeout = 2000)
+	public void testPoisoned() {
 		monster_1.eatFood();
-		assertEquals(1, monster_1.getSpeed(), 0.0);
+		monster_1.posioned();
+		assertEquals(2, monster_1.getSpeed(), 0.0);
+	}
+	
+	@Test
+	public void testRestoreSpeed() {
+		monster_1.eatFood();
+		monster_1.posioned();
+		monster_1.restoreSpeed();
+		assertEquals(4, monster_1.getSpeed(), 0.0);
 	}
 }
