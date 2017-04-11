@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import etb.util.Timer;
+
 public class MonsterTest {
 
 	Monster monster_1 = new Monster(5, 7, "south", 4);
@@ -51,8 +53,9 @@ public class MonsterTest {
 		assertEquals("east", monster_2.getDirection());
 	}
 	
-	@Test
+	@Ignore
 	public void testEatFood() {
+		Timer time = new Timer(2);
 		monster_1.eatFood();
 		assertEquals(2, monster_1.getSpeed(), 0.0);
 		monster_1.eatFood();

@@ -2,14 +2,24 @@ package etb.util;
 
 public class Timer {
 
-	private long  time = System.currentTimeMillis();
+	private long  time = System.currentTimeMillis() / 1000;
 	private long timeDue;
 	public Timer(int duration)
 	{
-		this.timeDue = this.time / 1000 + duration;
+		this.timeDue = this.time + duration;
 	}
 	
-	boolean timeUP()
+	public long getTime()
+	{
+		return this.time;
+	}
+	
+	public long getTimeDue()
+	{
+		return this.timeDue;
+	}
+		
+	public boolean timeUP()
 	{
 		long time = System.currentTimeMillis() / 1000;
 		if (time - this.timeDue >= 0)

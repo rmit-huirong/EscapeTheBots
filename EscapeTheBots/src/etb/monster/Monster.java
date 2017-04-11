@@ -1,5 +1,11 @@
 package etb.monster;
 
+import javax.print.attribute.standard.PrinterMessageFromOperator;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
+
+import etb.util.Timer;
+
 public class Monster
 {
 	private final double MAX_SPEED_MONSTER = 4;
@@ -81,7 +87,10 @@ public class Monster
 
 	public boolean eatFood()
 	{
+		Timer posionTime = new Timer(2);
 		setSpeed(getSpeed() / 2);
+		do {} while (!posionTime.timeUP());
+		setSpeed(getSpeed() * 2);
 		return true;
 	}
 }
