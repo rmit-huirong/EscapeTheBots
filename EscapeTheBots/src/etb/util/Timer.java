@@ -8,16 +8,6 @@ public class Timer {
 	{
 		this.timeDue = this.time + duration;
 	}
-	
-	public long getTime()
-	{
-		return this.time;
-	}
-	
-	public long getTimeDue()
-	{
-		return this.timeDue;
-	}
 		
 	public boolean timeUP()
 	{
