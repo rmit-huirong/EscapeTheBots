@@ -10,10 +10,14 @@ public class Player extends User {
 		super(username, password);
 	}
 
+<<<<<<< HEAD
 	public int move(){
 		return 0;
 		
 	}
+=======
+	/* Huirong Huang - s3615907 */
+>>>>>>> origin/master
 	
 	
 }
