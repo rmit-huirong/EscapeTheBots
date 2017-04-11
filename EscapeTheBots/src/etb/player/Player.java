@@ -2,6 +2,15 @@
 
 package etb.player;
 
-public class Player {
+import etb.user.User;
 
+public class Player extends User {
+
+	public Player(String username, String password) {
+		super(username, password);
+	}
+
+	
+	
+	
 }
