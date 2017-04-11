@@ -1,9 +1,5 @@
 package etb.monster;
 
-import javax.print.attribute.standard.PrinterMessageFromOperator;
-
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import etb.util.Timer;
 
 public class Monster
