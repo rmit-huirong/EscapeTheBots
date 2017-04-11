@@ -6,8 +6,6 @@ public class Monster
 {
 	private final double MAX_SPEED_MONSTER = 4;
 
-
-
 	private int x;
 	private int y;
 	private String direction;
