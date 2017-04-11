@@ -2,5 +2,7 @@ package etb.grid;
 
 public class Grid {
 
-	String a;
+	private int x;
+	private int y;
+	
 }
