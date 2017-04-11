@@ -1,8 +1,66 @@
 package etb.grid;
 
 public class Grid {
+	
+	private static int x;
+	private static int y;
+	private int width;
+	private int height;
+	private static final int GRID_HEIGHT = 100;
+	private static final int GRID_WIDTH = 100;
+	
+	private static Grid[][] grid  = new Grid[x][y];
+	
+	public Grid(int Grid[][])
+	{
+		setGrid(grid);
+		setX(x);
+		setY(y);
+		setHeight(GRID_HEIGHT);
+		setWidth(GRID_WIDTH);
+		
+	}
 
-	private int x;
-	private int y;
+	
+	public static Grid[][] getGrid() {
+		return grid;
+	}
+
+	public static void setGrid(Grid[][] grid) {
+		Grid.grid = grid;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		Grid.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		Grid.y = y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
 	
 }
