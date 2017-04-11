@@ -10,7 +10,10 @@ public class Player extends User {
 		super(username, password);
 	}
 
-	
+	public int move(){
+		return 0;
+		
+	}
 	
 	
 }
