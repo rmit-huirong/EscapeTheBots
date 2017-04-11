@@ -10,7 +10,7 @@ public class Player extends User {
 		super(username, password);
 	}
 
-	
+	/* Huirong Huang - s3615907 */
 	
 	
 }
