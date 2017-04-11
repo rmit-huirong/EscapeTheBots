@@ -2,10 +2,7 @@ package etb.grid;
 
 public class Grid {
 	
-	private static int x;
-	private static int y;
-	private int width;
-	private int height;
+	private static int x, y, width, height;
 	private static final int GRID_HEIGHT = 100;
 	private static final int GRID_WIDTH = 100;
 	
@@ -14,6 +11,11 @@ public class Grid {
 	public Grid(int Grid[][])
 	{
 		setGrid(grid);
+		
+	}
+	
+	public Grid(int height, int width)
+	{
 		setX(x);
 		setY(y);
 		setHeight(GRID_HEIGHT);
@@ -51,7 +53,7 @@ public class Grid {
 	}
 
 	public void setWidth(int width) {
-		this.width = width;
+		Grid.width = width;
 	}
 
 	public int getHeight() {
@@ -59,7 +61,7 @@ public class Grid {
 	}
 
 	public void setHeight(int height) {
-		this.height = height;
+		Grid.height = height;
 	}
 	
 	
