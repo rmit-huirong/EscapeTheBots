@@ -10,6 +10,7 @@ public class Grid {
 	
 	public Grid(int Grid[][])
 	{
+		
 		setGrid(grid);
 		
 	}
