@@ -2,7 +2,7 @@ package etb.monster;
 
 import etb.util.Timer;
 
-public class Monster
+public class Monster0
 {
 	private final int MAX_SPEED_MONSTER = 4;
 
@@ -11,7 +11,7 @@ public class Monster
 	private String direction;
 	private int speed;
 
-	public Monster(int x, int y, String direction, int speed)
+	public Monster0(int x, int y, String direction, int speed)
 	{
 		setX(x);
 		setY(y);

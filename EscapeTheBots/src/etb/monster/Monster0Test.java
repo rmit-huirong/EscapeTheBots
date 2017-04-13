@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import etb.util.Timer;
 
-public class MonsterTest {
+public class Monster0Test {
 
-	Monster monster_1 = new Monster(5, 7, "south", 4);
-	Monster monster_2 = new Monster(2, 8, "east", 4);
+	Monster0 monster_1 = new Monster0(5, 7, "south", 4);
+	Monster0 monster_2 = new Monster0(2, 8, "east", 4);
 	
 	@Before
 	public void setUp() throws Exception {

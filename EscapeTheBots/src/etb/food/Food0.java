@@ -1,11 +1,11 @@
 package etb.food;
 
-public class Food 
+public class Food0 
 {	
 	private int x;
 	private int y;
 	
-	public Food(int x, int y)
+	public Food0(int x, int y)
 	{
 		setX(x);
 		setY(y);
