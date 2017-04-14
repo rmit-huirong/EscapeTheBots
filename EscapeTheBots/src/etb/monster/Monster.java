@@ -24,14 +24,30 @@ public class Monster extends Rectangle {
 	}
 
 	public void tick() {
-		if (dir == up)
-			y-=speed*unit;
-		if (dir == down)
-			y+=speed*unit;
-		if (dir == left)
-			x-=speed*unit;
-		if (dir == right)
-			x+=speed*unit;
+		if (dir == up) {
+			if (canMove(x, y--))
+				y -= speed * unit;
+			else
+				dir = random.nextInt(4);
+		} 
+		else if (dir == down) {
+			if (canMove(x, y++))
+				y += speed * unit;
+			else
+				dir = random.nextInt(4);
+		} 
+		else if (dir == left) {
+			if (canMove(x--, y))
+				x -= speed * unit;
+			else
+				dir = random.nextInt(4);
+		} 
+		else if (dir == right) {
+			if (canMove(x++, y))
+				x += speed * unit;
+			else
+				dir = random.nextInt(4);
+		} 
 		time++;
 		if (time == 60) {
 			dir = random.nextInt(4);
@@ -41,5 +57,21 @@ public class Monster extends Rectangle {
 
 	public void render(Graphics g) {
 		g.drawImage(Game.spritesheet.getSprite(0, 16), x, y, width, height, null);
+	}
+
+	private boolean canMove(int nextx, int nexty) {
+		Rectangle bounds = new Rectangle(nextx, nexty, width, height);
+		Level level = Game.level;
+
+		for (int xx = 0; xx < level.tiles.length; xx++) {
+			for (int yy = 0; yy < level.tiles[0].length; yy++) {
+				if (level.tiles[xx][yy] != null) {
+					if (bounds.intersects(level.tiles[xx][yy])) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 }
