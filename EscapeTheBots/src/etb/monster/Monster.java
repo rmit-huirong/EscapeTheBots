@@ -14,8 +14,8 @@ public class Monster extends Rectangle {
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int dir = -1;
 	private int time = 0;
-	private double speed = 1;
-	private double unit = 1;
+	private int speed = 1;
+	private int unit = 1;
 
 	public Monster(int x, int y) {
 		random = new Random();
@@ -25,31 +25,31 @@ public class Monster extends Rectangle {
 
 	public void tick() {
 		if (dir == up) {
-			if (canMove(x, y--))
+			if (canMove(x, y-1))
 				y -= speed * unit;
 			else
 				dir = random.nextInt(4);
 		} 
 		else if (dir == down) {
-			if (canMove(x, y++))
+			if (canMove(x, y+1))
 				y += speed * unit;
 			else
 				dir = random.nextInt(4);
 		} 
 		else if (dir == left) {
-			if (canMove(x--, y))
+			if (canMove(x-1, y))
 				x -= speed * unit;
 			else
 				dir = random.nextInt(4);
 		} 
 		else if (dir == right) {
-			if (canMove(x++, y))
+			if (canMove(x+1, y))
 				x += speed * unit;
 			else
 				dir = random.nextInt(4);
 		} 
-		time++;
-		if (time == 60) {
+		time = time + random.nextInt(10);
+		if (time % 100 == 0) {
 			dir = random.nextInt(4);
 			time = 0;
 		}

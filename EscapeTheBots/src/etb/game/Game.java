@@ -17,9 +17,9 @@ import graphics.Level;
 public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
-	private static final int WIDTH = 640;
-	private static final int HEIGHT = WIDTH / 4 * 3;
-	private static final int SCALE = 2;
+	public static final int WIDTH = 640;
+	public static final int HEIGHT = WIDTH / 4 * 3;
+	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
 
 	private Thread thread;
@@ -39,7 +39,7 @@ public class Game extends Canvas implements Runnable {
 		setMinimumSize(dimension);
 
 		frame = new JFrame(TITLE);
-		level = new Level();
+		level = new Level("/map/map_rmit2017.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
 	}
 
