@@ -1,5 +1,6 @@
-// Huirong Huang - s3615907
 package etb.game;
+// Huirong Huang - s3615907
+
 
 import java.awt.Canvas;
 import java.awt.Color;

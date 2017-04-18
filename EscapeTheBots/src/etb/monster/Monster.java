@@ -75,3 +75,4 @@ public class Monster extends Rectangle {
 		return true;
 	}
 }
+
