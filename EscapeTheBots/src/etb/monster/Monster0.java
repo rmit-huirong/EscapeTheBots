@@ -90,7 +90,7 @@ public class Monster0
 	public boolean posioned()
 	{
 		Timer posionTime = new Timer(2);
-		do {} while (!posionTime.timeUP());
+		do {} while (!posionTime.timeUp());
 		return true;
 	}
 	

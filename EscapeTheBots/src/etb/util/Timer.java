@@ -10,7 +10,7 @@ public class Timer {
 		this.timeDue = this.time + duration;
 	}
 		
-	public boolean timeUP()
+	public boolean timeUp()
 	{
 		long time = System.currentTimeMillis() / 1000;
 		if (time - this.timeDue >= 0)
