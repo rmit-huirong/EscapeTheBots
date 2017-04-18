@@ -16,6 +16,7 @@ public class Player extends Rectangle {
 	private boolean up, down, right, left = false;
 	private int unit = 1;
 	private boolean poisoned = false;
+	private long poisonTime = 0;
 	
 	public void setUnit(int unit) {
 		this.unit = unit;
@@ -62,16 +63,22 @@ public class Player extends Rectangle {
 			}
 		} 
 		Level level = Game.level;
+		
 		for(int i = 0; i < level.food.size(); i++){
 			if(this.intersects(level.food.get(i))){
 				level.food.remove(i);
 				this.poisoned = true;
+				poisonTime = System.currentTimeMillis();
 				this.setUnit(unit + 1);
 			}
 		}
 		
 		if(poisoned){
-			
+			long tEnd = System.currentTimeMillis();
+			if(tEnd - poisonTime >= 20 * 1000){
+				this.poisoned = false;
+				this.setUnit(1);
+			}
 		}
 	}
 
