@@ -7,12 +7,13 @@ import java.util.Random;
 
 import etb.game.Game;
 import etb.user.User;
+import graphics.Level;
 
-public class Player extends Rectangle{
-	
+public class Player extends Rectangle {
 
 	private static final long serialVersionUID = 1L;
-	private boolean up,down,right,left = false;
+	private boolean up, down, right, left = false;
+
 	public void setUp(boolean up) {
 		this.up = up;
 	}
@@ -30,25 +31,50 @@ public class Player extends Rectangle{
 	}
 
 	private int speed = 4;
-	
+
 	public void tick(){
 		if(up){
-			y -= speed;
+			if(canMove(x,y - speed)){
+				y -= speed;
+			}
 		}else if(down){
-			y += speed;
+			if(canMove(x,y + speed)){
+				y += speed;
+			}
 		}else if(left){
-			x -= speed;
+			if(canMove(x - speed,y)){
+				x -= speed;
+			}
 		}else if(right){
-			x += speed;
+			if(canMove(x + speed,y)){
+				x += speed;
+			}
 		} 
 	}
-	public Player(int x, int y){
-		setBounds(x,y,30,30);
+
+	public Player(int x, int y) {
+		setBounds(x, y, 30, 30);
 	}
-	
+
 	public void render(Graphics g) {
 		g.setColor(Color.yellow);
-		g.fillRect(x,y,width,height);
+		g.fillRect(x, y, width, height);
+	}
+
+	private boolean canMove(int nextx, int nexty) {
+		Rectangle bounds = new Rectangle(nextx, nexty, width, height);
+		Level level = Game.level;
+
+		for (int xx = 0; xx < level.tiles.length; xx++) {
+			for (int yy = 0; yy < level.tiles[0].length; yy++) {
+				if (level.tiles[xx][yy] != null) {
+					if (bounds.intersects(level.tiles[xx][yy])) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 }
