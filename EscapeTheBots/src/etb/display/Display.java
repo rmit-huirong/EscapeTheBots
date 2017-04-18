@@ -4,21 +4,20 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 public class Display {
-	
+
 	private JFrame frame;
-	private JPanel panel = JPanel();
-	
 	private Canvas canvas;
 	
-	private String title;
+	
 	private int width, height;
+	private static final String TITLE = "Escape the Bots!";
 	
 	public Display(String title, int width, int height)
 	{
-		this.title = title;
+		
 		this.width = width;
 		this.height = height;
 		
@@ -31,7 +30,7 @@ public class Display {
 
 	private void createDisplay()
 	{
-		frame = new JFrame(title);
+		frame = new JFrame(TITLE);
 		frame.setSize(width,  height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -51,9 +50,11 @@ public class Display {
 		
 	}
 
-		
-	private JPanel JPanel() {
-	// TODO Auto-generated method stub
-	return null;
+
+
+	public Canvas getCanvas(){
+		return canvas;
 	}
+
+	
 }
