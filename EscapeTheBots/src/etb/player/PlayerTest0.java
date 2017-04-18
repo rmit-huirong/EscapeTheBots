@@ -12,10 +12,10 @@ import org.junit.Test;
  * @author Navod Bopitiya
  *
  */
-public class PlayerTest {
+public class PlayerTest0 {
 	
 	
-	Player player = new Player("user","pass");
+	Player0 player = new Player0("user","pass");
 	
 	@Before
 	public void setUp() throws Exception {

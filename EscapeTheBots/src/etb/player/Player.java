@@ -1,81 +1,54 @@
-/* Navod Bopitiya - s3617221 */
-
 package etb.player;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.Random;
 
+import etb.game.Game;
 import etb.user.User;
 
-public class Player extends User{
-
-	private int x;
-	private int y;
-	private int speed;
-	private int score;
+public class Player extends Rectangle{
 	
-	private final int INITIAL_X_VALUE = 10;
-	private final int INITIAL_Y_VALUE = 10;
-	private final int DEFAULT_SPEED_VALUE = 1;
 
-	public Player(String username, String password) {
-		super(username, password);
-		this.x = INITIAL_X_VALUE;
-		this.y = INITIAL_Y_VALUE;
-		this.score = 0;
-		this.speed = DEFAULT_SPEED_VALUE;
+	private static final long serialVersionUID = 1L;
+	private boolean up,down,right,left = false;
+	public void setUp(boolean up) {
+		this.up = up;
 	}
 
-	public int getX() {
-		return x;
+	public void setDown(boolean down) {
+		this.down = down;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setRight(boolean right) {
+		this.right = right;
 	}
 
-	public int getY() {
-		return y;
+	public void setLeft(boolean left) {
+		this.left = left;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	private int speed = 4;
+	
+	public void tick(){
+		if(up){
+			y -= speed;
+		}else if(down){
+			y += speed;
+		}else if(left){
+			x -= speed;
+		}else if(right){
+			x += speed;
+		} 
 	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public Player(int x, int y){
+		setBounds(x,y,30,30);
 	}
 	
-	public boolean move(String direction){
-		if(direction == "north"){
-			setY(--y);
-			return true;
-		}else if(direction == "south"){
-			setY(++y);
-			return true;
-		}else if(direction == "west"){
-			setX(--x);
-			return true;
-		}else if(direction == "east"){
-			setX(++x);
-			return true;
-		}else{
-			return false;
-		}
-		
+	public void render(Graphics g) {
+		g.setColor(Color.yellow);
+		g.fillRect(x,y,width,height);
 	}
-	
-	public boolean poisoned(Boolean poison){
-		if(poison){
-			this.speed =  this.speed / 2;
-			return true;
-		}else{
-			return false;
-		}
-		
-		
-	}
-	
+
 }

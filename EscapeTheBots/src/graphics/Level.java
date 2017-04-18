@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 import etb.game.Game;
 import etb.monster.Monster;
+import etb.player.Player;
 import graphics.Tile;
 
 public class Level {
@@ -20,6 +21,7 @@ public class Level {
 	public Tile[][] tiles;
 
 	public List<Monster> monsters;
+	public static Player player;
 
 	public Level(String path) {
 		monsters = new ArrayList<>();
@@ -42,15 +44,18 @@ public class Level {
 			for (int i = 0; i < 50; i++) {
 				monsters.add(new Monster(i*10+100, 850));
 			}
+			player = new Player(100,850);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void tick() {
+		player.tick();
 		for (int i = 0; i < 50; i++) {
 			monsters.get(i).tick();
 		}
+		
 	}
 
 	public void render(Graphics g) {
@@ -63,5 +68,7 @@ public class Level {
 		for (int i = 0; i < 50; i++) {
 			monsters.get(i).render(g);
 		}
+		player.render(g);
+		
 	}
 }

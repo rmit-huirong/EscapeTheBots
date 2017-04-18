@@ -6,16 +6,19 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
 import etb.monster.Monster;
+import etb.player.Player;
 import graphics.Screen;
 import graphics.Spritesheet;
 import graphics.Level;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 640;
@@ -38,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(dimension);
 		setMaximumSize(dimension);
 		setMinimumSize(dimension);
-
+		addKeyListener(this);
 		frame = new JFrame(TITLE);
 		level = new Level("/map/map_1.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
@@ -118,5 +121,39 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setVisible(true);
 
 		game.start();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			level.player.setUp(true);
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			level.player.setDown(true);
+		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			level.player.setRight(true);
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			level.player.setLeft(true);
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			level.player.setUp(false);
+		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			level.player.setDown(false);
+		}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			level.player.setRight(false);
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			level.player.setLeft(false);
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

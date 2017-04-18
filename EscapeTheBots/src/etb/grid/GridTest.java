@@ -7,7 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import etb.monster.Monster0;
-import etb.player.Player;
+import etb.player.Player0;
 
 public class GridTest {
 	
