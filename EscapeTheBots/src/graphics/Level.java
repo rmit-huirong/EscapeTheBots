@@ -47,8 +47,9 @@ public class Level {
 			for (int i = 0; i < 2; i++) {
 				monsters.add(new Monster(i*10+100, 850));
 			}
-			player = new Player(100,850);
+			player = new Player(Game.WIDTH / 2, Game.HEIGHT / 2);
 			food.add(new Food(500,850));
+			food.add(new Food(500,400));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
