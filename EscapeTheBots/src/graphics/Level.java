@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import etb.food.Food;
 import etb.game.Game;
 import etb.monster.Monster;
 import etb.player.Player;
@@ -21,10 +22,12 @@ public class Level {
 	public Tile[][] tiles;
 
 	public List<Monster> monsters;
-	public static Player player;
+	public Player player;
+	public static List<Food> food;
 
 	public Level(String path) {
 		monsters = new ArrayList<>();
+		food = new ArrayList<>();
 		try {
 			BufferedImage map = ImageIO.read(getClass().getResource(path));
 			this.width = map.getWidth() ;
@@ -45,6 +48,7 @@ public class Level {
 				monsters.add(new Monster(i*10+100, 850));
 			}
 			player = new Player(100,850);
+			food.add(new Food(500,850));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,6 +63,9 @@ public class Level {
 	}
 
 	public void render(Graphics g) {
+		for(int i = 0; i < food.size(); i++){
+			food.get(i).render(g);
+		}
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				if (tiles[x][y] != null)
@@ -69,6 +76,7 @@ public class Level {
 			monsters.get(i).render(g);
 		}
 		player.render(g);
+		
 		
 	}
 }

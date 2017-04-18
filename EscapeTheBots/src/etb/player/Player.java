@@ -1,4 +1,5 @@
 package etb.player;
+//Author - Navod Bopitiya - s3617221
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,6 +14,12 @@ public class Player extends Rectangle {
 
 	private static final long serialVersionUID = 1L;
 	private boolean up, down, right, left = false;
+	private int unit = 1;
+	private boolean poisoned = false;
+	
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
 
 	public void setUp(boolean up) {
 		this.up = up;
@@ -32,24 +39,40 @@ public class Player extends Rectangle {
 
 	private int speed = 4;
 
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
 	public void tick(){
 		if(up){
-			if(canMove(x,y - speed)){
-				y -= speed;
+			if(canMove(x,y - speed/unit)){
+				y -= speed/unit;
 			}
 		}else if(down){
-			if(canMove(x,y + speed)){
-				y += speed;
+			if(canMove(x,y + speed/unit)){
+				y += speed/unit;
 			}
 		}else if(left){
 			if(canMove(x - speed,y)){
-				x -= speed;
+				x -= speed/unit;
 			}
 		}else if(right){
 			if(canMove(x + speed,y)){
-				x += speed;
+				x += speed/unit;
 			}
 		} 
+		Level level = Game.level;
+		for(int i = 0; i < level.food.size(); i++){
+			if(this.intersects(level.food.get(i))){
+				level.food.remove(i);
+				this.poisoned = true;
+				this.setUnit(unit + 1);
+			}
+		}
+		
+		if(poisoned){
+			
+		}
 	}
 
 	public Player(int x, int y) {
@@ -71,6 +94,7 @@ public class Player extends Rectangle {
 					if (bounds.intersects(level.tiles[xx][yy])) {
 						return false;
 					}
+				
 				}
 			}
 		}
