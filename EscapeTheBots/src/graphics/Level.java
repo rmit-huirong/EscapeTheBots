@@ -39,7 +39,7 @@ public class Level {
 					}
 				}
 			}
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < 2; i++) {
 				monsters.add(new Monster(i*10+100, 540));
 			}
 		} catch (IOException e) {
@@ -48,7 +48,7 @@ public class Level {
 	}
 
 	public void tick() {
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 2; i++) {
 			monsters.get(i).tick();
 		}
 	}
@@ -60,7 +60,7 @@ public class Level {
 					tiles[x][y].render(g);
 			}
 		}
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 2; i++) {
 			monsters.get(i).render(g);
 		}
 	}

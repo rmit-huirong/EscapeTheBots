@@ -10,47 +10,44 @@ import graphics.Level;
 
 public class Monster extends Rectangle {
 
-	private Random random;
+	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int dir = -1;
 	private int time = 0;
-	private int speed = 1;
+	private int speed = 4;
 	private int unit = 1;
 
 	public Monster(int x, int y) {
-		random = new Random();
+		randomNum = new Random();
 		setBounds(x, y, 32, 32);
-		dir = random.nextInt(4);
+		dir = randomNum.nextInt(4);
 	}
 
 	public void tick() {
 		if (dir == up) {
-			if (canMove(x, y-1))
-				y -= speed * unit;
+			if (canMove(x, y - speed / unit))
+				y -= speed / unit;
 			else
-				dir = random.nextInt(4);
-		} 
-		else if (dir == down) {
-			if (canMove(x, y+1))
-				y += speed * unit;
+				dir = randomNum.nextInt(4);
+		} else if (dir == down) {
+			if (canMove(x, y + speed / unit))
+				y += speed / unit;
 			else
-				dir = random.nextInt(4);
-		} 
-		else if (dir == left) {
-			if (canMove(x-1, y))
-				x -= speed * unit;
+				dir = randomNum.nextInt(4);
+		} else if (dir == left) {
+			if (canMove(x - speed / unit, y))
+				x -= speed / unit;
 			else
-				dir = random.nextInt(4);
-		} 
-		else if (dir == right) {
-			if (canMove(x+1, y))
-				x += speed * unit;
+				dir = randomNum.nextInt(4);
+		} else if (dir == right) {
+			if (canMove(x + speed / unit, y))
+				x += speed / unit;
 			else
-				dir = random.nextInt(4);
-		} 
-		time = time + random.nextInt(10);
+				dir = randomNum.nextInt(4);
+		}
+		time = time + randomNum.nextInt(10);
 		if (time % 100 == 0) {
-			dir = random.nextInt(4);
+			dir = randomNum.nextInt(4);
 			time = 0;
 		}
 	}
