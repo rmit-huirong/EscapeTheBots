@@ -1,3 +1,5 @@
+package etb.score;
+
 
 public class Score {
 	boolean win;
@@ -22,3 +24,4 @@ public class Score {
 	return scores;
 	}
 }
+
