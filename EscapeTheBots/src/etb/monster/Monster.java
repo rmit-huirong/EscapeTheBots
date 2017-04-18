@@ -10,6 +10,7 @@ import graphics.Level;
 
 public class Monster extends Rectangle {
 
+	private static final long serialVersionUID = 1L;
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int dir = -1;
@@ -19,7 +20,7 @@ public class Monster extends Rectangle {
 
 	public Monster(int x, int y) {
 		randomNum = new Random();
-		setBounds(x, y, 32, 32);
+		setBounds(x, y, 30, 30);
 		dir = randomNum.nextInt(4);
 	}
 
@@ -71,4 +72,37 @@ public class Monster extends Rectangle {
 		}
 		return true;
 	}
+
+	public void setDirection(int dir) {
+		this.dir = dir;
+	}
+	
+	/*public void tick() {
+	if (dir == up) {
+		//if (canMove(x, y - speed / unit))
+			y -= speed / unit;
+		//else
+			dir = randomNum.nextInt(4);
+	} else if (dir == down) {
+		//if (canMove(x, y + speed / unit))
+			y += speed / unit;
+		//else
+			dir = randomNum.nextInt(4);
+	} else if (dir == left) {
+		//if (canMove(x - speed / unit, y))
+			x -= speed / unit;
+		//else
+			dir = randomNum.nextInt(4);
+	} else if (dir == right) {
+		//if (canMove(x + speed / unit, y))
+			x += speed / unit;
+		//else
+			dir = randomNum.nextInt(4);
+	}
+	time = time + randomNum.nextInt(10);
+		if (time % 100 == 0) {
+			dir = randomNum.nextInt(4);
+			time = 0;
+		}
+	}*/
 }

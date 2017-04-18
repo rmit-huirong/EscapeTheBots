@@ -39,7 +39,7 @@ public class Game extends Canvas implements Runnable {
 		setMinimumSize(dimension);
 
 		frame = new JFrame(TITLE);
-		level = new Level("/map/map_rmit2017.png");
+		level = new Level("/map/map_1.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
 	}
 

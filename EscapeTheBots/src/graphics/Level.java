@@ -33,14 +33,14 @@ public class Level {
 			for (int xx = 0; xx < width; xx++) {
 				for (int yy = 0; yy < height; yy++) {
 					int val = pixels[xx + (yy * width)];
-					if (val == 0xFF0000FF) {
+					if (val == 0xFF000000) {
 						// Tile
 						tiles[xx][yy] = new Tile(xx  * 32, yy  * 32);
 					}
 				}
 			}
-			for (int i = 0; i < 2; i++) {
-				monsters.add(new Monster(i*10+100, 540));
+			for (int i = 0; i < 50; i++) {
+				monsters.add(new Monster(i*10+100, 850));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class Level {
 	}
 
 	public void tick() {
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 50; i++) {
 			monsters.get(i).tick();
 		}
 	}
@@ -60,7 +60,7 @@ public class Level {
 					tiles[x][y].render(g);
 			}
 		}
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 50; i++) {
 			monsters.get(i).render(g);
 		}
 	}
