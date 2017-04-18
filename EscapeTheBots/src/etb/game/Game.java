@@ -8,24 +8,27 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import etb.food.Food;
 import etb.monster.Monster;
 import etb.player.Player;
 import graphics.Screen;
 import graphics.Spritesheet;
 import graphics.Level;
 
-public class Game extends Canvas implements Runnable, KeyListener {
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
-
+	
 	private Thread thread;
 	private JFrame frame;
 
@@ -36,12 +39,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static Level level;
 	public static Spritesheet spritesheet;
 
+	private int foodCount;
+	
 	public Game() {
 		Dimension dimension = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(dimension);
 		setMaximumSize(dimension);
 		setMinimumSize(dimension);
 		addKeyListener(this);
+		addMouseListener(this);
 		frame = new JFrame(TITLE);
 		level = new Level("/map/map_1.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
@@ -153,6 +159,43 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int x = e.getX();
+		int y = e.getY();
+		if(foodCount < 2){
+			level.food.add(new Food(x,y));
+			foodCount++;
+		}
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

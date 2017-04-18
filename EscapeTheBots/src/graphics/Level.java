@@ -23,7 +23,7 @@ public class Level {
 
 	public List<Monster> monsters;
 	public Player player;
-	public static List<Food> food;
+	public  List<Food> food;
 
 	public Level(String path) {
 		monsters = new ArrayList<>();
@@ -48,8 +48,6 @@ public class Level {
 				monsters.add(new Monster(i*10+100, 850));
 			}
 			player = new Player(Game.WIDTH / 2, Game.HEIGHT / 2);
-			food.add(new Food(500,850));
-			food.add(new Food(500,400));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
