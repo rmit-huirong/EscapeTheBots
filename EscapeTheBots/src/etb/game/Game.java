@@ -6,6 +6,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -141,6 +142,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			level.player.setLeft(true);
 		}
 		
+		
 	}
 
 	@Override
@@ -155,6 +157,17 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 			level.player.setLeft(false);
 		}
+		if(e.getKeyCode() == KeyEvent.VK_SPACE){
+			Point point = level.player.getLocation();
+			Food testFoodObject = new Food(point);
+			
+			if(foodCount < 2){
+				if(testFoodObject.canPlace()){
+					level.food.add(testFoodObject);
+					foodCount++;
+				}
+			}
+		}
 	}
 
 	@Override
@@ -168,8 +181,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		// TODO Auto-generated method stub
 		int x = e.getX();
 		int y = e.getY();
-		if(level.food.size() < 2){
-			level.food.add(new Food(x,y));
+		Food testFoodObject = new Food(x,y);
+		if(foodCount < 2){
+			if(testFoodObject.canPlace()){
+				level.food.add(testFoodObject);
+				foodCount++;
+			}
+			
 		}
 		
 	}

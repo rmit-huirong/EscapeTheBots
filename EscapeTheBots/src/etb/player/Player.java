@@ -71,45 +71,66 @@ public class Player extends Rectangle {
 
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
-				level.food.remove(i);
-				if (foodCount == 1) {
-					poisonTimeTwo = System.currentTimeMillis();
-					tEnd = System.currentTimeMillis();
-					if(tEnd - poisonTimeOne <= 20*1000){ // Finding timeElapsed in order to keep the time from Food one intact
-						timeElapsed = tEnd - poisonTimeOne;
-					}	
-					this.poisonedTwo = true;
-					this.setUnit(this.unit + 2);
-					foodCount++;
-				} else {
-					this.poisoned = true;
-					poisonTimeOne = System.currentTimeMillis();
-					foodCount++;
-					this.setUnit(this.unit + 1);
+				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
+				if (timeElapsed >= 1 * 1000) { //Time delay of 1s
+
+					level.food.remove(i);
+					if (foodCount == 1) {
+						poisonTimeTwo = System.currentTimeMillis();
+						tEnd = System.currentTimeMillis();
+						if (tEnd - poisonTimeOne <= 20 * 1000) { // Finding
+																	// timeElapsed
+																	// in order
+																	// to keep
+																	// the time
+																	// from Food
+																	// one
+																	// intact
+							timeElapsed = tEnd - poisonTimeOne;
+						}
+						this.poisonedTwo = true;
+						this.setUnit(this.unit + 2);
+						foodCount++;
+					} else {
+						this.poisoned = true;
+						poisonTimeOne = System.currentTimeMillis();
+						foodCount++;
+						this.setUnit(this.unit + 1);
+					}
+
 				}
-				
 			}
 		}
 
 		if (poisoned || poisonedTwo) {
-			if(poisonedTwo){
+			if (poisonedTwo) {
 				tEnd = System.currentTimeMillis();
-				if(tEnd - poisonTimeTwo >= 20*1000){
+				if (tEnd - poisonTimeTwo >= 20 * 1000) {
 					this.poisonedTwo = false;
 					foodCount--;
 					this.setUnit(this.unit - 2);
 					poisonTimeOne = System.currentTimeMillis();
 				}
-			}else if(poisoned && poisonedTwo == false){
+			} else if (poisoned && poisonedTwo == false) {
 				tEnd = System.currentTimeMillis();
-				if(tEnd - poisonTimeOne >= 20*1000 - timeElapsed){//Removing time that has already gone from the first poison time
+				if (tEnd - poisonTimeOne >= 20 * 1000 - timeElapsed) {// Removing
+																		// time
+																		// that
+																		// has
+																		// already
+																		// gone
+																		// from
+																		// the
+																		// first
+																		// poison
+																		// time
 					this.poisoned = false;
 					foodCount--;
 					this.setUnit(this.unit - 1);
 				}
 			}
 		}
-	
+
 	}
 
 	public Player(int x, int y) {
