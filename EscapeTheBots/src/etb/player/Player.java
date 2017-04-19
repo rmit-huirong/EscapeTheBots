@@ -17,6 +17,7 @@ public class Player extends Rectangle {
 	private int unit = 1;
 	protected boolean poisoned;
 	protected final int  MAX_SPEED = 4;
+	protected int currentSpeed = MAX_SPEED/unit;
 
 	public boolean isPoisoned() {
 		return this.poisoned;
@@ -64,7 +65,7 @@ public class Player extends Rectangle {
 	
 
 	public void tick() {
-		int currentSpeed = MAX_SPEED/unit;
+		currentSpeed = MAX_SPEED/unit;
 		movePlayer(currentSpeed);
 		
 		Level level = Game.level;
