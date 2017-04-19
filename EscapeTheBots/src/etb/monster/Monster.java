@@ -13,12 +13,16 @@ import etb.strategy.Strategy;
 public class Monster extends Rectangle {
 
 	private static final long serialVersionUID = 1L;
+	
+	private final int SPEED_MAX = 4;
+	
+	
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int dir = -1;
 	private int lastDir = -1;
 	private int time = 0;
-	private int speed = 4;
+	private int curSpeed = 4;
 	private int unit = 1;
 
 	private boolean poisoned = false;
@@ -37,9 +41,18 @@ public class Monster extends Rectangle {
 	private int foodCount = 0;
 	private long tEnd = 0;
 	private long timeElapsed = 0;
+	
+	public void setCurSpeed(int unit)
+	{
+		curSpeed = SPEED_MAX / unit;
+	}
 
 	public void setUnit(int unit) {
 		this.unit = unit;
+	}
+	
+	public int getCurSpeed () {
+		return curSpeed;
 	}
 
 	public void setLastDir(int lastDir) {
@@ -54,28 +67,29 @@ public class Monster extends Rectangle {
 		randomNum = new Random();
 		setBounds(x, y, 30, 30);
 		dir = randomNum.nextInt(4);
+		setCurSpeed(1);
 	}
 
 	public void tick() {
 		if (time < 240) {
 			if (dir == up) {
-				if (canMove(x, y - speed / unit))
-					y -= speed / unit;
+				if (canMove(x, y - curSpeed))
+					y -= curSpeed;
 				else
 					dir = randomNum.nextInt(4);
 			} else if (dir == down) {
-				if (canMove(x, y + speed / unit))
-					y += speed / unit;
+				if (canMove(x, y + curSpeed))
+					y += curSpeed;
 				else
 					dir = randomNum.nextInt(4);
 			} else if (dir == left) {
-				if (canMove(x - speed / unit, y))
-					x -= speed / unit;
+				if (canMove(x - curSpeed, y))
+					x -= curSpeed;
 				else
 					dir = randomNum.nextInt(4);
 			} else if (dir == right) {
-				if (canMove(x + speed / unit, y))
-					x += speed / unit;
+				if (canMove(x + curSpeed, y))
+					x += curSpeed;
 				else
 					dir = randomNum.nextInt(4);
 			}
@@ -89,8 +103,8 @@ public class Monster extends Rectangle {
 		Strategy strategy = new Strategy();
 		if (time >= 240) {
 
-			strategy.chase_1(level.player, level.monsters.get(0), 1);
-			strategy.chase_1(level.player, level.monsters.get(1), 1);
+			strategy.chase_1(level.player, level.monsters.get(0), curSpeed);
+			strategy.chase_1(level.player, level.monsters.get(1), curSpeed);
 		}
 
 		for (int i = 0; i < level.food.size(); i++) {
