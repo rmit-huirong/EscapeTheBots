@@ -53,35 +53,75 @@ public class Player extends Rectangle {
 		this.left = left;
 	}
 
-	private int speed = 4;
-
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
+	private final int  MAX_SPEED = 4;
 
 	public void tick() {
+		int currentSpeed = MAX_SPEED/unit;
+		movePlayer(currentSpeed);
+		
+		Level level = Game.level;
+
+		poisonPlayer(level);
+
+		curePlayer();
+
+	}
+
+	private void movePlayer(int currentSpeed) {
 		if (up) {
-			if (canMove(x, y - speed / unit)) {
-				y -= speed / unit;
+			if (canMove(x, y - currentSpeed)) {
+				y -= currentSpeed;
 			}
 		}
 		if (down) {
-			if (canMove(x, y + speed / unit)) {
-				y += speed / unit;
+			if (canMove(x, y + currentSpeed)) {
+				y += currentSpeed;
 			}
 		}
 		if (left) {
-			if (canMove(x - speed, y)) {
-				x -= speed / unit;
+			if (canMove(x - currentSpeed, y)) {
+				x -= currentSpeed;
 			}
 		}
 		if (right) {
-			if (canMove(x + speed, y)) {
-				x += speed / unit;
+			if (canMove(x + currentSpeed, y)) {
+				x += currentSpeed;
 			}
 		}
-		Level level = Game.level;
+	}
 
+	private void curePlayer() {
+		if (poisoned || poisonedTwo) {
+			if (poisonedTwo) {
+				tEnd = System.currentTimeMillis();
+				if (tEnd - poisonTimeTwo >= 20 * 1000) {
+					this.poisonedTwo = false;
+					foodCount--;
+					this.setUnit(this.unit - 2);
+					poisonTimeOne = System.currentTimeMillis();
+				}
+			} else if (poisoned && poisonedTwo == false) {
+				tEnd = System.currentTimeMillis();
+				if (tEnd - poisonTimeOne >= 20 * 1000 - timeElapsed) {// Removing
+																		// time
+																		// that
+																		// has
+																		// already
+																		// gone
+																		// from
+																		// the
+																		// first
+																		// poison
+																		// time
+					this.poisoned = false;
+					foodCount--;
+					this.setUnit(this.unit - 1);
+				}
+			}
+		}
+	}
+
+	private void poisonPlayer(Level level) {
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
@@ -114,36 +154,6 @@ public class Player extends Rectangle {
 				}
 			}
 		}
-
-		if (poisoned || poisonedTwo) {
-			if (poisonedTwo) {
-				tEnd = System.currentTimeMillis();
-				if (tEnd - poisonTimeTwo >= 20 * 1000) {
-					this.poisonedTwo = false;
-					foodCount--;
-					this.setUnit(this.unit - 2);
-					poisonTimeOne = System.currentTimeMillis();
-				}
-			} else if (poisoned && poisonedTwo == false) {
-				tEnd = System.currentTimeMillis();
-				if (tEnd - poisonTimeOne >= 20 * 1000 - timeElapsed) {// Removing
-																		// time
-																		// that
-																		// has
-																		// already
-																		// gone
-																		// from
-																		// the
-																		// first
-																		// poison
-																		// time
-					this.poisoned = false;
-					foodCount--;
-					this.setUnit(this.unit - 1);
-				}
-			}
-		}
-
 	}
 
 	public Player(int x, int y) {
