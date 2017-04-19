@@ -3,13 +3,13 @@ package etb.grid;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class Tile {
+public class Tile1 {
 	
 	//STATIC STUFF HERE
 	
-	public static Tile[] tiles = new Tile[256];
-	public static Tile emptyTile = new EmptyTile(0);
-	public static Tile blockTile = new BlockTile(1);
+	public static Tile1[] tiles = new Tile1[256];
+	public static Tile1 emptyTile = new EmptyTile(0);
+	public static Tile1 blockTile = new BlockTile(1);
 	
 	
 	//CLASS
@@ -18,7 +18,7 @@ public class Tile {
 	protected BufferedImage texture;
 	protected final int id;
 	
-	public Tile(BufferedImage texture, int id){
+	public Tile1(BufferedImage texture, int id){
 		
 		this.texture = texture;
 		this.id = id;

@@ -2,7 +2,7 @@ package etb.grid;
 
 import java.awt.Graphics;
 
-import etb.grid.Tile;
+import etb.grid.Tile1;
 import etb.display.Utils;
 
 public class World {
@@ -24,15 +24,15 @@ public class World {
 		for(int y = 0; y < height; y++)
 			for(int x = 0; x <width; x++)
 			{
-				getTile(x, y).render(g, x * Tile.TILEWIDTH, y *Tile.TILEHEIGHT);
+				getTile(x, y).render(g, x * Tile1.TILEWIDTH, y *Tile1.TILEHEIGHT);
 			}
 	}
 	
-	public static Tile getTile(int x, int y){
+	public static Tile1 getTile(int x, int y){
 		
-		Tile t = Tile.tiles[tiles[x][y]];
+		Tile1 t = Tile1.tiles[tiles[x][y]];
 		if(t == null)
-			return Tile.blockTile;
+			return Tile1.blockTile;
 		return t;
 		
 	}

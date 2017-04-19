@@ -1,6 +1,6 @@
 package etb.grid;
 
-public class BlockTile extends Tile {
+public class BlockTile extends Tile1 {
 	
 	public BlockTile(int id){
 		

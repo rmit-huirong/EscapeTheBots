@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 import etb.food.Food;
 import etb.game.Game;
-import etb.graphics.Tile0;
+import etb.graphics.Tile;
 import etb.monster.Monster;
 import etb.player.Player;
 import etb.strategy.Strategy;
@@ -20,7 +20,7 @@ public class Level {
 	public int width;
 	public int height;
 
-	public Tile0[][] tiles;
+	public Tile[][] tiles;
 
 	public List<Monster> monsters;
 
@@ -37,13 +37,13 @@ public class Level {
 			this.height = map.getHeight();
 			int[] pixels = new int[width * height];
 			map.getRGB(0, 0, width, height, pixels, 0, width);
-			tiles = new Tile0[width][height];
+			tiles = new Tile[width][height];
 			for (int xx = 0; xx < width; xx++) {
 				for (int yy = 0; yy < height; yy++) {
 					int val = pixels[xx + (yy * width)];
 					if (val == 0xFF000000) {
 						// Tile
-						tiles[xx][yy] = new Tile0(xx * 32, yy * 32);
+						tiles[xx][yy] = new Tile(xx * 32, yy * 32);
 					}
 				}
 			}
