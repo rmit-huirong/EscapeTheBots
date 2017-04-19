@@ -3,7 +3,7 @@ package etb.grid;
 import java.awt.Graphics;
 
 import etb.grid.Tile;
-//import etb.display.Utils;
+import etb.display.Utils;
 
 public class World {
 	
@@ -12,8 +12,8 @@ public class World {
 	private static int[][] tiles;
 	
 	public World(String path){
-		//loadWorld(path);
-		
+		loadWorld(path);
+	
 	}
 	
 	public void tick(){
@@ -36,7 +36,7 @@ public class World {
 		return t;
 		
 	}
-	/*public static void loadWorld(String path){
+	public static void loadWorld(String path){
 	
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
@@ -52,6 +52,6 @@ public class World {
 			}
 		
 		
-	}*/
+	}
 
 }

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import display.Display;
+import etb.display.Display;
 import etb.graphics.Level;
 import etb.grid.Assets;
 import etb.grid.World;

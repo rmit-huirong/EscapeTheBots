@@ -1,4 +1,4 @@
-package display;
+package etb.display;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

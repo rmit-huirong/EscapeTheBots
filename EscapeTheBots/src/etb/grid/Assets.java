@@ -2,7 +2,8 @@ package etb.grid;
 
 import java.awt.image.BufferedImage;
 
-import display.ImageLoader;
+import etb.display.ImageLoader;
+import etb.display.SpriteSheet;
 
 public class Assets {
 	
@@ -11,11 +12,11 @@ public class Assets {
 
 	public static void init(){
 		
-		//SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/sprites/spritesheet1.png"));
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/sprites/spritesheet1.png"));
 		
 		
-		//empty = sheet.crop(width * 2, 0, width, height);
-		//block = sheet.crop(width, 0, width, height);
+		empty = sheet.crop(width * 2, 0, width, height);
+		block = sheet.crop(width, 0, width, height);
 		
 	}
 }

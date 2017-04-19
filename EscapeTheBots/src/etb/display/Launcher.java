@@ -1,4 +1,4 @@
-package display;
+package etb.display;
 
 import game0.Game0;
 
