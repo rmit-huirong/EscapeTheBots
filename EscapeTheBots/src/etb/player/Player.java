@@ -3,7 +3,6 @@ package etb.player;
  * Author - Navod Bopitiya - s3617221
  */
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -16,17 +15,26 @@ public class Player extends Rectangle {
 	private static final long serialVersionUID = 1L;
 	private boolean up, down, right, left = false;
 	private int unit = 1;
-	private boolean poisoned = false;
+	protected boolean poisoned;
+	protected final int  MAX_SPEED = 4;
 
 	public boolean isPoisoned() {
-		return poisoned;
+		return this.poisoned;
 	}
 
 	public boolean isPoisonedTwo() {
-		return poisonedTwo;
+		return this.poisonedTwo;
 	}
 
-	private boolean poisonedTwo = false;
+	protected boolean poisonedTwo;
+	public void setPoisoned(boolean poisoned) {
+		this.poisoned = poisoned;
+	}
+
+	public void setPoisonedTwo(boolean poisonedTwo) {
+		this.poisonedTwo = poisonedTwo;
+	}
+
 	private long poisonTimeOne = 0;
 	private long poisonTimeTwo = 0;
 	private int foodCount = 0;
@@ -53,7 +61,7 @@ public class Player extends Rectangle {
 		this.left = left;
 	}
 
-	private final int  MAX_SPEED = 4;
+	
 
 	public void tick() {
 		int currentSpeed = MAX_SPEED/unit;
@@ -67,35 +75,35 @@ public class Player extends Rectangle {
 
 	}
 
-	private void movePlayer(int currentSpeed) {
+	protected void movePlayer(int currentSpeed) {
 		if (up) {
 			if (canMove(x, y - currentSpeed)) {
-				y -= currentSpeed;
+				this.y -= currentSpeed;
 			}
 		}
 		if (down) {
 			if (canMove(x, y + currentSpeed)) {
-				y += currentSpeed;
+				this.y += currentSpeed;
 			}
 		}
 		if (left) {
 			if (canMove(x - currentSpeed, y)) {
-				x -= currentSpeed;
+				this.x -= currentSpeed;
 			}
 		}
 		if (right) {
 			if (canMove(x + currentSpeed, y)) {
-				x += currentSpeed;
+				this.x += currentSpeed;
 			}
 		}
 	}
 
-	private void curePlayer() {
+	protected void curePlayer() {
 		if (poisoned || poisonedTwo) {
 			if (poisonedTwo) {
 				tEnd = System.currentTimeMillis();
 				if (tEnd - poisonTimeTwo >= 20 * 1000) {
-					this.poisonedTwo = false;
+					setPoisonedTwo(false);
 					foodCount--;
 					this.setUnit(this.unit - 2);
 					poisonTimeOne = System.currentTimeMillis();
@@ -113,7 +121,7 @@ public class Player extends Rectangle {
 																		// first
 																		// poison
 																		// time
-					this.poisoned = false;
+					setPoisoned(false);
 					foodCount--;
 					this.setUnit(this.unit - 1);
 				}
@@ -121,11 +129,11 @@ public class Player extends Rectangle {
 		}
 	}
 
-	private void poisonPlayer(Level level) {
+	protected void poisonPlayer(Level level) {
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
-				if (timeElapsed >= 1 * 1000) { // Time delay of 1s
+				if (timeElapsed >= 0.5 * 1000) { // Time delay of 0.5s
 
 					level.food.remove(i);
 					if (foodCount == 1) {
@@ -141,11 +149,11 @@ public class Player extends Rectangle {
 																	// intact
 							timeElapsed = tEnd - poisonTimeOne;
 						}
-						this.poisonedTwo = true;
+						setPoisonedTwo(true);
 						this.setUnit(this.unit + 2);
 						foodCount++;
 					} else {
-						this.poisoned = true;
+						setPoisoned(true);
 						poisonTimeOne = System.currentTimeMillis();
 						foodCount++;
 						this.setUnit(this.unit + 1);

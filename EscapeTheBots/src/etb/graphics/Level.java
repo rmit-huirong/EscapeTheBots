@@ -62,15 +62,10 @@ public class Level {
 		for (int i = 0; i < monsters.size(); i++) {
 			monsters.get(i).tick();
 		}
-
-		for (int i = 0; i < food.size(); i++) {
-			long tEnd = System.currentTimeMillis();
-			if (tEnd - food.get(i).getTimePlaced() >= 20 * 1000) {
-				System.out.println(tEnd - food.get(i).getTimePlaced());
-				food.remove(i);
-
-			}
+		for(int i = 0; i<food.size(); i++){
+			food.get(i).tick();
 		}
+		
 
 	}
 

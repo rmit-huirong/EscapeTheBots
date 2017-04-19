@@ -29,6 +29,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
+	public int countDown;
 
 	private Thread thread;
 	private JFrame frame;
@@ -71,7 +72,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void run() {
 		requestFocus();
-		int countDown = 99;
+		countDown = 99;
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double targetTick = 60.0;

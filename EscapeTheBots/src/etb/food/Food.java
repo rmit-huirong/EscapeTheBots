@@ -36,6 +36,19 @@ public class Food extends Rectangle {
 	}
 
 	public void tick() {
+		foodTimeout();
+	}
+
+	public void foodTimeout() {
+		Level level = Game.level;
+		for (int i = 0; i < level.food.size(); i++) {
+			long tEnd = System.currentTimeMillis();
+			if (tEnd - level.food.get(i).getTimePlaced() >= 20 * 1000) {
+				System.out.println(tEnd - level.food.get(i).getTimePlaced());
+				level.food.remove(i);
+
+			}
+		}
 	}
 
 	public boolean canPlace() {

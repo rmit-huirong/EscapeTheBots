@@ -169,7 +169,7 @@ public class Monster extends Rectangle {
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
-				if (timeElapsed >= 1 * 1000) { // Time delay of 1s
+				if (timeElapsed >= 0.5 * 1000) { // Time delay of 1s
 
 					level.food.remove(i);
 					if (foodCount == 1) {
