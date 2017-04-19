@@ -168,9 +168,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		// TODO Auto-generated method stub
 		int x = e.getX();
 		int y = e.getY();
-		if(foodCount < 2){
+		if(level.food.size() < 2){
 			level.food.add(new Food(x,y));
-			foodCount++;
 		}
 		
 	}
