@@ -74,6 +74,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		double targetTick = 60.0;
 		double ns = 1000000000.0 / targetTick;
 		double delta = 0;
+		int countDown = 99;
 		int fps = 0;
 
 		while (isRunning) {
@@ -89,9 +90,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			}
 
 			if (System.currentTimeMillis() - timer >= 1000) {
-				System.out.println(fps);
+				frame.setTitle(TITLE + " | FPS: " + fps + " Countdown: " + countDown);
+				if (countDown == 0) {
+					System.exit(1);
+				}
 				fps = 0;
 				timer += 1000;
+				countDown--;
 			}
 		}
 	}

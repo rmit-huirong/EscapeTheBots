@@ -141,7 +141,7 @@ public class Monster extends Rectangle {
 		g.drawImage(Game.spritesheet.getSprite(0, 16), x, y, width, height, null);
 	}
 
-	private boolean canMove(int nextx, int nexty) {
+	public boolean canMove(int nextx, int nexty) {
 		Rectangle bounds = new Rectangle(nextx, nexty, width, height);
 		Level level = Game.level;
 
