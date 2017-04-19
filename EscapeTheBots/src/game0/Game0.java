@@ -74,13 +74,9 @@ public class Game0 implements Runnable {
 		if(State.getState() != null)
 			State.getState().tick();
 		
-		//g.drawImage(Assets.grass, x, 10, null);
-		//Tile.tiles[0].render(g, 0, 0);
-		//Tile.tiles[1].render(g, 0, 50);
-		//Tile.tiles[0].render(g, 0, 100);
+	
 		World.render(g);
 		//Level.render(g);
-		//g.drawImage(Assets.block, 70, 70, null);
 		
 		
 		//End Drawing Here!
