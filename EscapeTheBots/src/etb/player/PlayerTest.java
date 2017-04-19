@@ -100,9 +100,9 @@ public class PlayerTest {
 
 	@Test
 	public void testCurePlayer() {
-/*		int x = 500, y = 850;
-		player = new Player(x,y);
-		 Checking if first food item poisons player 
+		int x = 500, y = 850;
+		Player player = new Player(x,y);
+		 /*Checking if first food item poisons player*/ 
 		Food food = new Food(x+player.MAX_SPEED,y);
 		this.level.food.add(food);
 		player.setRight(true);
@@ -111,7 +111,7 @@ public class PlayerTest {
 		assertEquals(false,player.poisoned);
 		assertEquals(false,player.poisonedTwo);
 		
-		Checking if second food item poisons player again 
+		/*Checking if second food item poisons player again*/ 
 		player.setRight(true);
 		Food foodTwo = new Food(player.x + player.MAX_SPEED,y);
 		this.level.food.add(foodTwo);
@@ -119,7 +119,7 @@ public class PlayerTest {
 		player.tick();
 		player.setRight(false);
 		assertEquals(false,player.poisoned);
-		assertEquals(false,player.poisonedTwo);*/
+		assertEquals(false,player.poisonedTwo);
 	}
 
 }
