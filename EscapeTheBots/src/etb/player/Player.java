@@ -18,6 +18,12 @@ public class Player extends Rectangle {
 	protected boolean poisoned;
 	protected final int  MAX_SPEED = 4;
 	protected int currentSpeed = MAX_SPEED/unit;
+	
+	private long poisonTimeOne = 0;
+	private long poisonTimeTwo = 0;
+	private int foodCount = 0;
+	private long tEnd = 0;
+	private long timeElapsed = 0;
 
 	public boolean isPoisoned() {
 		return this.poisoned;
@@ -36,11 +42,7 @@ public class Player extends Rectangle {
 		this.poisonedTwo = poisonedTwo;
 	}
 
-	private long poisonTimeOne = 0;
-	private long poisonTimeTwo = 0;
-	private int foodCount = 0;
-	private long tEnd = 0;
-	private long timeElapsed = 0;
+	
 
 	public void setUnit(int unit) {
 		this.unit = unit;
