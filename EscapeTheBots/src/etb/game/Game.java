@@ -71,7 +71,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void run() {
 		requestFocus();
-		int countDown = 9999;
+		int countDown = 99;
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double targetTick = 60.0;
