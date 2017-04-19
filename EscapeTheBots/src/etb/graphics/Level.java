@@ -14,6 +14,7 @@ import etb.game.Game;
 import etb.graphics.Tile0;
 import etb.monster.Monster;
 import etb.player.Player;
+import etb.strategy.Strategy;
 
 public class Level {
 	public int width;
@@ -22,6 +23,7 @@ public class Level {
 	public Tile0[][] tiles;
 
 	public List<Monster> monsters;
+
 	public Player player;
 	public List<Food> food;
 

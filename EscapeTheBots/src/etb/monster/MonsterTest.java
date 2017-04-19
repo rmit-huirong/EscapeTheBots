@@ -9,6 +9,7 @@ import etb.game.Game;
 
 public class MonsterTest {
 
+	// screen is 1280x960
 	// monster_1 & monster_3 is on the boundary of the bottom of the grid (inside the grid)
 	// monster_2 & monster_4 is on the edge of the bottom of one of the blocks (outside the block)
 	Monster monster_1 = new Monster(100, 960 - 32 * 2 - 30);

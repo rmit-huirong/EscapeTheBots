@@ -7,6 +7,8 @@ import java.util.Random;
 
 import etb.game.Game;
 import etb.graphics.Level;
+import etb.player.Player;
+import etb.strategy.Strategy;
 
 public class Monster extends Rectangle {
 
@@ -14,10 +16,11 @@ public class Monster extends Rectangle {
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int dir = -1;
+	private int lastDir = -1;
 	private int time = 0;
 	private int speed = 4;
 	private int unit = 1;
-	
+
 	private boolean poisoned = false;
 
 	public boolean isPoisoned() {
@@ -39,6 +42,14 @@ public class Monster extends Rectangle {
 		this.unit = unit;
 	}
 
+	public void setLastDir(int lastDir) {
+		this.lastDir = lastDir;
+	}
+
+	public int getLastDir() {
+		return lastDir;
+	}
+
 	public Monster(int x, int y) {
 		randomNum = new Random();
 		setBounds(x, y, 30, 30);
@@ -46,33 +57,41 @@ public class Monster extends Rectangle {
 	}
 
 	public void tick() {
-		if (dir == up) {
-			if (canMove(x, y - speed / unit))
-				y -= speed / unit;
-			else
-				dir = randomNum.nextInt(4);
-		} else if (dir == down) {
-			if (canMove(x, y + speed / unit))
-				y += speed / unit;
-			else
-				dir = randomNum.nextInt(4);
-		} else if (dir == left) {
-			if (canMove(x - speed / unit, y))
-				x -= speed / unit;
-			else
-				dir = randomNum.nextInt(4);
-		} else if (dir == right) {
-			if (canMove(x + speed / unit, y))
-				x += speed / unit;
-			else
-				dir = randomNum.nextInt(4);
+		if (time < 240) {
+			if (dir == up) {
+				if (canMove(x, y - speed / unit))
+					y -= speed / unit;
+				else
+					dir = randomNum.nextInt(4);
+			} else if (dir == down) {
+				if (canMove(x, y + speed / unit))
+					y += speed / unit;
+				else
+					dir = randomNum.nextInt(4);
+			} else if (dir == left) {
+				if (canMove(x - speed / unit, y))
+					x -= speed / unit;
+				else
+					dir = randomNum.nextInt(4);
+			} else if (dir == right) {
+				if (canMove(x + speed / unit, y))
+					x += speed / unit;
+				else
+					dir = randomNum.nextInt(4);
+			}
 		}
-		time = time + randomNum.nextInt(10);
-		if (time % 100 == 0) {
-			dir = randomNum.nextInt(4);
-			time = 0;
-		}
+		/*
+		 * time = time + randomNum.nextInt(10); if (time % 100 == 0) { dir =
+		 * randomNum.nextInt(4); time = 0; }
+		 */
+		time++;
 		Level level = Game.level;
+		Strategy strategy = new Strategy();
+		if (time >= 240) {
+
+			strategy.chase_1(level.player, level.monsters.get(0), 1);
+			strategy.chase_1(level.player, level.monsters.get(1), 1);
+		}
 
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
@@ -160,34 +179,16 @@ public class Monster extends Rectangle {
 	public void setDirection(int dir) {
 		this.dir = dir;
 	}
-	
-	/*public void tick() {
-	if (dir == up) {
-		//if (canMove(x, y - speed / unit))
-			y -= speed / unit;
-		//else
-			dir = randomNum.nextInt(4);
-	} else if (dir == down) {
-		//if (canMove(x, y + speed / unit))
-			y += speed / unit;
-		//else
-			dir = randomNum.nextInt(4);
-	} else if (dir == left) {
-		//if (canMove(x - speed / unit, y))
-			x -= speed / unit;
-		//else
-			dir = randomNum.nextInt(4);
-	} else if (dir == right) {
-		//if (canMove(x + speed / unit, y))
-			x += speed / unit;
-		//else
-			dir = randomNum.nextInt(4);
-	}
-	time = time + randomNum.nextInt(10);
-		if (time % 100 == 0) {
-			dir = randomNum.nextInt(4);
-			time = 0;
-		}
-	}*/
-}
 
+	/*
+	 * public void tick() { if (dir == up) { //if (canMove(x, y - speed / unit))
+	 * y -= speed / unit; //else dir = randomNum.nextInt(4); } else if (dir ==
+	 * down) { //if (canMove(x, y + speed / unit)) y += speed / unit; //else dir
+	 * = randomNum.nextInt(4); } else if (dir == left) { //if (canMove(x - speed
+	 * / unit, y)) x -= speed / unit; //else dir = randomNum.nextInt(4); } else
+	 * if (dir == right) { //if (canMove(x + speed / unit, y)) x += speed /
+	 * unit; //else dir = randomNum.nextInt(4); } time = time +
+	 * randomNum.nextInt(10); if (time % 100 == 0) { dir = randomNum.nextInt(4);
+	 * time = 0; } }
+	 */
+}

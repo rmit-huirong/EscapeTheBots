@@ -20,6 +20,7 @@ import etb.food.Food;
 import etb.graphics.Level;
 import etb.graphics.Screen;
 import etb.graphics.Spritesheet;
+import etb.strategy.Strategy;
 
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 
@@ -33,6 +34,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private JFrame frame;
 
 	private boolean isRunning = false;
+
 
 	public static Level level;
 	public static Spritesheet spritesheet;
@@ -74,7 +76,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		double targetTick = 60.0;
 		double ns = 1000000000.0 / targetTick;
 		double delta = 0;
-		int countDown = 99;
+		int countDown = 9999;
 		int fps = 0;
 
 		while (isRunning) {
