@@ -13,7 +13,6 @@ public class Strategy {
 	boolean move = false;
 
 	public void chase_1(Player player, Monster monster, int speed) {
-		move = false;
 		if (state == smart) {
 			if (monster.x < player.x) {
 				if (monster.canMove(monster.x + speed, monster.y)) {

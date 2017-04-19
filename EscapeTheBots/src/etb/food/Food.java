@@ -24,14 +24,14 @@ public class Food extends Rectangle {
 	}
 
 	public Food(int x, int y) {
-		setBounds(x, y, 20, 20);
+		setBounds(x, y, 30, 30);
 		timePlaced = System.currentTimeMillis();
 	}
 
 	public Food(Point point) {
 		x = (int) point.getX();
 		y = (int) point.getY();
-		setBounds(x, y, 20, 20);
+		setBounds(x, y, 30, 30);
 		timePlaced = System.currentTimeMillis();
 	}
 

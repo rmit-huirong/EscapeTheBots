@@ -35,7 +35,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	private boolean isRunning = false;
 
-
+	
+	
 	public static Level level;
 	public static Spritesheet spritesheet;
 
@@ -70,13 +71,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void run() {
 		requestFocus();
-
+		int countDown = 9999;
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double targetTick = 60.0;
 		double ns = 1000000000.0 / targetTick;
 		double delta = 0;
-		int countDown = 9999;
+		
 		int fps = 0;
 
 		while (isRunning) {
@@ -105,6 +106,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void tick() {
 		level.tick();
+		
 	}
 
 	public void render() {
