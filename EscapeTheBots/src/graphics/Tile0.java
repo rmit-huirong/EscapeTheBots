@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Tile extends Rectangle {
-	public Tile(int x, int y) {
+public class Tile0 extends Rectangle {
+	public Tile0(int x, int y) {
 		setBounds(x, y, 32, 32);
 	}
 

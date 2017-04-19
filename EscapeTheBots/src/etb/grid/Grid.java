@@ -1,5 +1,8 @@
 package etb.grid;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 public class Grid {
 	
 	private static int x, y, width, height;
@@ -7,6 +10,7 @@ public class Grid {
 	private static final int GRID_WIDTH = 100;
 	
 	private static Grid[][] grid  = new Grid[x][y];
+	
 	
 	public Grid(int Grid[][])
 	{

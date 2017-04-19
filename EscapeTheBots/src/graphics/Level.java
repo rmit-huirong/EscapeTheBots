@@ -13,17 +13,17 @@ import etb.food.Food;
 import etb.game.Game;
 import etb.monster.Monster;
 import etb.player.Player;
-import graphics.Tile;
+import graphics.Tile0;
 
 public class Level {
 	public int width;
 	public int height;
 
-	public Tile[][] tiles;
+	public Tile0[][] tiles;
 
 	public List<Monster> monsters;
 	public Player player;
-	public  List<Food> food;
+	public List<Food> food;
 
 	public Level(String path) {
 		monsters = new ArrayList<>();
@@ -34,13 +34,13 @@ public class Level {
 			this.height = map.getHeight() ;
 			int[] pixels = new int[width * height];
 			map.getRGB(0, 0, width , height , pixels, 0, width);
-			tiles = new Tile[width][height];
+			tiles = new Tile0[width][height];
 			for (int xx = 0; xx < width; xx++) {
 				for (int yy = 0; yy < height; yy++) {
 					int val = pixels[xx + (yy * width)];
 					if (val == 0xFF000000) {
 						// Tile
-						tiles[xx][yy] = new Tile(xx  * 32, yy  * 32);
+						tiles[xx][yy] = new Tile0(xx  * 32, yy  * 32);
 					}
 				}
 			}
