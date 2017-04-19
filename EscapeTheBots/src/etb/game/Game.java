@@ -181,6 +181,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		// TODO Auto-generated method stub
 		int x = e.getX();
 		int y = e.getY();
+		System.out.println(x + "     " + y);
 		Food testFoodObject = new Food(x,y);
 		if(foodCount < 2){
 			if(testFoodObject.canPlace()){

@@ -4,10 +4,8 @@ package etb.player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.Random;
 
 import etb.game.Game;
-import etb.user.User;
 import graphics.Level;
 
 public class Player extends Rectangle {
@@ -16,6 +14,14 @@ public class Player extends Rectangle {
 	private boolean up, down, right, left = false;
 	private int unit = 1;
 	private boolean poisoned = false;
+	public boolean isPoisoned() {
+		return poisoned;
+	}
+
+	public boolean isPoisonedTwo() {
+		return poisonedTwo;
+	}
+
 	private boolean poisonedTwo = false;
 	private long poisonTimeOne = 0;
 	private long poisonTimeTwo = 0;
@@ -142,7 +148,7 @@ public class Player extends Rectangle {
 		g.fillRect(x, y, width, height);
 	}
 
-	private boolean canMove(int nextx, int nexty) {
+	public boolean canMove(int nextx, int nexty) {
 		Rectangle bounds = new Rectangle(nextx, nexty, width, height);
 		Level level = Game.level;
 
