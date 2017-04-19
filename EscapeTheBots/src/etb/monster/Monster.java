@@ -104,9 +104,9 @@ public class Monster extends Rectangle {
 		}
 
 		time++;
-		poisonPlayer(level);
+		poisonMonster(level);
 
-		curePlayer();
+		cureMonster();
 	}
 
 	public void render(Graphics g) {
@@ -134,7 +134,7 @@ public class Monster extends Rectangle {
 		this.dir = dir;
 	}
 
-	private void curePlayer() {
+	private void cureMonster() {
 		if (poisoned || poisonedTwo) {
 			if (poisonedTwo) {
 				tEnd = System.currentTimeMillis();
@@ -165,7 +165,7 @@ public class Monster extends Rectangle {
 		}
 	}
 
-	private void poisonPlayer(Level level) {
+	private void poisonMonster(Level level) {
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
