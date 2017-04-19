@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import etb.game.Game;
-import graphics.Level;
+import etb.graphics.Level;
 
 public class Monster extends Rectangle {
 
@@ -17,6 +17,27 @@ public class Monster extends Rectangle {
 	private int time = 0;
 	private int speed = 4;
 	private int unit = 1;
+	
+	private boolean poisoned = false;
+
+	public boolean isPoisoned() {
+		return poisoned;
+	}
+
+	public boolean isPoisonedTwo() {
+		return poisonedTwo;
+	}
+
+	private boolean poisonedTwo = false;
+	private long poisonTimeOne = 0;
+	private long poisonTimeTwo = 0;
+	private int foodCount = 0;
+	private long tEnd = 0;
+	private long timeElapsed = 0;
+
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
 
 	public Monster(int x, int y) {
 		randomNum = new Random();
@@ -50,6 +71,69 @@ public class Monster extends Rectangle {
 		if (time % 100 == 0) {
 			dir = randomNum.nextInt(4);
 			time = 0;
+		}
+		Level level = Game.level;
+
+		for (int i = 0; i < level.food.size(); i++) {
+			if (this.intersects(level.food.get(i))) {
+				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
+				if (timeElapsed >= 1 * 1000) { // Time delay of 1s
+
+					level.food.remove(i);
+					if (foodCount == 1) {
+						poisonTimeTwo = System.currentTimeMillis();
+						tEnd = System.currentTimeMillis();
+						if (tEnd - poisonTimeOne <= 20 * 1000) { // Finding
+																	// timeElapsed
+																	// in order
+																	// to keep
+																	// the time
+																	// from Food
+																	// one
+																	// intact
+							timeElapsed = tEnd - poisonTimeOne;
+						}
+						this.poisonedTwo = true;
+						this.setUnit(this.unit + 2);
+						foodCount++;
+					} else {
+						this.poisoned = true;
+						poisonTimeOne = System.currentTimeMillis();
+						foodCount++;
+						this.setUnit(this.unit + 1);
+					}
+
+				}
+			}
+		}
+
+		if (poisoned || poisonedTwo) {
+			if (poisonedTwo) {
+				tEnd = System.currentTimeMillis();
+				if (tEnd - poisonTimeTwo >= 20 * 1000) {
+					this.poisonedTwo = false;
+					foodCount--;
+					this.setUnit(this.unit - 2);
+					poisonTimeOne = System.currentTimeMillis();
+				}
+			} else if (poisoned && poisonedTwo == false) {
+				tEnd = System.currentTimeMillis();
+				if (tEnd - poisonTimeOne >= 20 * 1000 - timeElapsed) {// Removing
+																		// time
+																		// that
+																		// has
+																		// already
+																		// gone
+																		// from
+																		// the
+																		// first
+																		// poison
+																		// time
+					this.poisoned = false;
+					foodCount--;
+					this.setUnit(this.unit - 1);
+				}
+			}
 		}
 	}
 

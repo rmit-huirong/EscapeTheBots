@@ -9,38 +9,36 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import etb.game.Game;
-import graphics.Level;
+import etb.graphics.Level;
 
-/**
- * @author Navod Bopitiya - s3617221
- *
+/*
+ * Author - Navod Bopitiya - s3617221
  */
 public class Food extends Rectangle {
 
 	private static final long serialVersionUID = 1L;
 	private long timePlaced = 0;
-	
+
 	public long getTimePlaced() {
 		return timePlaced;
 	}
 
-	public Food(int x, int y){
+	public Food(int x, int y) {
 		setBounds(x, y, 20, 20);
 		timePlaced = System.currentTimeMillis();
 	}
-	
+
 	public Food(Point point) {
-		// TODO Auto-generated constructor stub
 		x = (int) point.getX();
 		y = (int) point.getY();
-		setBounds(x,y,20,20);
+		setBounds(x, y, 20, 20);
 		timePlaced = System.currentTimeMillis();
 	}
 
-	public void tick(){
+	public void tick() {
 	}
-	
-	public boolean canPlace(){
+
+	public boolean canPlace() {
 		Rectangle bounds = new Rectangle(x, y, width, height);
 		Level level = Game.level;
 
@@ -55,10 +53,10 @@ public class Food extends Rectangle {
 			}
 		}
 		return true;
-		
+
 	}
-	
-	public void render(Graphics g){
+
+	public void render(Graphics g) {
 		g.setColor(Color.green);
 		g.fillRect(x, y, width, height);
 	}

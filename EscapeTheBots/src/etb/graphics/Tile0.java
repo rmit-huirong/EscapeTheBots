@@ -1,4 +1,4 @@
-package graphics;
+package etb.graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -1,6 +1,6 @@
-package etb.display;
+package display;
 
-import etb.game0.Game0;
+import game0.Game0;
 
 public class Launcher {
 

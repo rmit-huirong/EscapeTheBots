@@ -1,10 +1,10 @@
-package etb.game0;
+package game0;
 
 import java.awt.Graphics;
 
-import etb.game0.Game0;
-import etb.game0.State;
 import etb.grid.World;
+import game0.Game0;
+import game0.State;
 
 public class GameState extends State {
 	

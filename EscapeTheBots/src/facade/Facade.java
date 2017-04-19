@@ -1,4 +1,4 @@
-package etb.facade;
+package facade;
 
 public class Facade {
 

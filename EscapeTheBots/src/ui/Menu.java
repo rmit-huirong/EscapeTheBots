@@ -1,4 +1,4 @@
-package etb.ui;
+package ui;
 
 public class Menu {
 

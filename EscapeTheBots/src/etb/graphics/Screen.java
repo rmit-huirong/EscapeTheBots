@@ -1,5 +1,5 @@
 // Huirong Huang - s3615907
-package graphics;
+package etb.graphics;
 
 public class Screen {
 

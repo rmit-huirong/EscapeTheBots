@@ -1,14 +1,14 @@
-package etb.game0;
+package game0;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import etb.display.Display;
+import display.Display;
+import etb.graphics.Level;
 import etb.grid.Assets;
 import etb.grid.World;
-import graphics.Level;
 
 public class Game0 implements Runnable {
 

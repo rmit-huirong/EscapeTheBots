@@ -1,4 +1,4 @@
-package etb.display;
+package display;
 
 import java.awt.Canvas;
 import java.awt.Dimension;

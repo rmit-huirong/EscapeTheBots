@@ -1,5 +1,5 @@
 // Huirong Huang - s3615907
-package etb.util;
+package util;
 
 import java.util.Scanner;
 

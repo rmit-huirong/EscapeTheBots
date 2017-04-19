@@ -1,12 +1,15 @@
 package etb.player;
-//Author - Navod Bopitiya - s3617221
+/*
+ * Author - Navod Bopitiya - s3617221
+ */
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import etb.game.Game;
-import graphics.Level;
+import etb.graphics.Level;
+import etb.graphics.Spritesheet;
 
 public class Player extends Rectangle {
 
@@ -14,6 +17,7 @@ public class Player extends Rectangle {
 	private boolean up, down, right, left = false;
 	private int unit = 1;
 	private boolean poisoned = false;
+
 	public boolean isPoisoned() {
 		return poisoned;
 	}
@@ -60,15 +64,18 @@ public class Player extends Rectangle {
 			if (canMove(x, y - speed / unit)) {
 				y -= speed / unit;
 			}
-		} else if (down) {
+		}
+		if (down) {
 			if (canMove(x, y + speed / unit)) {
 				y += speed / unit;
 			}
-		} else if (left) {
+		}
+		if (left) {
 			if (canMove(x - speed, y)) {
 				x -= speed / unit;
 			}
-		} else if (right) {
+		}
+		if (right) {
 			if (canMove(x + speed, y)) {
 				x += speed / unit;
 			}
@@ -78,7 +85,7 @@ public class Player extends Rectangle {
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
-				if (timeElapsed >= 1 * 1000) { //Time delay of 1s
+				if (timeElapsed >= 1 * 1000) { // Time delay of 1s
 
 					level.food.remove(i);
 					if (foodCount == 1) {
@@ -144,8 +151,8 @@ public class Player extends Rectangle {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect(x, y, width, height);
+		Spritesheet sheet = Game.spritesheet;
+		g.drawImage(sheet.getSprite(0, 0), x, y, width, height, null);
 	}
 
 	public boolean canMove(int nextx, int nexty) {

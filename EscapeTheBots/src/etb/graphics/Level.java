@@ -1,5 +1,5 @@
 // Huirong Huang - s3615907
-package graphics;
+package etb.graphics;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -11,9 +11,9 @@ import javax.imageio.ImageIO;
 
 import etb.food.Food;
 import etb.game.Game;
+import etb.graphics.Tile0;
 import etb.monster.Monster;
 import etb.player.Player;
-import graphics.Tile0;
 
 public class Level {
 	public int width;
