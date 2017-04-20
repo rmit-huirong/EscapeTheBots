@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import com.sun.corba.se.spi.orbutil.fsm.State;
-
 import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;

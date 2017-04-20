@@ -17,7 +17,7 @@ public class Gamer extends User{
 		super.setPassword(input2.nextLine());
 		
 		for(int i = 0; i < UserSystem.users.size(); i++)
-			if(UserSystem.users.get(i).getUsername().compareTo(( (User) UserSystem.users).getUsername()) == 0 ){
+			if(UserSystem.users.get(i).getUsername().compareTo(getUsername()) == 0 ){
 			return false;
 			} else {
 				UserSystem.addGamer();
