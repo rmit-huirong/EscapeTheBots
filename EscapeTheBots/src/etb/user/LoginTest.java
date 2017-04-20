@@ -16,7 +16,7 @@ public class LoginTest {
 	
 	@Test
 	public void testLoginAuthorisation() {
-	//	users.add(user);
+		users.add(user);
 	}
 
 }

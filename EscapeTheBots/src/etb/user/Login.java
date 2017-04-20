@@ -12,7 +12,16 @@ public class Login {
 		Scanner input2 = new Scanner(System.in);
 		String password = input2.nextLine();
 		
-		ArrayList<User> users = new ArrayList<User>();				
+		ArrayList<User> users = new ArrayList<User>();		
+		
+			/**if(users.getUsername().compareTo(username) == 0 && (users.getPassword().compareTo(password) == 0) 
+			{
+			return true;
+			
+			}else{
+				
+			return false;
+			}	**/
 		
 		if(username.equals(users) && (password.equals(users))) {
 			return true;
