@@ -10,13 +10,14 @@ public class UserSystemTest {
 	UserSystem us = new UserSystem();
 	@Test
 	public void testAddGamer() {
-		assertTrue(us.addGamer());
+		assertTrue(us.register());
 	}
 
 	@Test
 	public void testLogin() {
-		us.addGamer();
-		assertTrue(us.login());
+		us.register();
 		assertFalse(us.login());
+		assertTrue(us.login());
+		
 	}
 }
