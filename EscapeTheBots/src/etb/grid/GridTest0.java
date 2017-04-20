@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import etb.grid.Tile1;
+import etb.monster.Monster;
 import etb.player.Player;
 
 public class GridTest0 {
@@ -16,6 +17,7 @@ public class GridTest0 {
 	
 	Grid[][] grid = new Grid[10][10];
 	Player[][] player1 = new Player[10][10];
+	Monster[][] monster1 = new Monster[10][10];
 	
 	@Before
 	public void setUp() throws Exception {
@@ -51,7 +53,23 @@ public class GridTest0 {
 	}
 	
 	
-	private void assertArrayEquals(Player player, Grid grid2) {
+	private void assertArrayEquals(Monster monster12, Grid grid2) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Test
+	//Test that the player on the grid
+	public void testTile1(){
+		
+	
+		
+		assertArrayEquals(monster1[1][1], grid[1][1]);
+		
+		
+	}
+	
+	private void assertArrayEquals(Player player2, Grid grid2) {
 		// TODO Auto-generated method stub
 		
 	}
