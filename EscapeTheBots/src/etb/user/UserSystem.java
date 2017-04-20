@@ -32,14 +32,14 @@ public UserSystem()
  		User user = new User(null, null);
  			user.login();
  			Game game = new Game();
- 			game.frame.setResizable(false);
+ 			/**game.frame.setResizable(false);
  			game.frame.add(game);
  			game.frame.pack();
  			game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  			game.frame.setLocationRelativeTo(null);
  			game.frame.setVisible(true);
 
- 			game.start();
+ 			game.start();**/
 				return true;
 				
 			//} else{
