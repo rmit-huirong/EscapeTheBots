@@ -15,9 +15,9 @@ User user2 = new User("USERSSS", "SDF");
 		
 	}
 	
-	@Test
+	/*@Test
 	public void testLogin() {
 	
 		assertTrue(user1.login());
-	}
+	}*/
 }

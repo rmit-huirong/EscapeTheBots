@@ -8,10 +8,7 @@ import org.junit.Test;
 public class UserSystemTest {
 	
 	UserSystem us = new UserSystem();
-	@Test
-	public void testAddGamer() {
-		assertTrue(us.register());
-	}
+
 
 	@Test
 	public void testLogin() {
