@@ -54,30 +54,42 @@ public class PlayerTest {
 		int x = 500, y = 850;
 		Player player = new Player(x, y);
 		/* Going right */
+		assertEquals(x, player.x);
+		assertEquals(y, player.y);
 		player.setRight(true);
 		player.movePlayer(player.MAX_SPEED);
 		assertEquals(x + player.MAX_SPEED, player.x);
+		assertEquals(y, player.y);
 		x = player.x;
 		player.setRight(false);
 		
 		/*Going left */
+		assertEquals(x, player.x);
+		assertEquals(y, player.y);
 		player.setLeft(true);
 		player.movePlayer(player.MAX_SPEED);
 		assertEquals(x - player.MAX_SPEED, player.x);
+		assertEquals(y, player.y);
 		x = player.x;
 		player.setLeft(false);
 		
 		/*Going up */
+		assertEquals(x, player.x);
+		assertEquals(y, player.y);
 		player.setUp(true);
 		player.movePlayer(player.MAX_SPEED);
 		assertEquals(y - player.MAX_SPEED, player.y);
+		assertEquals(x, player.x);
 		y = player.y;
 		player.setUp(false);
 		
 		/*Going down */
+		assertEquals(x, player.x);
+		assertEquals(y, player.y);
 		player.setDown(true);
 		player.movePlayer(player.MAX_SPEED);
 		assertEquals(y + player.MAX_SPEED, player.y);
+		assertEquals(x, player.x);
 		y = player.y;
 		player.setDown(false);
 	}
