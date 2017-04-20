@@ -19,7 +19,7 @@ public class Monster extends Rectangle {
 
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
-	private int state = 1, random = 0, smart = 1, find_path = 2;
+	private int state = 1, random = 0, ai = 1, find_path = 2;
 	private int dir = -1;
 	private int lastDir = -1;
 	private int time = 0;
