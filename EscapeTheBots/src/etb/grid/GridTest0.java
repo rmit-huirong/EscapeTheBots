@@ -40,7 +40,7 @@ public class GridTest0 {
 	}
 	
 	@Test
-	//Test that the player does not move outside of the grid
+	//Test that the player on the grid
 	public void testTile(){
 		
 	
