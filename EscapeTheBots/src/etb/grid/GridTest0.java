@@ -14,7 +14,6 @@ public class GridTest0 {
 	boolean sol = true;
 	boolean result;
 	
-	Player player_1 = new Player(30, 30);
 	Grid[][] grid = new Grid[10][10];
 	Player[][] player1 = new Player[10][10];
 	
@@ -51,17 +50,10 @@ public class GridTest0 {
 		
 	}
 	
+	
 	private void assertArrayEquals(Player player, Grid grid2) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Test
-	//Test that the player does not go inside the hollow region
-	public void testTick2(){
-		
-		
-		
-		
-	}
 }
