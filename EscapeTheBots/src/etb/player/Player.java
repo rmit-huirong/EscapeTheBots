@@ -16,9 +16,9 @@ public class Player extends Rectangle {
 	private boolean up, down, right, left = false;
 	private int unit = 1;
 	protected boolean poisoned;
-	protected final int  MAX_SPEED = 4;
-	protected int currentSpeed = MAX_SPEED/unit;
-	
+	protected final int MAX_SPEED = 4;
+	protected int currentSpeed = MAX_SPEED / unit;
+
 	private long poisonTimeOne = 0;
 	private long poisonTimeTwo = 0;
 	private int foodCount = 0;
@@ -34,6 +34,7 @@ public class Player extends Rectangle {
 	}
 
 	protected boolean poisonedTwo;
+
 	public void setPoisoned(boolean poisoned) {
 		this.poisoned = poisoned;
 	}
@@ -41,8 +42,6 @@ public class Player extends Rectangle {
 	public void setPoisonedTwo(boolean poisonedTwo) {
 		this.poisonedTwo = poisonedTwo;
 	}
-
-	
 
 	public void setUnit(int unit) {
 		this.unit = unit;
@@ -64,12 +63,10 @@ public class Player extends Rectangle {
 		this.left = left;
 	}
 
-	
-
 	public void tick() {
-		currentSpeed = MAX_SPEED/unit;
+		currentSpeed = MAX_SPEED / unit;
 		movePlayer(currentSpeed);
-		
+
 		Level level = Game.level;
 
 		poisonPlayer(level);

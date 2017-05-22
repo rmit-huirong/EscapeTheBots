@@ -28,14 +28,6 @@ public class Monster extends Rectangle {
 
 	private boolean poisoned = false;
 
-	public boolean isPoisoned() {
-		return poisoned;
-	}
-
-	public boolean isPoisonedTwo() {
-		return poisonedTwo;
-	}
-
 	private boolean poisonedTwo = false;
 	private long poisonTimeOne = 0;
 	private long poisonTimeTwo = 0;
@@ -70,7 +62,7 @@ public class Monster extends Rectangle {
 	}
 
 	public void tick() {
-		int curSpeed = SPEED_MAX/unit;
+		int curSpeed = SPEED_MAX / unit;
 		Level level = Game.level;
 
 		if (dir == up) {

@@ -126,7 +126,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public static void main(String[] args) {
-		/*Game game = new Game();
+		Game game = new Game();
 		game.frame.setResizable(false);
 		game.frame.add(game);
 		game.frame.pack();
@@ -134,7 +134,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
 
-		game.start();*/
+		game.start();
 	}
 	/*
 	 * Author - Huirong Huang - s3615907
