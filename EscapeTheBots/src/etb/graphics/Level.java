@@ -26,7 +26,7 @@ public class Level {
 	public List<Food> food;
 	public Player player;
 
-
+/*level*/ 
 	public Level(String path) {
 		monsters = new ArrayList<>();
 		food = new ArrayList<>();
