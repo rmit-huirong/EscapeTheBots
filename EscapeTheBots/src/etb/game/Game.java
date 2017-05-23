@@ -16,6 +16,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+
 import etb.food.Food;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
@@ -28,7 +30,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
-	public int countDown;
+	public static int countDown;
+	public static int win = 0;
+	public static int lose = 0;
 
 	private Thread thread;
 	public JFrame frame;
@@ -39,6 +43,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static Player player;
 	public static Level level;
 	public static Spritesheet spritesheet;
+	public static int scores = 2;
+	public static int round = 1;
+	private boolean paused = false;
 
 	private int foodCount;
 
@@ -71,7 +78,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void run() {
 		requestFocus();
-		countDown = 9999;
+		countDown = 9;
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double targetTick = 60.0;
@@ -86,29 +93,50 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			lastTime = now;
 
 			while (delta >= 1) {
-				tick();
-				render();
+				if(paused)
+				{
+					try {
+						thread.sleep(1000/60);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					tick();
+					render();
+					
+				}
 				fps++;
 				delta--;
+				
+				
 			}
 
 			if (System.currentTimeMillis() - timer >= 1000) {
-				frame.setTitle(TITLE + " | FPS: " + fps + " Countdown: " + countDown);
+				frame.setTitle(TITLE + " | Countdown: " + countDown + " | Round " + round + " | Scores: " + scores+ " ( WIN " + win+ " / LOSE " + lose +" )");
+				if(!paused)
+				{
 				if (countDown == 0) {
-					System.exit(1);
+					scores++;
+					round++;
+					win++;
+					countDown = 10;
 				}
 				fps = 0;
-				timer += 1000;
+				
 				countDown--;
+				}
+				timer += 1000;
 			}
 		}
 		stop();
 	}
 
 	public void tick() {
-		player.tick();
-		level.tick();
 		
+			player.tick();
+			level.tick();
 	}
 
 	public void render() {
@@ -146,6 +174,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	 * Author - Navod Bopitiya - s3617221
 	 */
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			paused = true;
+			return;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_R) {
+			paused = false;
+			return;
+		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			player.setUp(true);
 		}

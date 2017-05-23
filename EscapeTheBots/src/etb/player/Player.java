@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
+import etb.monster.Monster;
 
 public class Player extends Rectangle {
 
@@ -73,6 +74,25 @@ public class Player extends Rectangle {
 
 		curePlayer();
 
+		for(int i=0;i<Game.level.monsters.size();i++)
+		{
+			Monster monster = Game.level.monsters.get(i);
+			if(monster.intersects(this)) 
+			{
+				Game.scores--;
+				Game.round++;
+				Game.lose++;
+				Game.countDown = 9;
+				if(Game.scores == 0)
+				{
+					System.exit(0);
+				}
+				Game.player = new Player(0, 0);
+				Game.level = new Level("/map/map_final.png");
+				return;
+			}
+
+		}
 	}
 
 	protected void movePlayer(int currentSpeed) {
@@ -81,17 +101,17 @@ public class Player extends Rectangle {
 				this.y -= currentSpeed;
 			}
 		}
-		if (down) {
+		else if (down) {
 			if (canMove(x, y + currentSpeed)) {
 				this.y += currentSpeed;
 			}
 		}
-		if (left) {
+		else if (left) {
 			if (canMove(x - currentSpeed, y)) {
 				this.x -= currentSpeed;
 			}
 		}
-		if (right) {
+		else if (right) {
 			if (canMove(x + currentSpeed, y)) {
 				this.x += currentSpeed;
 			}
