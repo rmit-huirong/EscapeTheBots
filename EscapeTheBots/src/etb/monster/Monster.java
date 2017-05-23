@@ -9,7 +9,6 @@ import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
 import etb.player.Player;
-import etb.strategy.Strategy;
 
 public class Monster extends Rectangle {
 
@@ -125,7 +124,7 @@ public class Monster extends Rectangle {
 			
 			boolean move = false;
 			
-			if (x<level.player.x)
+			if (x<Game.player.x)
 			{
 				if (canMove(x+curSpeed, y))
 				{
@@ -134,7 +133,7 @@ public class Monster extends Rectangle {
 					lastDir = right;
 				}
 			}
-			if (x>level.player.x)
+			if (x>Game.player.x)
 			{
 				if (canMove(x-curSpeed, y))
 				{
@@ -143,7 +142,7 @@ public class Monster extends Rectangle {
 					lastDir =left;
 				}
 			}
-			if (y<level.player.y)
+			if (!move && y<Game.player.y)
 			{
 				if (canMove(x, y+curSpeed))
 				{
@@ -152,7 +151,7 @@ public class Monster extends Rectangle {
 					lastDir = down;
 				}
 			}
-			if (y>level.player.y)
+			if (!move && y>Game.player.y)
 			{
 				if (canMove(x, y-curSpeed))
 				{
@@ -162,7 +161,7 @@ public class Monster extends Rectangle {
 				}
 			}
 			
-			if(x==level.player.x && y== level.player.y) move = true;
+			if(x==Game.player.x && y== Game.player.y) move = true;
 			
 			
 			if (!move)
@@ -180,7 +179,7 @@ public class Monster extends Rectangle {
 		{
 			if (lastDir == right)
 			{
-				if(y<level.player.y)
+				if(y<Game.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -219,7 +218,7 @@ public class Monster extends Rectangle {
 			}
 			else if (lastDir == left)
 			{
-				if(y<level.player.y)
+				if(y<Game.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -258,7 +257,7 @@ public class Monster extends Rectangle {
 			}
 			else if (lastDir == up)
 			{
-				if(x<level.player.x)
+				if(x<Game.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -297,7 +296,7 @@ public class Monster extends Rectangle {
 			}
 			else if (lastDir == down)
 			{
-				if(x<level.player.x)
+				if(x<Game.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -341,7 +340,7 @@ public class Monster extends Rectangle {
 			
 			if(lastDir == right)
 			{
-				if(y<level.player.y)
+				if(y<Game.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -366,7 +365,7 @@ public class Monster extends Rectangle {
 			}
 			if(lastDir == left)
 			{
-				if(y<level.player.y)
+				if(y<Game.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -391,7 +390,7 @@ public class Monster extends Rectangle {
 			}
 			if(lastDir == up)
 			{
-				if(x<level.player.x)
+				if(x<Game.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -416,7 +415,7 @@ public class Monster extends Rectangle {
 			}
 			if(lastDir == down)
 			{
-				if(x<level.player.x)
+				if(x<Game.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{

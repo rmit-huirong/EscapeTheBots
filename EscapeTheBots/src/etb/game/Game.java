@@ -18,9 +18,8 @@ import javax.swing.JFrame;
 
 import etb.food.Food;
 import etb.graphics.Level;
-import etb.graphics.Screen;
 import etb.graphics.Spritesheet;
-import etb.strategy.Strategy;
+import etb.player.Player;
 
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 
@@ -37,7 +36,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean isRunning = false;
 
 	
-	
+	public static Player player;
 	public static Level level;
 	public static Spritesheet spritesheet;
 
@@ -51,7 +50,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		addKeyListener(this);
 		addMouseListener(this);
 		frame = new JFrame(TITLE);
-		level = new Level("/map/map_1.png");
+		level = new Level("/map/map_final.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
 	}
 
@@ -103,9 +102,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 				countDown--;
 			}
 		}
+		stop();
 	}
 
 	public void tick() {
+		player.tick();
 		level.tick();
 		
 	}
@@ -120,6 +121,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		player.render(g);
 		level.render(g);
 		g.dispose();
 		bs.show();
@@ -145,34 +147,34 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	 */
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			level.player.setUp(true);
+			player.setUp(true);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			level.player.setDown(true);
+			player.setDown(true);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			level.player.setRight(true);
+			player.setRight(true);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			level.player.setLeft(true);
+			player.setLeft(true);
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			level.player.setUp(false);
+			player.setUp(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			level.player.setDown(false);
+			player.setDown(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			level.player.setRight(false);
+			player.setRight(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			level.player.setLeft(false);
+			player.setLeft(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Point point = level.player.getLocation();
+			Point point = player.getLocation();
 			Food testFoodObject = new Food(point);
 
 			if (foodCount < 2) {

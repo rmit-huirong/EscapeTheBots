@@ -100,12 +100,12 @@ public class PlayerTest {
 		Player player = new Player(x, y);
 		Food food = new Food(x + player.MAX_SPEED,y);
 		level.food.add(food);
-		level.player = player;
-		level.player.setRight(true);
-		level.player.movePlayer(level.player.currentSpeed);
-		level.player.setRight(false);
-		level.player.poisonPlayer(level);
-		boolean check = level.player.poisoned;
+		Game.player = player;
+		Game.player.setRight(true);
+		Game.player.movePlayer(Game.player.currentSpeed);
+		Game.player.setRight(false);
+		Game.player.poisonPlayer(level);
+		boolean check = Game.player.poisoned;
 		assertEquals(true,check);
 		
 	}
