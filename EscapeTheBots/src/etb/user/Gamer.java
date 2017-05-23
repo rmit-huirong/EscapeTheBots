@@ -16,7 +16,7 @@ public class Gamer extends User {
 		Scanner input2 = new Scanner(System.in);
 		super.setPassword(input2.nextLine());
 
-		for (int i = 0; i < UserSystem.users.size(); i++) {
+	/*	for (int i = 0; i < UserSystem.users.size(); i++) {
 
 			if (UserSystem.users.get(i).getUsername().compareTo(getUsername()) == 0) {
 
@@ -24,7 +24,7 @@ public class Gamer extends User {
 
 			}
 			
-		}
+		}*/
 		return true;
 	}
 }

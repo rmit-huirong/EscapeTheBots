@@ -3,9 +3,7 @@ package etb.menu;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-
-public class AdminLogin {
+public class AdminLogin extends JFrame {
 
 	private JFrame frame;
 	public static void main(String[] args) {
@@ -22,51 +20,76 @@ public class AdminLogin {
 		});
 	}
 	
-	public AdminLogin(){
+	public AdminLogin() {
 		initialize();
 	}
 	
 	private void initialize() {
-		frame =new JFrame();
+		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.RED);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-				
-		JLabel lblMenu = new JLabel("Welcome to Escape the Bots");
-		lblMenu.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
-		lblMenu.setForeground(Color.YELLOW);
-		lblMenu.setBounds(77, 57, 268, 39);
-		frame.getContentPane().add(lblMenu);
 		
-		JButton btnPlayer = new JButton("Player");
-		btnPlayer.setFont(new Font("Cooper Black", Font.PLAIN, 13));
-		btnPlayer.setBackground(Color.ORANGE);
-		btnPlayer.addActionListener(new ActionListener() { 
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setForeground(Color.ORANGE);
+		lblUsername.setFont(new Font("Cooper Black", Font.BOLD, 13));
+		lblUsername.setBounds(58, 97, 120, 23);
+		frame.getContentPane().add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setForeground(Color.ORANGE);
+		lblPassword.setFont(new Font("Cooper Black", Font.BOLD, 13));
+		lblPassword.setBounds(58, 131, 112, 23);
+		frame.getContentPane().add(lblPassword);
+		
+		JTextField username = new JTextField();
+		username.setBounds(174, 98, 168, 23);
+		frame.getContentPane().add(username);
+		username.setColumns(10);
+		
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setBounds(174, 131, 168, 22);
+		frame.getContentPane().add(passwordField);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
-				PlayerLogin exFrame = new PlayerLogin();
-				exFrame.setVisible(true);
-			}	
+				
+				String uname=username.getText();
+				String pad=passwordField.getText();
+				
+				if(uname.equals("name") && pad.equals("password"))
+				{
+					JOptionPane.showMessageDialog(frame, "you are successfully logged in");
+					frame.dispose();
+					PlayerMenu exFrame = new PlayerMenu();
+					exFrame.setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(frame, "Invalid username or password");
+				}
+			}
 		});
-		btnPlayer.setBounds(132, 119, 139, 23);
-		frame.getContentPane().add(btnPlayer);
+		btnLogin.setBounds(174, 180, 79, 23);
+		frame.getContentPane().add(btnLogin);
 		
-		JButton btnAdmin = new JButton("Admin");
-		btnAdmin.setFont(new Font("Cooper Black", Font.PLAIN, 13));
-		btnAdmin.setBackground(Color.ORANGE);
-		btnAdmin.addActionListener(new ActionListener() { 
+		JLabel lblAdmin = new JLabel("Admin Login");
+		lblAdmin.setForeground(Color.YELLOW);
+		lblAdmin.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
+		lblAdmin.setBounds(159, 50, 120, 14);
+		frame.getContentPane().add(lblAdmin);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 			
 			}	
 		});
-		btnAdmin.setBounds(132, 153, 139, 23);
-		frame.getContentPane().add(btnAdmin);
-		
+		btnCancel.setBounds(263, 180, 79, 23);
+		frame.getContentPane().add(btnCancel);
 	}
-	
 }
-	
-
 
 

@@ -43,39 +43,49 @@ public class PlayerMenu extends JFrame {
 		lblMenu.setBounds(157, 38, 114, 39);
 		frame.getContentPane().add(lblMenu);
 		
-		JButton btnPlayer = new JButton("Play Game");
-		btnPlayer.setFont(new Font("Cooper Black", Font.PLAIN, 13));
-		btnPlayer.setBackground(Color.ORANGE);
-		btnPlayer.addActionListener(new ActionListener() { 
+		JButton btnPlay = new JButton("Play Game");
+		btnPlay.setFont(new Font("Cooper Black", Font.PLAIN, 13));
+		btnPlay.setBackground(Color.ORANGE);
+		btnPlay.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
 				PlayerLogin exFrame = new PlayerLogin();
 				exFrame.setVisible(true);
 			}	
 		});
-		btnPlayer.setBounds(143, 98, 139, 23);
-		frame.getContentPane().add(btnPlayer);
+		btnPlay.setBounds(143, 98, 139, 23);
+		frame.getContentPane().add(btnPlay);
 		
-		JButton btnAdmin = new JButton("High Score");
-		btnAdmin.setFont(new Font("Cooper Black", Font.PLAIN, 13));
-		btnAdmin.setBackground(Color.ORANGE);
-		btnAdmin.addActionListener(new ActionListener() { 
+		JButton btnHighScore = new JButton("High Score");
+		btnHighScore.setFont(new Font("Cooper Black", Font.PLAIN, 13));
+		btnHighScore.setBackground(Color.ORANGE);
+		btnHighScore.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 			
 			}	
 		});
-		btnAdmin.setBounds(143, 132, 139, 23);
-		frame.getContentPane().add(btnAdmin);
+		btnHighScore.setBounds(143, 132, 139, 23);
+		frame.getContentPane().add(btnHighScore);
 		
 		JButton btnCredit = new JButton("Credit");
 		btnCredit.setFont(new Font("Cooper Black", Font.PLAIN, 13));
 		btnCredit.setBackground(Color.ORANGE);
+		btnCredit.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}	
+		});
 		btnCredit.setBounds(143, 166, 139, 23);
 		frame.getContentPane().add(btnCredit);
 		
 		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setFont(new Font("Cooper Black", Font.PLAIN, 13));
 		btnLogOut.setBackground(Color.ORANGE);
+		btnLogOut.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}	
+		});
 		btnLogOut.setBounds(143, 200, 139, 23);
 		frame.getContentPane().add(btnLogOut);
 		

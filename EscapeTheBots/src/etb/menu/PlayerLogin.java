@@ -82,11 +82,21 @@ public class PlayerLogin extends JFrame {
 		frame.getContentPane().add(lblPlayer);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}	
+		});
 		btnCancel.setBounds(263, 180, 79, 23);
 		frame.getContentPane().add(btnCancel);
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.setBackground(Color.WHITE);
+		btnRegister.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}	
+		});
 		btnRegister.setBounds(58, 180, 73, 23);
 		frame.getContentPane().add(btnRegister);
 	}

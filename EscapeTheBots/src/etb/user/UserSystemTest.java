@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class UserSystemTest {
 	
-	UserSystem us = new UserSystem();
+/*	UserSystem us = new UserSystem();
 
 
 	@Test
@@ -16,5 +16,5 @@ public class UserSystemTest {
 		assertFalse(us.login());
 		assertTrue(us.login());
 		
-	}
+	}*/
 }
