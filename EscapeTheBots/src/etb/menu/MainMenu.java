@@ -45,7 +45,7 @@ public class MainMenu {
 		btnPlayer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				Login exFrame = new Login();
+				PlayerLogin exFrame = new PlayerLogin();
 				exFrame.setVisible(true);
 			}	
 		});

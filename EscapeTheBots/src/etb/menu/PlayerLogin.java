@@ -3,7 +3,7 @@ package etb.menu;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Login extends JFrame {
+public class PlayerLogin extends JFrame {
 
 	private JFrame frame;
 	public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
+					PlayerLogin window = new PlayerLogin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -20,7 +20,7 @@ public class Login extends JFrame {
 		});
 	}
 	
-	public Login() {
+	public PlayerLogin() {
 		initialize();
 	}
 	
