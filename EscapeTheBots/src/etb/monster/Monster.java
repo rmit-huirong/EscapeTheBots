@@ -19,7 +19,7 @@ public class Monster extends Rectangle {
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int random = 0, smart = 1, find_path = 2, find_another_path = 3;
-	private int state = random;
+	private int state = smart;
 	private int dir = -1;
 	private int lastDir = -1;
 	private int time = 0;
@@ -124,7 +124,7 @@ public class Monster extends Rectangle {
 			
 			boolean move = false;
 			
-			if (x<Game.player.x)
+			if (x<level.player.x)
 			{
 				if (canMove(x+curSpeed, y))
 				{
@@ -133,7 +133,7 @@ public class Monster extends Rectangle {
 					lastDir = right;
 				}
 			}
-			if (x>Game.player.x)
+			if (x>level.player.x)
 			{
 				if (canMove(x-curSpeed, y))
 				{
@@ -142,7 +142,7 @@ public class Monster extends Rectangle {
 					lastDir =left;
 				}
 			}
-			if (!move && y<Game.player.y)
+			if (!move && y<level.player.y)
 			{
 				if (canMove(x, y+curSpeed))
 				{
@@ -151,7 +151,7 @@ public class Monster extends Rectangle {
 					lastDir = down;
 				}
 			}
-			if (!move && y>Game.player.y)
+			if (!move && y>level.player.y)
 			{
 				if (canMove(x, y-curSpeed))
 				{
@@ -161,7 +161,7 @@ public class Monster extends Rectangle {
 				}
 			}
 			
-			if(x==Game.player.x && y== Game.player.y) move = true;
+			if(x==level.player.x && y== level.player.y) move = true;
 			
 			
 			if (!move)
@@ -171,7 +171,7 @@ public class Monster extends Rectangle {
 			time++;
 			if(time == 300)
 			{
-				state = random;
+				state = smart;
 				time = 0;
 			}
 		}
@@ -179,7 +179,7 @@ public class Monster extends Rectangle {
 		{
 			if (lastDir == right)
 			{
-				if(y<Game.player.y)
+				if(y<level.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -218,7 +218,7 @@ public class Monster extends Rectangle {
 			}
 			else if (lastDir == left)
 			{
-				if(y<Game.player.y)
+				if(y<level.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -257,7 +257,7 @@ public class Monster extends Rectangle {
 			}
 			else if (lastDir == up)
 			{
-				if(x<Game.player.x)
+				if(x<level.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -296,7 +296,7 @@ public class Monster extends Rectangle {
 			}
 			else if (lastDir == down)
 			{
-				if(x<Game.player.x)
+				if(x<level.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -340,7 +340,7 @@ public class Monster extends Rectangle {
 			
 			if(lastDir == right)
 			{
-				if(y<Game.player.y)
+				if(y<level.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -365,7 +365,7 @@ public class Monster extends Rectangle {
 			}
 			if(lastDir == left)
 			{
-				if(y<Game.player.y)
+				if(y<level.player.y)
 				{
 					if(canMove(x, y+curSpeed))
 					{
@@ -390,7 +390,7 @@ public class Monster extends Rectangle {
 			}
 			if(lastDir == up)
 			{
-				if(x<Game.player.x)
+				if(x<level.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -415,7 +415,7 @@ public class Monster extends Rectangle {
 			}
 			if(lastDir == down)
 			{
-				if(x<Game.player.x)
+				if(x<level.player.x)
 				{
 					if(canMove(x+curSpeed, y))
 					{
@@ -504,7 +504,6 @@ public class Monster extends Rectangle {
 		for (int i = 0; i < level.food.size(); i++) {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
-				if (timeElapsed >= 0.5 * 1000) { // Time delay of 1s
 
 					level.food.remove(i);
 					if (foodCount == 1) {
@@ -530,7 +529,6 @@ public class Monster extends Rectangle {
 						this.setUnit(this.unit + 1);
 					}
 
-				}
 			}
 		}
 	}

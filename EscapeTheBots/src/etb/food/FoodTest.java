@@ -45,7 +45,7 @@ public class FoodTest {
 		int x,y;
 		x = 500; y = 850;
 		level.food.add(new Food(x,y));
-		if(game.countDown <= game.countDown - 20){
+		if(game.getCountDown() <= game.getCountDown() - 20){
 			assertNull(level.food.get(0));
 		}
 		

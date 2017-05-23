@@ -23,6 +23,7 @@ public class Level {
 
 	public List<Monster> monsters;
 	public List<Food> food;
+	public Player player;
 
 
 	public Level(String path) {
@@ -44,9 +45,9 @@ public class Level {
 					}
 					else if (val == 0xFF0000FF) {
 						// Player
-						Game.player = new Player(Game.WIDTH / 2, Game.HEIGHT / 2);
-						Game.player.x = xx * 32;
-						Game.player.y = yy * 32;
+						player = new Player(Game.WIDTH / 2, Game.HEIGHT / 2);
+						player.x = xx * 32;
+						player.y = yy * 32;
 
 					} else if (val == 0xFFFF0000) {
 						// Monster
@@ -68,7 +69,27 @@ public class Level {
 		for(int i = 0; i<food.size(); i++){
 			food.get(i).tick();
 		}
+		player.tick();
 		
+		for(int i=0;i<this.monsters.size();i++)
+		{
+			Monster monster = this.monsters.get(i);
+			if(monster.intersects(player)) 
+			{
+				Game.scores--;
+				Game.round++;
+				Game.lose++;
+				Game.setCountDown(9);
+				if(Game.scores == 0)
+				{
+					System.exit(0);
+				}
+				this.player = new Player(0, 0);
+				Game.level = new Level("/map/map_final.png");
+				return;
+			}
+
+		}
 
 	}
 
@@ -85,5 +106,6 @@ public class Level {
 		for (int i = 0; i < monsters.size(); i++) {
 			monsters.get(i).render(g);
 		}
+		player.render(g);
 	}
 }

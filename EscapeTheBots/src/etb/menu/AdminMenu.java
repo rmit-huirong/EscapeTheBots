@@ -1,6 +1,9 @@
 package etb.menu;
 
 import javax.swing.*;
+
+import etb.game.Game;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -48,7 +51,7 @@ public class AdminMenu extends JFrame {
 		btnChangeDuration.setBackground(Color.ORANGE);
 		btnChangeDuration.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				
+				varyDuration();
 			}	
 		});
 		btnChangeDuration.setBounds(134, 109, 159, 23);
@@ -76,6 +79,11 @@ public class AdminMenu extends JFrame {
 		btnLogOut.setBounds(134, 177, 159, 23);
 		frame.getContentPane().add(btnLogOut);
 		
+	}
+	
+	public void varyDuration(){
+		//TODO -change countdown according to entered value - Must be validated first (x>0 and x<1000)?
+		Game.setCountDown(99);
 	}
 	
 }

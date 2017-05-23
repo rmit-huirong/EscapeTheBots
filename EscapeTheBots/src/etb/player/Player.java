@@ -4,8 +4,10 @@ package etb.player;
  */
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 
+import etb.food.Food;
 import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
@@ -74,25 +76,7 @@ public class Player extends Rectangle {
 
 		curePlayer();
 
-		for(int i=0;i<Game.level.monsters.size();i++)
-		{
-			Monster monster = Game.level.monsters.get(i);
-			if(monster.intersects(this)) 
-			{
-				Game.scores--;
-				Game.round++;
-				Game.lose++;
-				Game.countDown = 9;
-				if(Game.scores == 0)
-				{
-					System.exit(0);
-				}
-				Game.player = new Player(0, 0);
-				Game.level = new Level("/map/map_final.png");
-				return;
-			}
-
-		}
+		
 	}
 
 	protected void movePlayer(int currentSpeed) {
@@ -208,6 +192,23 @@ public class Player extends Rectangle {
 			}
 		}
 		return true;
+	}
+	
+	public boolean dropFood(Level level){
+		Point point = getLocation();
+		Food testFoodObject = new Food(point);
+
+		if (foodCount < 2) {
+			if (testFoodObject.canPlace()) {
+				level.food.add(testFoodObject);
+				foodCount++;
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 
 }

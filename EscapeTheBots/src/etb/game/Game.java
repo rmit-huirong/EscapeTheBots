@@ -23,7 +23,7 @@ import etb.graphics.Level;
 import etb.graphics.Spritesheet;
 import etb.player.Player;
 
-public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
+public class Game extends Canvas implements Runnable, KeyListener{
 
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 640;
@@ -31,6 +31,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
 	public static int countDown;
+	public static int getCountDown() {
+		return countDown;
+	}
+
+	public static void setCountDown(int countDown) {
+		Game.countDown = countDown;
+	}
+
 	public static int win = 0;
 	public static int lose = 0;
 
@@ -40,7 +48,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean isRunning = false;
 
 	
-	public static Player player;
 	public static Level level;
 	public static Spritesheet spritesheet;
 	public static int scores = 2;
@@ -55,7 +62,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		setMaximumSize(dimension);
 		setMinimumSize(dimension);
 		addKeyListener(this);
-		addMouseListener(this);
 		frame = new JFrame(TITLE);
 		level = new Level("/map/map_final.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
@@ -134,8 +140,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public void tick() {
-		
-			player.tick();
 			level.tick();
 	}
 
@@ -149,7 +153,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		player.render(g);
 		level.render(g);
 		g.dispose();
 		bs.show();
@@ -183,72 +186,40 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			return;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player.setUp(true);
+			level.player.setUp(true);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.setDown(true);
+			level.player.setDown(true);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.setRight(true);
+			level.player.setRight(true);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.setLeft(true);
+			level.player.setLeft(true);
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player.setUp(false);
+			level.player.setUp(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.setDown(false);
+			level.player.setDown(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.setRight(false);
+			level.player.setRight(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.setLeft(false);
+			level.player.setLeft(false);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Point point = player.getLocation();
-			Food testFoodObject = new Food(point);
-
-			if (foodCount < 2) {
-				if (testFoodObject.canPlace()) {
-					level.food.add(testFoodObject);
-					foodCount++;
-				}
-			}
+			level.player.dropFood(level);
 		}
 	}
 
 	public void keyTyped(KeyEvent e) {
 	}
 
-	public void mouseClicked(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
-		System.out.println(x + "     " + y);
-		Food testFoodObject = new Food(x, y);
-		if (foodCount < 2) {
-			if (testFoodObject.canPlace()) {
-				level.food.add(testFoodObject);
-				foodCount++;
-			}
-		}
-	}
-
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	public void mouseExited(MouseEvent e) {
-	}
-
-	public void mousePressed(MouseEvent e) {
-	}
-
-	public void mouseReleased(MouseEvent e) {
-	}
 	/*
 	 * Author - Navod Bopitiya - s3617221
 	 */
