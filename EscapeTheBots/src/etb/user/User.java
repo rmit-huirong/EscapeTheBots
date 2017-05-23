@@ -29,7 +29,7 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean login() {
+	public boolean login() { //make it a void method
 
 		Scanner input1 = new Scanner(System.in);
 		username = input1.nextLine();
