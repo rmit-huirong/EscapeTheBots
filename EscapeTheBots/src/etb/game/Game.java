@@ -1,4 +1,4 @@
-package etb.game;
+ package etb.game;
 
 /* 
  * Author - Huirong Huang - s3615907
@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	public static Level level;
 	public static Spritesheet spritesheet;
-	public static int scores = 2;
+	public static int lives = 2;
 	public static int round = 1;
 	private boolean paused = false;
 
@@ -84,7 +84,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	public void run() {
 		requestFocus();
-		countDown = 9;
+		countDown = 100;
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double targetTick = 60.0;
@@ -120,14 +120,14 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			}
 
 			if (System.currentTimeMillis() - timer >= 1000) {
-				frame.setTitle(TITLE + " | Countdown: " + countDown + " | Round " + round + " | Scores: " + scores+ " ( WIN " + win+ " / LOSE " + lose +" )");
+				frame.setTitle(TITLE + " | Countdown: " + countDown + " | Round " + round + " | Lives: " + lives+ " ( WIN " + win+ " / LOSE " + lose +" )");
 				if(!paused)
 				{
 				if (countDown == 0) {
-					scores++;
+					lives++;
 					round++;
 					win++;
-					countDown = 10;
+					countDown = 100;
 				}
 				fps = 0;
 				

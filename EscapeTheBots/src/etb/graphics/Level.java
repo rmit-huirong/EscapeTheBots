@@ -76,16 +76,16 @@ public class Level {
 			Monster monster = this.monsters.get(i);
 			if(monster.intersects(player)) 
 			{
-				Game.scores--;
+				Game.lives--;
 				Game.round++;
 				Game.lose++;
-				Game.setCountDown(9);
-				if(Game.scores == 0)
+				Game.setCountDown(100);
+				if(Game.lives == 0)
 				{
 					System.exit(0);
 				}
 				this.player = new Player(0, 0);
-				Game.level = new Level("/map/map_final.png");
+		  		Game.level = new Level("/map/map_final.png");
 				return;
 			}
 
