@@ -7,6 +7,8 @@ import java.awt.event.*;
 import java.util.HashMap;
 public class PlayerRegister extends JFrame {
 	
+	HashMap<String, String> users = new HashMap<String, String>(); 
+	
 	private JFrame frame;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -67,10 +69,11 @@ public class PlayerRegister extends JFrame {
 				}
 				else
 				{
+					users.put(uname, pad);
 					JOptionPane.showMessageDialog(frame, "You are successfully registered");
 					frame.dispose();
-					PlayerMenu exFrame = new PlayerMenu();
-					exFrame.setVisible(true);
+					PlayerMenu play = new PlayerMenu();
+					play.setVisible(true);
 				}
 			}
 		});
