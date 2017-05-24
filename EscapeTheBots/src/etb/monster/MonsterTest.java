@@ -16,7 +16,7 @@ public class MonsterTest {
 	Monster monster_2 = new Monster(102, 960 - 32 * 4);
 	Monster monster_3 = new Monster(100, 960 - 32 * 2 - 30);
 	Monster monster_4 = new Monster(102, 960 - 32 * 4);
-	Game game = new Game();
+	Game game = new Game(null);
 
 	@Before
 	public void setUp() throws Exception {

@@ -16,7 +16,7 @@ import etb.graphics.Level;
  */
 public class FoodTest {
 	
-	Game game = new Game();
+	Game game = new Game(null);
 	Level level = Game.level;
 	
 	@Test

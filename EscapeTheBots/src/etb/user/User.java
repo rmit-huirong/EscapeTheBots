@@ -1,13 +1,14 @@
 package etb.user;
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class User {
-	static String username;
-	static String password;
+	private static String username;
+	private static char[] password;
 
-	public User(String username, String password) {
+	public User(String username, char[] password) {
 		this.username = username;
 		this.password = password;
 
@@ -17,7 +18,7 @@ public class User {
 		return username;
 	}
 
-	public static String getPassword() {
+	public static char[] getPassword() {
 		return password;
 	}
 
@@ -25,18 +26,20 @@ public class User {
 		this.username = username;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(char[] password) {
 		this.password = password;
 	}
+	
+	public static boolean isPasswordCorrect(char[] input) {
+	    boolean isCorrect = true;
 
-	public boolean login() { //make it a void method
-
-		Scanner input1 = new Scanner(System.in);
-		username = input1.nextLine();
-		Scanner input2 = new Scanner(System.in);
-		password = input2.nextLine();
-		return true;
-
+	    if (input.length != password.length) {
+	        isCorrect = false;
+	    } else {
+	        isCorrect = Arrays.equals (input, password);
+	    }
+	    return isCorrect;
 	}
+
 
 }

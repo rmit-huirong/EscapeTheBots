@@ -8,29 +8,18 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class GamerMenu extends JFrame {
+public class GamerMenu {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GamerMenu window = new GamerMenu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	public GamerMenu(){
+	private JFrame previousFrame;
+	public GamerMenu(JFrame previousFrame){
 		initialize();
+		this.previousFrame = previousFrame;
+		frame.setVisible(true);
 	}
 	
 	private void initialize() {
@@ -51,9 +40,8 @@ public class GamerMenu extends JFrame {
 		btnPlay.setBackground(Color.ORANGE);
 		btnPlay.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
-				Game exFrame = new Game();
-				exFrame.setVisible(true);
+				frame.setVisible(false);
+				Game game = new Game(frame);
 			}	
 		});
 		btnPlay.setBounds(143, 98, 139, 23);
@@ -86,7 +74,9 @@ public class GamerMenu extends JFrame {
 		btnLogOut.setBackground(Color.ORANGE);
 		btnLogOut.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-			
+				frame.setVisible(false);
+				previousFrame.setVisible(true);
+				
 			}	
 		});
 		btnLogOut.setBounds(143, 200, 139, 23);

@@ -24,21 +24,31 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static final int HEIGHT = WIDTH / 4 * 3;
 	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
-	public static int countDown;
+	private static int defaultCountDown = 100;
+	public  int countDown = defaultCountDown;
 
-	public static int getCountDown() {
+	public static int getDefaultCountDown() {
+		return defaultCountDown;
+	}
+
+	public static void setDefaultCountDown(int enteredValue) {
+		defaultCountDown = enteredValue;
+	}
+
+	public  int getCountDown() {
 		return countDown;
 	}
 
-	public static void setCountDown(int countDown) {
-		Game.countDown = countDown;
+	public void resetCountDown() {
+		countDown = defaultCountDown;
 	}
 
 	public static int win = 0;
 	public static int lose = 0;
 
 	private Thread thread;
-	public JFrame frame;
+	private JFrame frame;
+	private JFrame previousFrame;
 
 	private boolean isRunning = false;
 
@@ -55,7 +65,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		Game.paused = paused;
 	}
 
-	public Game() {
+	public Game(JFrame previousFrame) {
 		Dimension dimension = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(dimension);
 		setMaximumSize(dimension);
@@ -64,6 +74,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		frame = new JFrame(TITLE);
 		level = new Level("/map/map_final.png");
 		spritesheet = new Spritesheet("/sprites/spritesheet.png");
+		this.previousFrame = previousFrame;
+		frame.setResizable(false);
+		frame.add(this);
+		frame.pack();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		start();
 	}
 
 	public synchronized void start() {
@@ -83,7 +101,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public void run() {
 		requestFocus();
-		countDown = 100;
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		double targetTick = 60.0;
@@ -121,7 +138,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 					if (countDown == 0) {
 						round++;
 						win++;
-						countDown = 100;
+						resetCountDown();
+						level.player = new Player(0, 0);
+						level = new Level("/map/map_final.png");
 					}
 					fps = 0;
 
@@ -140,7 +159,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			if (monster.intersects(level.player)) {
 				round++;
 				lose++;
-				setCountDown(100);
+				resetCountDown();
 				level.player = new Player(0, 0);
 				level = new Level("/map/map_final.png");
 			}
@@ -163,17 +182,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		bs.show();
 	}
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		Game game = new Game();
-		game.frame.setResizable(false);
-		game.frame.add(game);
-		game.frame.pack();
-		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		game.frame.setLocationRelativeTo(null);
-		game.frame.setVisible(true);
 
-		game.start();
-	}
+	}*/
 	/*
 	 * Author - Huirong Huang - s3615907
 	 */
@@ -202,7 +214,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			level.player.setLeft(true);
 		}if (e.getKeyCode() == KeyEvent.VK_Q) {
-			System.exit(0);
+			frame.setVisible(false);
+			frame.dispose();
+			previousFrame.setVisible(true);
 		}
 	}
 

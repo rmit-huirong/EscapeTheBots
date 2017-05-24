@@ -7,8 +7,8 @@ import org.junit.Test;
 
 public class UserTest {
 
-User user1 = new User("user", "pass");
-User user2 = new User("USERSSS", "SDF");
+//User user1 = new User("user", "pass");
+//User user2 = new User("USERSSS", "SDF");
 	
 	@Before
 	public void setUp() throws Exception {	
