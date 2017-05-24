@@ -60,10 +60,10 @@ public class AdminMenu extends JFrame {
 		btnChangeDuration.setBounds(134, 109, 159, 23);
 		getContentPane().add(btnChangeDuration);
 		
-		JButton btnDeletePlayer = new JButton("Delete Player");
-		btnDeletePlayer.setFont(new Font("Cooper Black", Font.PLAIN, 13));
-		btnDeletePlayer.setBackground(Color.ORANGE);
-		btnDeletePlayer.addActionListener(new ActionListener() { 
+		JButton btnDeleteGamer = new JButton("Delete Gamer");
+		btnDeleteGamer.setFont(new Font("Cooper Black", Font.PLAIN, 13));
+		btnDeleteGamer.setBackground(Color.ORANGE);
+		btnDeleteGamer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
 				DeleteMenu window = new DeleteMenu();
@@ -71,8 +71,8 @@ public class AdminMenu extends JFrame {
 				varyDuration(50);
 			}	
 		});
-		btnDeletePlayer.setBounds(134, 143, 159, 23);
-		getContentPane().add(btnDeletePlayer);
+		btnDeleteGamer.setBounds(134, 143, 159, 23);
+		getContentPane().add(btnDeleteGamer);
 		
 		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setFont(new Font("Cooper Black", Font.PLAIN, 13));

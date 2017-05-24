@@ -5,15 +5,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
-public class PlayerLogin extends JFrame {
-			
+public class GamerRegister extends JFrame {
+	
+	public HashMap<String, String> users = new HashMap<String, String>(); 
+	
 	private JFrame frame;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerLogin window = new PlayerLogin();
+					GamerRegister window = new GamerRegister();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -22,7 +24,7 @@ public class PlayerLogin extends JFrame {
 		});
 	}
 	
-	public PlayerLogin() {
+	public GamerRegister() {
 		initialize();
 	}
 	
@@ -54,34 +56,35 @@ public class PlayerLogin extends JFrame {
 		passwordField.setBounds(174, 131, 168, 22);
 		frame.getContentPane().add(passwordField);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() { 
+		JButton btnRegister = new JButton("Register");
+		btnRegister.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String uname=username.getText();
 				String pad=passwordField.getText();
 				
-				if(uname.compareTo(User.getUsername()) == 0 && (pad.compareTo(User.getPassword()) == 0))
+				if(uname.compareTo(User.getUsername()) == 0 )
 				{
-					JOptionPane.showMessageDialog(frame, "you are successfully logged in");
-					frame.dispose();
-					PlayerMenu play = new PlayerMenu();
-					play.setVisible(true);
+					JOptionPane.showMessageDialog(frame, "User already exist");
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(frame, "Invalid username or password");
+					users.put(uname, pad);
+					JOptionPane.showMessageDialog(frame, "You are successfully registered");
+					frame.dispose();
+					GamerMenu play = new GamerMenu();
+					play.setVisible(true);
 				}
 			}
 		});
-		btnLogin.setBounds(174, 180, 79, 23);
-		frame.getContentPane().add(btnLogin);
+		btnRegister.setBounds(174, 180, 79, 23);
+		frame.getContentPane().add(btnRegister);
 		
-		JLabel lblPlayer = new JLabel("Player Login");
-		lblPlayer.setForeground(Color.YELLOW);
-		lblPlayer.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
-		lblPlayer.setBounds(159, 50, 120, 14);
-		frame.getContentPane().add(lblPlayer);
+		JLabel lblRegistration = new JLabel("Registration");
+		lblRegistration.setForeground(Color.YELLOW);
+		lblRegistration.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
+		lblRegistration.setBounds(159, 50, 120, 14);
+		frame.getContentPane().add(lblRegistration);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() { 
@@ -91,16 +94,6 @@ public class PlayerLogin extends JFrame {
 		});
 		btnCancel.setBounds(263, 180, 79, 23);
 		frame.getContentPane().add(btnCancel);
-		
-		JButton btnRegister = new JButton("Register");
-		btnRegister.setBackground(Color.WHITE);
-		btnRegister.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent arg0) {
-			
-			}	
-		});
-		btnRegister.setBounds(58, 180, 73, 23);
-		frame.getContentPane().add(btnRegister);
 	}
 }
 

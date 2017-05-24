@@ -39,18 +39,18 @@ public class MainMenu {
 		lblMenu.setBounds(77, 57, 268, 39);
 		frame.getContentPane().add(lblMenu);
 		
-		JButton btnPlayer = new JButton("Player");
-		btnPlayer.setFont(new Font("Cooper Black", Font.PLAIN, 13));
-		btnPlayer.setBackground(Color.ORANGE);
-		btnPlayer.addActionListener(new ActionListener() { 
+		JButton btnGamer = new JButton("Gamer");
+		btnGamer.setFont(new Font("Cooper Black", Font.PLAIN, 13));
+		btnGamer.setBackground(Color.ORANGE);
+		btnGamer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				PlayerLogin exFrame = new PlayerLogin();
+				GamerLogin exFrame = new GamerLogin();
 				exFrame.setVisible(true);
 			}	
 		});
-		btnPlayer.setBounds(132, 119, 139, 23);
-		frame.getContentPane().add(btnPlayer);
+		btnGamer.setBounds(132, 119, 139, 23);
+		frame.getContentPane().add(btnGamer);
 		
 		JButton btnAdmin = new JButton("Admin");
 		btnAdmin.setFont(new Font("Cooper Black", Font.PLAIN, 13));

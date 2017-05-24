@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class PlayerMenu extends JFrame {
+public class GamerMenu extends JFrame {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class PlayerMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PlayerMenu window = new PlayerMenu();
+					GamerMenu window = new GamerMenu();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class PlayerMenu extends JFrame {
 		});
 	}
 	
-	public PlayerMenu(){
+	public GamerMenu(){
 		initialize();
 	}
 	
@@ -40,7 +40,7 @@ public class PlayerMenu extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 				
-		JLabel lblMenu = new JLabel("Player Menu");
+		JLabel lblMenu = new JLabel("Gamer Menu");
 		lblMenu.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
 		lblMenu.setForeground(Color.YELLOW);
 		lblMenu.setBounds(157, 38, 114, 39);
