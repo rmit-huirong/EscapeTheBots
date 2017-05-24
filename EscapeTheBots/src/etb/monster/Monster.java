@@ -64,378 +64,254 @@ public class Monster extends Rectangle {
 	public void tick() {
 		int curSpeed = SPEED_MAX / unit;
 		Level level = Game.level;
-		
-		if (state == random)
-		{
-			if(dir == right)
-			{
-				if(canMove(x+curSpeed, y))
-				{
-					x+=curSpeed;
-				}
-				else
-				{
+
+		if (state == random) {
+			if (dir == right) {
+				if (canMove(x + curSpeed, y)) {
+					x += curSpeed;
+				} else {
 					dir = randomNum.nextInt(4);
 				}
-			}
-			else if (dir == left)
-			{
-				if(canMove(x-curSpeed, y))
-				{
-					x-=curSpeed;
-				}
-				else
-				{
+			} else if (dir == left) {
+				if (canMove(x - curSpeed, y)) {
+					x -= curSpeed;
+				} else {
 					dir = randomNum.nextInt(4);
 				}
-			}
-			else if (dir == up)
-			{
-				if(canMove(x, y-curSpeed))
-				{
-					y-=curSpeed;
-				}
-				else
-				{
+			} else if (dir == up) {
+				if (canMove(x, y - curSpeed)) {
+					y -= curSpeed;
+				} else {
 					dir = randomNum.nextInt(4);
 				}
-			}
-			else if (dir == down)
-			{
-				if(canMove(x, y+curSpeed))
-				{
-					y+=curSpeed;
-				}
-				else
-				{
+			} else if (dir == down) {
+				if (canMove(x, y + curSpeed)) {
+					y += curSpeed;
+				} else {
 					dir = randomNum.nextInt(4);
 				}
 			}
 			time++;
-			if(time == 180)
-			{
+			if (time == 180) {
 				state = smart;
 				time = 0;
 			}
-		}
-		else if (state == smart)
-		{
-			//follow the player
-			
+		} else if (state == smart) {
+			// follow the player
+
 			boolean move = false;
-			
-			if (x<level.player.x)
-			{
-				if (canMove(x+curSpeed, y))
-				{
-					x+=curSpeed;
+
+			if (x < level.player.x) {
+				if (canMove(x + curSpeed, y)) {
+					x += curSpeed;
 					move = true;
 					lastDir = right;
 				}
 			}
-			if (x>level.player.x)
-			{
-				if (canMove(x-curSpeed, y))
-				{
-					x-=curSpeed;
+			if (x > level.player.x) {
+				if (canMove(x - curSpeed, y)) {
+					x -= curSpeed;
 					move = true;
-					lastDir =left;
+					lastDir = left;
 				}
 			}
-			if (!move && y<level.player.y)
-			{
-				if (canMove(x, y+curSpeed))
-				{
-					y+=curSpeed;
+			if (!move && y < level.player.y) {
+				if (canMove(x, y + curSpeed)) {
+					y += curSpeed;
 					move = true;
 					lastDir = down;
 				}
 			}
-			if (!move && y>level.player.y)
-			{
-				if (canMove(x, y-curSpeed))
-				{
-					y-=curSpeed;
+			if (!move && y > level.player.y) {
+				if (canMove(x, y - curSpeed)) {
+					y -= curSpeed;
 					move = true;
 					lastDir = up;
 				}
 			}
-			
-			if(x==level.player.x && y== level.player.y) move = true;
-			
-			
-			if (!move)
-			{
+
+			if (x == level.player.x && y == level.player.y)
+				move = true;
+
+			if (!move) {
 				state = find_path;
 			}
 			time++;
-			if(time == 300)
-			{
+			if (time == 300) {
 				state = smart;
 				time = 0;
 			}
-		}
-		else if (state == find_path)
-		{
-			if (lastDir == right)
-			{
-				if(y<level.player.y)
-				{
-					if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
+		} else if (state == find_path) {
+			if (lastDir == right) {
+				if (y < level.player.y) {
+					if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
 						state = smart;
+					} else if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
+					} else if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
+						lastDir = left;
+						state = find_another_path;
 					}
-					else if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
-					}
-					else if (canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
+				} else {
+					if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
+						state = smart;
+					} else if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
+					} else if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
 						lastDir = left;
 						state = find_another_path;
 					}
 				}
-				else
-				{
-					if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
+			} else if (lastDir == left) {
+				if (y < level.player.y) {
+					if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
 						state = smart;
-					}
-					else if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
-					}
-					else if (canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
-						lastDir = left;
+					} else if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
+					} else if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
+						lastDir = right;
 						state = find_another_path;
 					}
-				}
-			}
-			else if (lastDir == left)
-			{
-				if(y<level.player.y)
-				{
-					if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
+				} else {
+					if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
 						state = smart;
-					}
-					else if(canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
-					}
-					else if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
+					} else if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
+					} else if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
 						lastDir = right;
 						state = find_another_path;
 					}
 				}
-				else
-				{
-					if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
+			} else if (lastDir == up) {
+				if (x < level.player.x) {
+					if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
 						state = smart;
-					}
-					else if(canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
-					}
-					else if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
-						lastDir = right;
+					} else if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
+					} else if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
+						lastDir = down;
 						state = find_another_path;
 					}
-				}
-			}
-			else if (lastDir == up)
-			{
-				if(x<level.player.x)
-				{
-					if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
+				} else {
+					if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
 						state = smart;
-					}
-					else if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
-					}
-					else if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
+					} else if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
+					} else if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
 						lastDir = down;
 						state = find_another_path;
 					}
 				}
-				else
-				{
-					if(canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
+			} else if (lastDir == down) {
+				if (x < level.player.x) {
+					if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
 						state = smart;
+					} else if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
+					} else if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
+						lastDir = up;
+						state = find_another_path;
 					}
-					else if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
-					}
-					else if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
-						lastDir = down;
+				} else {
+					if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
+						state = smart;
+					} else if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
+					} else if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
+						lastDir = up;
 						state = find_another_path;
 					}
 				}
 			}
-			else if (lastDir == down)
-			{
-				if(x<level.player.x)
-				{
-					if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
-						state = smart;
-					}
-					else if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
-					}
-					else if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
-						lastDir = up;
-						state = find_another_path;
-					}
-				}
-				else
-				{
-					if(canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
-						state = smart;
-					}
-					else if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
-					}
-					else if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
-						lastDir = up;
-						state = find_another_path;
-					}
-				}
-			}			
-		}
-		else if (state == find_another_path)
-		{
+		} else if (state == find_another_path) {
 			boolean movefirst = false;
-			
-			if(lastDir == right)
-			{
-				if(y<level.player.y)
-				{
-					if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
+
+			if (lastDir == right) {
+				if (y < level.player.y) {
+					if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
+						state = find_path;
+						movefirst = true;
+					}
+				} else {
+					if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
 						state = find_path;
 						movefirst = true;
 					}
 				}
-				else
-				{
-					if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
-						state = find_path;
-						movefirst = true;
-					}
-				}
-				if(!movefirst)
-				{
-					x+=curSpeed;
+				if (!movefirst) {
+					x += curSpeed;
 				}
 			}
-			if(lastDir == left)
-			{
-				if(y<level.player.y)
-				{
-					if(canMove(x, y+curSpeed))
-					{
-						y+=curSpeed;
+			if (lastDir == left) {
+				if (y < level.player.y) {
+					if (canMove(x, y + curSpeed)) {
+						y += curSpeed;
+						state = find_path;
+						movefirst = true;
+					}
+				} else {
+					if (canMove(x, y - curSpeed)) {
+						y -= curSpeed;
 						state = find_path;
 						movefirst = true;
 					}
 				}
-				else
-				{
-					if(canMove(x, y-curSpeed))
-					{
-						y-=curSpeed;
-						state = find_path;
-						movefirst = true;
-					}
-				}
-				if(!movefirst)
-				{
-					x-=curSpeed;
+				if (!movefirst) {
+					x -= curSpeed;
 				}
 			}
-			if(lastDir == up)
-			{
-				if(x<level.player.x)
-				{
-					if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
+			if (lastDir == up) {
+				if (x < level.player.x) {
+					if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
+						state = find_path;
+						movefirst = true;
+					}
+				} else {
+					if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
 						state = find_path;
 						movefirst = true;
 					}
 				}
-				else
-				{
-					if(canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
-						state = find_path;
-						movefirst = true;
-					}
-				}
-				if(!movefirst)
-				{
-					y-=curSpeed;
+				if (!movefirst) {
+					y -= curSpeed;
 				}
 			}
-			if(lastDir == down)
-			{
-				if(x<level.player.x)
-				{
-					if(canMove(x+curSpeed, y))
-					{
-						x+=curSpeed;
+			if (lastDir == down) {
+				if (x < level.player.x) {
+					if (canMove(x + curSpeed, y)) {
+						x += curSpeed;
+						state = find_path;
+						movefirst = true;
+					}
+				} else {
+					if (canMove(x - curSpeed, y)) {
+						x -= curSpeed;
 						state = find_path;
 						movefirst = true;
 					}
 				}
-				else
-				{
-					if(canMove(x-curSpeed, y))
-					{
-						x-=curSpeed;
-						state = find_path;
-						movefirst = true;
-					}
-				}
-				if(!movefirst)
-				{
-					y+=curSpeed;
+				if (!movefirst) {
+					y += curSpeed;
 				}
 			}
 		}
@@ -505,29 +381,29 @@ public class Monster extends Rectangle {
 			if (this.intersects(level.food.get(i))) {
 				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
 
-					level.food.remove(i);
-					if (foodCount == 1) {
-						poisonTimeTwo = System.currentTimeMillis();
-						tEnd = System.currentTimeMillis();
-						if (tEnd - poisonTimeOne <= 20 * 1000) { // Finding
-																	// timeElapsed
-																	// in order
-																	// to keep
-																	// the time
-																	// from Food
-																	// one
-																	// intact
-							timeElapsed = tEnd - poisonTimeOne;
-						}
-						this.poisonedTwo = true;
-						this.setUnit(this.unit + 2);
-						foodCount++;
-					} else {
-						this.poisoned = true;
-						poisonTimeOne = System.currentTimeMillis();
-						foodCount++;
-						this.setUnit(this.unit + 1);
+				level.food.remove(i);
+				if (foodCount == 1) {
+					poisonTimeTwo = System.currentTimeMillis();
+					tEnd = System.currentTimeMillis();
+					if (tEnd - poisonTimeOne <= 20 * 1000) { // Finding
+																// timeElapsed
+																// in order
+																// to keep
+																// the time
+																// from Food
+																// one
+																// intact
+						timeElapsed = tEnd - poisonTimeOne;
 					}
+					this.poisonedTwo = true;
+					this.setUnit(this.unit + 2);
+					foodCount++;
+				} else {
+					this.poisoned = true;
+					poisonTimeOne = System.currentTimeMillis();
+					foodCount++;
+					this.setUnit(this.unit + 1);
+				}
 
 			}
 		}
