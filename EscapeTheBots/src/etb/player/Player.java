@@ -11,7 +11,6 @@ import etb.food.Food;
 import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
-import etb.monster.Monster;
 
 public class Player extends Rectangle {
 

@@ -51,7 +51,7 @@ public class AdminMenu extends JFrame {
 		btnChangeDuration.setBackground(Color.ORANGE);
 		btnChangeDuration.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				varyDuration();
+				varyDuration(50);
 			}	
 		});
 		btnChangeDuration.setBounds(134, 109, 159, 23);
@@ -81,9 +81,9 @@ public class AdminMenu extends JFrame {
 		
 	}
 	
-	public void varyDuration(){
+	public void varyDuration(int value){
 		//TODO -change countdown according to entered value - Must be validated first (x>0 and x<1000)?
-		Game.setCountDown(99);
+		Game.setCountDown(value);
 	}
 	
 }
