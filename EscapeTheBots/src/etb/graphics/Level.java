@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import etb.food.Food;
 import etb.game.Game;
@@ -82,7 +83,15 @@ public class Level {
 				Game.setCountDown(100);
 				if(Game.lives == 0)
 				{
-					System.exit(0);
+					int reply = JOptionPane.showConfirmDialog(null, "Do you want to play again?","You lost!",JOptionPane.YES_NO_OPTION);
+					if(reply == JOptionPane.NO_OPTION){
+					System.exit(0); //This should ideally lead back to the user system - player menu
+					}else if(reply == JOptionPane.YES_OPTION){
+						Game.lives = 2;
+						Game.round = 1;
+						Game.lose = 0;
+						Game.win = 0;
+					}
 				}
 				this.player = new Player(0, 0);
 		  		Game.level = new Level("/map/map_final.png");

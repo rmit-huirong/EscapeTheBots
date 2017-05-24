@@ -219,6 +219,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	public void keyTyped(KeyEvent e) {
 	}
+	
 
 	/*
 	 * Author - Navod Bopitiya - s3617221
