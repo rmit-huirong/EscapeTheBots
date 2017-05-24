@@ -7,19 +7,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
-
-import etb.food.Food;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
 import etb.monster.Monster;
