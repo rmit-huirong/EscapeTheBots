@@ -65,7 +65,10 @@ public class AdminMenu extends JFrame {
 		btnDeletePlayer.setBackground(Color.ORANGE);
 		btnDeletePlayer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-			
+				frame.dispose();
+				DeleteMenu window = new DeleteMenu();
+				window.setVisible(true);
+				varyDuration(50);
 			}	
 		});
 		btnDeletePlayer.setBounds(134, 143, 159, 23);

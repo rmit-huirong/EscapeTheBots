@@ -69,8 +69,8 @@ public class PlayerLogin extends JFrame {
 				{
 					JOptionPane.showMessageDialog(frame, "you are successfully logged in");
 					frame.dispose();
-					PlayerMenu exFrame = new PlayerMenu();
-					exFrame.setVisible(true);
+					PlayerMenu play = new PlayerMenu();
+					play.setVisible(true);
 				}
 				else
 				{

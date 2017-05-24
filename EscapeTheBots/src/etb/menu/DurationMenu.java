@@ -32,7 +32,7 @@ public class DurationMenu extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JLabel lblDuration = new JLabel("Game Duration");
+		JLabel lblDuration = new JLabel("Game Duration ");
 		lblDuration.setForeground(Color.YELLOW);
 		lblDuration.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
 		lblDuration.setBounds(142, 57, 143, 14);
