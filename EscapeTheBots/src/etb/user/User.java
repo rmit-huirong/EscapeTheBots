@@ -4,8 +4,8 @@ package etb.user;
 import java.util.Scanner;
 
 public class User {
-	String username;
-	String password;
+	static String username;
+	static String password;
 
 	public User(String username, String password) {
 		this.username = username;
@@ -13,11 +13,11 @@ public class User {
 
 	}
 
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 
-	public String getPassword() {
+	public static String getPassword() {
 		return password;
 	}
 

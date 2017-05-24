@@ -1,17 +1,19 @@
 package etb.menu;
+import etb.user.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class AdminLogin extends JFrame {
-
+import java.util.HashMap;
+public class PlayerRegister extends JFrame {
+	
 	private JFrame frame;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminLogin window = new AdminLogin();
+					PlayerRegister window = new PlayerRegister();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -20,12 +22,12 @@ public class AdminLogin extends JFrame {
 		});
 	}
 	
-	public AdminLogin() {
+	public PlayerRegister() {
 		initialize();
 	}
 	
 	private void initialize() {
-		frame = new JFrame();
+		frame =new JFrame();
 		frame.getContentPane().setBackground(Color.RED);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,34 +54,34 @@ public class AdminLogin extends JFrame {
 		passwordField.setBounds(174, 131, 168, 22);
 		frame.getContentPane().add(passwordField);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() { 
+		JButton btnRegister = new JButton("Register");
+		btnRegister.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String uname=username.getText();
 				String pad=passwordField.getText();
 				
-				if(uname.equals("name") && pad.equals("password"))
+				if(uname.compareTo(User.getUsername()) == 0 )
 				{
-					JOptionPane.showMessageDialog(frame, "you are successfully logged in");
-					frame.dispose();
-					AdminMenu exFrame = new AdminMenu();
-					exFrame.setVisible(true);
+					JOptionPane.showMessageDialog(frame, "User already exist");
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(frame, "Invalid username or password");
+					JOptionPane.showMessageDialog(frame, "You are successfully registered");
+					frame.dispose();
+					PlayerMenu exFrame = new PlayerMenu();
+					exFrame.setVisible(true);
 				}
 			}
 		});
-		btnLogin.setBounds(174, 180, 79, 23);
-		frame.getContentPane().add(btnLogin);
+		btnRegister.setBounds(174, 180, 79, 23);
+		frame.getContentPane().add(btnRegister);
 		
-		JLabel lblAdmin = new JLabel("Admin Login");
-		lblAdmin.setForeground(Color.YELLOW);
-		lblAdmin.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
-		lblAdmin.setBounds(159, 50, 120, 14);
-		frame.getContentPane().add(lblAdmin);
+		JLabel lblRegistration = new JLabel("Registration");
+		lblRegistration.setForeground(Color.YELLOW);
+		lblRegistration.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
+		lblRegistration.setBounds(159, 50, 120, 14);
+		frame.getContentPane().add(lblRegistration);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() { 

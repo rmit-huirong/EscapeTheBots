@@ -44,7 +44,7 @@ public class MainMenu {
 		btnPlayer.setBackground(Color.ORANGE);
 		btnPlayer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				//frame.dispose();
+				frame.dispose();
 				PlayerLogin exFrame = new PlayerLogin();
 				exFrame.setVisible(true);
 			}	

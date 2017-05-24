@@ -2,8 +2,6 @@ package etb.menu;
 
 import javax.swing.*;
 
-import etb.game.Game;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -51,6 +49,9 @@ public class AdminMenu extends JFrame {
 		btnChangeDuration.setBackground(Color.ORANGE);
 		btnChangeDuration.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				GameDuration window = new GameDuration();
+				window.setVisible(true);
 				varyDuration(50);
 			}	
 		});

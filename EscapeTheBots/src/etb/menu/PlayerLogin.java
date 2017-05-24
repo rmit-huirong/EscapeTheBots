@@ -1,10 +1,16 @@
 package etb.menu;
+import etb.user.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 public class PlayerLogin extends JFrame {
-
+	
+	HashMap<User, User> users = new HashMap<User, User>(); 
+	
+	
+	
 	private JFrame frame;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -59,7 +65,7 @@ public class PlayerLogin extends JFrame {
 				String uname=username.getText();
 				String pad=passwordField.getText();
 				
-				if(uname.equals("name") && pad.equals("password"))
+				if(uname.compareTo(User.getUsername()) == 0 && (pad.compareTo(User.getPassword()) == 0))
 				{
 					JOptionPane.showMessageDialog(frame, "you are successfully logged in");
 					frame.dispose();

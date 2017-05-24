@@ -1,6 +1,9 @@
 package etb.menu;
 
 import javax.swing.*;
+
+import etb.game.Game;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -49,7 +52,7 @@ public class PlayerMenu extends JFrame {
 		btnPlay.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.dispose();
-				PlayerLogin exFrame = new PlayerLogin();
+				Game exFrame = new Game();
 				exFrame.setVisible(true);
 			}	
 		});
