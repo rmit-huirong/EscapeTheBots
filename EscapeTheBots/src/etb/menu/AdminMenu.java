@@ -2,6 +2,8 @@ package etb.menu;
 
 import javax.swing.*;
 
+import etb.game.Game;
+
 import java.awt.*;
 import java.awt.event.*;
 
