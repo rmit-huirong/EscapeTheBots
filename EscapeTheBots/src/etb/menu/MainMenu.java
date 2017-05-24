@@ -57,7 +57,9 @@ public class MainMenu {
 		btnAdmin.setBackground(Color.ORANGE);
 		btnAdmin.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-			
+				frame.dispose();
+				AdminLogin admin = new AdminLogin();
+				admin.setVisible(true);
 			}	
 		});
 		btnAdmin.setBounds(132, 153, 139, 23);

@@ -4,8 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-public class GameDuration extends JFrame {
-	private JPanel frame;
+public class DeleteMenu extends JFrame {
 	private JTextField textCurrDuration;
 	private JTextField textNewDuration;
 
@@ -14,7 +13,7 @@ public class GameDuration extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameDuration window = new GameDuration();
+					DeleteMenu window = new DeleteMenu();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -23,7 +22,7 @@ public class GameDuration extends JFrame {
 		});
 	}
 	
-	public GameDuration() {
+	public DeleteMenu() {
 		initialize();
 	}
 	
