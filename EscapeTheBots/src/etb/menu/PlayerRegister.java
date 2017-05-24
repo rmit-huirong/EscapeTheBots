@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.util.HashMap;
 public class PlayerRegister extends JFrame {
 	
-	HashMap<String, String> users = new HashMap<String, String>(); 
+	public HashMap<String, String> users = new HashMap<String, String>(); 
 	
 	private JFrame frame;
 	public static void main(String[] args) {

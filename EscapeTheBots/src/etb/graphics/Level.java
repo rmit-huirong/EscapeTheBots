@@ -65,7 +65,6 @@ public class Level {
 
 		for (int i = 0; i < monsters.size(); i++) {
 			monsters.get(i).tick();
-			//strategy.chase(Game.player, monsters.get(i), 4);
 		}
 		for(int i = 0; i<food.size(); i++){
 			food.get(i).tick();
