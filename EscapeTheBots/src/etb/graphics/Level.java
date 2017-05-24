@@ -72,33 +72,7 @@ public class Level {
 		}
 		player.tick();
 		
-		for(int i=0;i<this.monsters.size();i++)
-		{
-			Monster monster = this.monsters.get(i);
-			if(monster.intersects(player)) 
-			{
-				Game.lives--;
-				Game.round++;
-				Game.lose++;
-				Game.setCountDown(100);
-				if(Game.lives == 0)
-				{
-					int reply = JOptionPane.showConfirmDialog(null, "Do you want to play again?","You lost!",JOptionPane.YES_NO_OPTION);
-					if(reply == JOptionPane.NO_OPTION){
-					System.exit(0); //This should ideally lead back to the user system - player menu
-					}else if(reply == JOptionPane.YES_OPTION){
-						Game.lives = 2;
-						Game.round = 1;
-						Game.lose = 0;
-						Game.win = 0;
-					}
-				}
-				this.player = new Player(0, 0);
-		  		Game.level = new Level("/map/map_final.png");
-				return;
-			}
-
-		}
+		
 
 	}
 

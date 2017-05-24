@@ -1,4 +1,4 @@
- package etb.game;
+package etb.game;
 
 /* 
  * Author - Huirong Huang - s3615907
@@ -15,15 +15,17 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
 import etb.food.Food;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
+import etb.monster.Monster;
 import etb.player.Player;
 
-public class Game extends Canvas implements Runnable, KeyListener{
+public class Game extends Canvas implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 640;
@@ -31,6 +33,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public static final int SCALE = 2;
 	private static final String TITLE = "Escape the Bots!";
 	public static int countDown;
+
 	public static int getCountDown() {
 		return countDown;
 	}
@@ -47,14 +50,18 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	private boolean isRunning = false;
 
-	
 	public static Level level;
 	public static Spritesheet spritesheet;
-	public static int lives = 2;
 	public static int round = 1;
-	private boolean paused = false;
+	private static boolean paused = false;
 
-	private int foodCount;
+	public static boolean isPaused() {
+		return paused;
+	}
+
+	public static void setPaused(boolean paused) {
+		Game.paused = paused;
+	}
 
 	public Game() {
 		Dimension dimension = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
@@ -90,7 +97,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		double targetTick = 60.0;
 		double ns = 1000000000.0 / targetTick;
 		double delta = 0;
-		
+
 		int fps = 0;
 
 		while (isRunning) {
@@ -99,39 +106,34 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			lastTime = now;
 
 			while (delta >= 1) {
-				if(paused)
-				{
+				if (paused) {
 					try {
-						thread.sleep(1000/60);
+						thread.sleep(1000 / 60);
 					} catch (InterruptedException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}
-				else {
+				} else {
 					tick();
 					render();
-					
+
 				}
 				fps++;
 				delta--;
-				
-				
+
 			}
 
 			if (System.currentTimeMillis() - timer >= 1000) {
-				frame.setTitle(TITLE + " | Countdown: " + countDown + " | Round " + round + " | Lives: " + lives+ " ( WIN " + win+ " / LOSE " + lose +" )");
-				if(!paused)
-				{
-				if (countDown == 0) {
-					lives++;
-					round++;
-					win++;
-					countDown = 100;
-				}
-				fps = 0;
-				
-				countDown--;
+				frame.setTitle(TITLE + " | Countdown: " + countDown + " | Round " + round + " | " + " ( WIN " + win + " / LOSE " + lose + " )");
+				if (!paused) {
+					if (countDown == 0) {
+						round++;
+						win++;
+						countDown = 100;
+					}
+					fps = 0;
+
+					countDown--;
 				}
 				timer += 1000;
 			}
@@ -140,7 +142,18 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 
 	public void tick() {
-			level.tick();
+		level.tick();
+		for (int i = 0; i < level.monsters.size(); i++) {
+			Monster monster = level.monsters.get(i);
+			if (monster.intersects(level.player)) {
+				round++;
+				lose++;
+				setCountDown(100);
+				level.player = new Player(0, 0);
+				level = new Level("/map/map_final.png");
+			}
+
+		}
 	}
 
 	public void render() {
@@ -219,7 +232,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	public void keyTyped(KeyEvent e) {
 	}
-	
 
 	/*
 	 * Author - Navod Bopitiya - s3617221
