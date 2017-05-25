@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	private JFrame frame;
 	private JFrame previousFrame;
 
-	private boolean isRunning = false;
+	private volatile boolean isRunning = false;
 
 	public static Level level;
 	public static Spritesheet spritesheet;
@@ -92,11 +92,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public synchronized void stop() {
 		isRunning = false;
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		win = 0;
+		lose = 0;
+		round = 1;
 	}
 
 	public void run() {
@@ -215,6 +213,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			level.player.setLeft(true);
 		}if (e.getKeyCode() == KeyEvent.VK_Q) {
 			frame.setVisible(false);
+			stop();
 			frame.dispose();
 			previousFrame.setVisible(true);
 		}
