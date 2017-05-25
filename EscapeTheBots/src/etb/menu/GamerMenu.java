@@ -56,7 +56,7 @@ public class GamerMenu {
 			}	
 		});
 		btnHighScore.setBounds(143, 132, 139, 23);
-		frame.getContentPane().add(btnHighScore);
+		//frame.getContentPane().add(btnHighScore);
 		
 		JButton btnCredit = new JButton("Credit");
 		btnCredit.setFont(new Font("Cooper Black", Font.PLAIN, 13));
@@ -67,7 +67,7 @@ public class GamerMenu {
 			}	
 		});
 		btnCredit.setBounds(143, 166, 139, 23);
-		frame.getContentPane().add(btnCredit);
+		//frame.getContentPane().add(btnCredit);
 		
 		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setFont(new Font("Cooper Black", Font.PLAIN, 13));
