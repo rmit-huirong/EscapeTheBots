@@ -73,7 +73,7 @@ public class GamerRegister{
 					users.put(uname, password);
 					MainMenu.saveToFile(users);
 					JOptionPane.showMessageDialog(frame, "You are successfully registered");
-					GamerMenu gamerMenu = new GamerMenu(frame);
+					GamerMenu gamerMenu = new GamerMenu(previousFrame);
 					}else{
 						JOptionPane.showMessageDialog(frame, "Enter a stronger password!");
 					}
