@@ -164,6 +164,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public void tick() {
 		level.tick();
+		killPlayer();
+	}
+
+	protected void killPlayer() {
 		for (int i = 0; i < level.monsters.size(); i++) {
 			Monster monster = level.monsters.get(i);
 			if (monster.intersects(level.player)) {
