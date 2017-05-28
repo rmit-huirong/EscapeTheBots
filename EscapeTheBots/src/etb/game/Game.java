@@ -10,12 +10,15 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
+import etb.menu.MainMenu;
 import etb.monster.Monster;
 import etb.player.Player;
+import etb.user.User;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 
@@ -26,6 +29,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	private static final String TITLE = "Escape the Bots!";
 	private static int defaultCountDown = 100;
 	public  int countDown = defaultCountDown;
+	public static int win = 0;
+	public static int lose = 0;
+	private static int[] currentScores;
+
+	public static int[] getCurrentScores() {
+		return currentScores;
+	}
 
 	public static int getDefaultCountDown() {
 		return defaultCountDown;
@@ -43,12 +53,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		countDown = defaultCountDown;
 	}
 
-	public static int win = 0;
-	public static int lose = 0;
+	
 
 	private Thread thread;
 	private JFrame frame;
 	private JFrame previousFrame;
+	private User user;
 
 	private volatile boolean isRunning = false;
 
@@ -65,7 +75,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		Game.paused = paused;
 	}
 
-	public Game(JFrame previousFrame) {
+	public Game(JFrame previousFrame, User user) {
+		win = 0;
+		lose = 0;
+		round = 1;
+		currentScores = new int[2];
+		this.user = user;
 		Dimension dimension = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(dimension);
 		setMaximumSize(dimension);
@@ -92,9 +107,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public synchronized void stop() {
 		isRunning = false;
-		win = 0;
-		lose = 0;
-		round = 1;
 	}
 
 	public void run() {
@@ -212,6 +224,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			level.player.setLeft(true);
 		}if (e.getKeyCode() == KeyEvent.VK_Q) {
+			currentScores[0] = win;
+			currentScores[1] = lose;
+			HashMap<String,User> users = MainMenu.loadFromFile();
+			user.setScores(currentScores);
+			users.replace(user.getUsername(), user);
+			MainMenu.saveToFile(users);
 			frame.setVisible(false);
 			stop();
 			frame.dispose();

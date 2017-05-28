@@ -1,15 +1,20 @@
 package etb.menu;
 
 import javax.swing.*;
+
+import etb.user.Admin;
+
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 public class AdminLogin{
 
 	private JFrame frame;
 	private JFrame previousFrame;
+	private Admin admin;
 
 	public AdminLogin(JFrame previousFrame) {
+		char[] password = { 'p', 'a', 's', 's', 'w', 'o', 'r', 'd' };
+		admin = new Admin("admin",password);
 		initialize();
 		this.previousFrame = previousFrame;
 		frame.setVisible(true);
@@ -49,18 +54,11 @@ public class AdminLogin{
 				//TODO -  add a file and store admin details using MainMenu method
 				String uname=username.getText();
 				char[] password = passwordField.getPassword();
-				char[] correctPassword = { 'p', 'a', 's', 's', 'w', 'o', 'r', 'd' };
- 				if(uname.equals("admin") && Arrays.equals(password, correctPassword))
-				{
-					JOptionPane.showMessageDialog(frame, "You are successfully logged in!");
-					frame.setVisible(false);
-					AdminMenu adminMenu = new AdminMenu(frame);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(frame, "Invalid username or password");
-				}
+				
+ 				loginAdmin(uname, password);
 			}
+
+
 		});
 		btnLogin.setBounds(174, 180, 79, 23);
 		frame.getContentPane().add(btnLogin);
@@ -80,6 +78,19 @@ public class AdminLogin{
 		});
 		btnCancel.setBounds(263, 180, 79, 23);
 		frame.getContentPane().add(btnCancel);
+	}
+	
+	protected void loginAdmin(String uname, char[] password) {
+		if(uname.equals(admin.getUsername()) && admin.isPasswordCorrect(password))
+		{
+			JOptionPane.showMessageDialog(frame, "You are successfully logged in!");
+			frame.setVisible(false);
+			AdminMenu adminMenu = new AdminMenu(frame);
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(frame, "Invalid username or password");
+		}
 	}
 }
 

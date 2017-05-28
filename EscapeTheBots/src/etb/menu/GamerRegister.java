@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class GamerRegister{
 
-	private HashMap<String, char[]> users;
+	private HashMap<String, User> users;
 
 
 	private JFrame frame;
@@ -54,12 +54,12 @@ public class GamerRegister{
 		passwordField.setBounds(174, 131, 168, 22);
 		frame.getContentPane().add(passwordField);
 
-		HashMap<String, char[]> loadedUsers = MainMenu.loadFromFile();
+		HashMap<String, User> loadedUsers = MainMenu.loadFromFile();
 
 		if (loadedUsers != null) {
 			users = loadedUsers;
 		}else{
-			users = new HashMap<String,char[]>();
+			users = new HashMap<String,User>();
 		}
 
 		JButton btnRegister = new JButton("Register");
@@ -67,20 +67,11 @@ public class GamerRegister{
 			public void actionPerformed(ActionEvent arg0) {
 
 				String uname = username.getText();
-				char[] password = passwordField.getPassword();
-				if (!users.containsKey(uname)) {
-					if(validatePassword(password)){
-					users.put(uname, password);
-					MainMenu.saveToFile(users);
-					JOptionPane.showMessageDialog(frame, "You are successfully registered");
-					GamerMenu gamerMenu = new GamerMenu(previousFrame);
-					}else{
-						JOptionPane.showMessageDialog(frame, "Enter a stronger password!");
-					}
-				} else {
-					JOptionPane.showMessageDialog(frame, "Username already exists, please try again!");
-				}
+				char[] password = passwordField.getPassword();	
+				register(uname, password);
 			}
+
+
 		});
 		btnRegister.setBounds(174, 180, 79, 23);
 		frame.getContentPane().add(btnRegister);
@@ -109,6 +100,23 @@ public class GamerRegister{
 			return false;
 		}else{
 			return true;
+		}
+	}
+	
+	protected void register(String uname, char[] password) {
+		if (!users.containsKey(uname)) {			
+			if(validatePassword(password)){
+			User user = new User(uname,password);
+			users.put(uname, user);
+			MainMenu.saveToFile(users);
+			JOptionPane.showMessageDialog(frame, "You are successfully registered");
+			frame.setVisible(false);
+			GamerMenu gamerMenu = new GamerMenu(previousFrame,user);
+			}else{
+				JOptionPane.showMessageDialog(frame, "Enter a stronger password!");
+			}
+		} else {
+			JOptionPane.showMessageDialog(frame, "Username already exists, please try again!");
 		}
 	}
 

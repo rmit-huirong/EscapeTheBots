@@ -74,19 +74,7 @@ public class DurationMenu {
 			public void actionPerformed(ActionEvent e) {
 				//Change duration
 				String value = textNewDuration.getText();
-				if(validateInt(value)){
-					int duration = Integer.parseInt(value);
-					if(duration <= 0 || duration>100){
-						JOptionPane.showMessageDialog(frame, "Please enter a number that is above zero and below hundred");
-					}else{
-						Game.setDefaultCountDown(duration);
-						JOptionPane.showMessageDialog(frame, "Time duration changed successfully to "+duration);
-						frame.setVisible(false);
-						previousFrame.setVisible(true);
-					}
-				}else{
-					JOptionPane.showMessageDialog(frame, "Please enter a valid number!");
-				}
+				changeDuration(value);
 			}	
 		});
 		btnChangeDuration.setBounds(78, 187, 113, 23);
@@ -104,6 +92,22 @@ public class DurationMenu {
 			isInteger = false;
 		}
 		return isInteger;
+	}
+
+	protected void changeDuration(String value) {
+		if(validateInt(value)){
+			int duration = Integer.parseInt(value);
+			if(duration <= 0 || duration>100){
+				JOptionPane.showMessageDialog(frame, "Please enter a number that is above zero and below hundred");
+			}else{
+				Game.setDefaultCountDown(duration);
+				JOptionPane.showMessageDialog(frame, "Time duration changed successfully to "+duration);
+				frame.setVisible(false);
+				previousFrame.setVisible(true);
+			}
+		}else{
+			JOptionPane.showMessageDialog(frame, "Please enter a valid number!");
+		}
 	}
 }
 

@@ -1,6 +1,9 @@
 package etb.menu;
 
 import javax.swing.*;
+
+import etb.user.User;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -13,12 +16,14 @@ import java.util.HashMap;
 
 public class MainMenu extends JFrame {
 
+
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private HashMap<String, char[]> users = new HashMap<String, char[]>();
+	private HashMap<String, User> users = new HashMap<String, User>();
 	public GamerLogin gamer;
 	public AdminLogin admin;
 	
-	public HashMap<String, char[]> getUsers() {
+	public HashMap<String, User> getUsers() {
 		return users;
 	}
 
@@ -58,9 +63,10 @@ public class MainMenu extends JFrame {
 		btnGamer.setBackground(Color.ORANGE);
 		btnGamer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				gamer = new GamerLogin(frame);
-			}	
+				loginGamer();
+			}
+
+
 		});
 		btnGamer.setBounds(132, 119, 139, 23);
 		frame.getContentPane().add(btnGamer);
@@ -70,8 +76,7 @@ public class MainMenu extends JFrame {
 		btnAdmin.setBackground(Color.ORANGE);
 		btnAdmin.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				admin = new AdminLogin(frame);
+				loginAdmin();
 			}	
 		});
 		btnAdmin.setBounds(132, 153, 139, 23);
@@ -79,10 +84,10 @@ public class MainMenu extends JFrame {
 		
 	}
 	
-	public static void saveToFile(HashMap<String, char[]> users) {
+	public static void saveToFile(HashMap<String, User> users) {
 		// write to file : "users"
 		try {
-			File fileOne = new File("users");
+ 			File fileOne = new File("users");
 			FileOutputStream fos = new FileOutputStream(fileOne);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -90,27 +95,40 @@ public class MainMenu extends JFrame {
 			oos.flush();
 			oos.close();
 			fos.close();
+
 		} catch (Exception e) {
+
 		}
 
 	}
 
-	public static HashMap<String, char[]> loadFromFile() {
+	public static HashMap<String, User> loadFromFile() {
 		// read from file
-		HashMap<String, char[]> mapInFile = null;
+		HashMap<String, User> mapInFile = null;
 		try {
 			File toRead = new File("users");
 			FileInputStream fis = new FileInputStream(toRead);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			mapInFile = (HashMap<String, char[]>) ois.readObject();
+			mapInFile = (HashMap<String, User>) ois.readObject();
 			ois.close();
 			fis.close();
 
 		} catch (Exception e) {
+
 		}
 		return mapInFile;
 	}
+	
+	protected void loginGamer() {
+		frame.setVisible(false);
+		gamer = new GamerLogin(frame);
+	}
+
+	protected void loginAdmin() {
+		frame.setVisible(false);
+		admin = new AdminLogin(frame);
+	}	
 	
 }
 	

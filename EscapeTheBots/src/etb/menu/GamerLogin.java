@@ -5,18 +5,19 @@ import etb.user.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class GamerLogin {
 
 	private JFrame frame;
 	private JFrame previousFrame;
+	private HashMap<String, User> users;
 
 	public GamerLogin(JFrame previousFrame) {
 		initialize();
 		this.previousFrame = previousFrame;
 		frame.setVisible(true);
+		users = MainMenu.loadFromFile();
 	}
 
 	private void initialize() {
@@ -50,23 +51,13 @@ public class GamerLogin {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				HashMap<String, char[]> users = MainMenu.loadFromFile();
 				String uname = username.getText();
 				char[] password = passwordField.getPassword();
-				
-				if (users != null) {
-					boolean checkPassword = Arrays.equals(password, users.get(uname));
-					if (users.containsKey(uname) && checkPassword) {
-						JOptionPane.showMessageDialog(frame, "You are successfully logged in!");
-						frame.setVisible(false);
-						GamerMenu gamerMenu = new GamerMenu(frame);
-					} else {
-						JOptionPane.showMessageDialog(frame, "Invalid username or password");
-					}
-				} else {
-					JOptionPane.showMessageDialog(frame, "Invalid username or password");
-				}
+				users = MainMenu.loadFromFile();
+
+				login(uname, password);
 			}
+
 		});
 		btnLogin.setBounds(174, 180, 79, 23);
 		frame.getContentPane().add(btnLogin);
@@ -80,10 +71,10 @@ public class GamerLogin {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				previousFrame.setVisible(true);
+				cancel();
 
 			}
+
 		});
 		btnCancel.setBounds(263, 180, 79, 23);
 		frame.getContentPane().add(btnCancel);
@@ -92,12 +83,41 @@ public class GamerLogin {
 		btnRegister.setBackground(Color.WHITE);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				GamerRegister gamerRegister = new GamerRegister(frame);
+				openRegisterWindow();
 
 			}
+
 		});
 		btnRegister.setBounds(58, 180, 73, 23);
 		frame.getContentPane().add(btnRegister);
+	}
+
+	protected void login(String uname, char[] password) {
+		if (users != null) {
+			if (users.containsKey(uname)) {
+				User user = users.get(uname);
+				if (user.isPasswordCorrect(password)) {
+					JOptionPane.showMessageDialog(frame, "You are successfully logged in!");
+					frame.setVisible(false);
+					GamerMenu gamerMenu = new GamerMenu(frame,user);
+				} else {
+					JOptionPane.showMessageDialog(frame, "Invalid username or password");
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "Invalid username or password");
+			}
+		} else {
+			JOptionPane.showMessageDialog(frame, "Invalid username or password");
+		}
+	}
+
+	protected void openRegisterWindow() {
+		frame.setVisible(false);
+		GamerRegister gamerRegister = new GamerRegister(frame);
+	}
+
+	protected void cancel() {
+		frame.setVisible(false);
+		previousFrame.setVisible(true);
 	}
 }
