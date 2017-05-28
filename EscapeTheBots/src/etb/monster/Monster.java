@@ -17,7 +17,7 @@ public class Monster extends Entity {
 
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
-	private int random = 0, smart = 1, find_path = 2, find_another_path = 3;
+	private int smart = 1, find_path = 2, find_another_path = 3;
 	private int state = smart;
 	private int dir = -1;
 	private int lastDir = -1;
@@ -34,46 +34,13 @@ public class Monster extends Entity {
 
 	public Monster(int x, int y) {
 		super(x,y);
-		randomNum = new Random();
-		dir = randomNum.nextInt(4);
 	}
 
 	public void tick() {
 		setCurSpeed(MAX_SPEED/unit);
 		Level level = Game.level;
 
-		if (state == random) {
-			if (dir == right) {
-				if (canMove(x + curSpeed, y)) {
-					x += curSpeed;
-				} else {
-					dir = randomNum.nextInt(4);
-				}
-			} else if (dir == left) {
-				if (canMove(x - curSpeed, y)) {
-					x -= curSpeed;
-				} else {
-					dir = randomNum.nextInt(4);
-				}
-			} else if (dir == up) {
-				if (canMove(x, y - curSpeed)) {
-					y -= curSpeed;
-				} else {
-					dir = randomNum.nextInt(4);
-				}
-			} else if (dir == down) {
-				if (canMove(x, y + curSpeed)) {
-					y += curSpeed;
-				} else {
-					dir = randomNum.nextInt(4);
-				}
-			}
-			time++;
-			if (time == 180) {
-				state = smart;
-				time = 0;
-			}
-		} else if (state == smart) {
+			if (state == smart) {
 			// follow the player
 
 			boolean move = false;
@@ -112,11 +79,6 @@ public class Monster extends Entity {
 
 			if (!move) {
 				state = find_path;
-			}
-			time++;
-			if (time == 300) {
-				state = smart;
-				time = 0;
 			}
 		} else if (state == find_path) {
 			if (lastDir == right) {
