@@ -1,5 +1,6 @@
 package etb.menu;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import etb.game.Game;
@@ -7,6 +8,8 @@ import etb.user.User;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.HashMap;
 
 
@@ -29,16 +32,18 @@ public class GamerMenu {
 	
 	private void initialize() {
 		frame =new JFrame();
-		frame.getContentPane().setBackground(Color.RED);
+		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 				
-		JLabel lblMenu = new JLabel("Gamer Menu");
-		lblMenu.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
-		lblMenu.setForeground(Color.YELLOW);
-		lblMenu.setBounds(157, 38, 114, 39);
-		frame.getContentPane().add(lblMenu);
+		try{
+		BufferedImage image = ImageIO.read(new File("logo.png"));
+		Icon icon = new ImageIcon(image);
+		JLabel lblIcon = new JLabel(icon);
+		lblIcon.setBounds(103, 20, icon.getIconWidth(), icon.getIconHeight());
+		lblIcon.setBorder(null);
+		frame.getContentPane().add(lblIcon);
 		
 		JButton btnPlay = new JButton("Play Game");
 		btnPlay.setFont(new Font("Cooper Black", Font.PLAIN, 13));
@@ -48,7 +53,7 @@ public class GamerMenu {
 				playGame(user);
 			}	
 		});
-		btnPlay.setBounds(143, 98, 139, 23);
+		btnPlay.setBounds(143, 125, 139, 23);
 		frame.getContentPane().add(btnPlay);
 		
 		JButton btnHighScore = new JButton("Scores");
@@ -60,7 +65,7 @@ public class GamerMenu {
 			
 			}	
 		});
-		btnHighScore.setBounds(143, 132, 139, 23);
+		btnHighScore.setBounds(143, 155, 139, 23);
 		frame.getContentPane().add(btnHighScore);
 		
 		JButton btnLogOut = new JButton("Log Out");
@@ -76,7 +81,9 @@ public class GamerMenu {
 		});
 		btnLogOut.setBounds(143, 200, 139, 23);
 		frame.getContentPane().add(btnLogOut);
-		
+		}catch(Exception e){
+			
+		}
 	}
 	
 	protected void logout() {

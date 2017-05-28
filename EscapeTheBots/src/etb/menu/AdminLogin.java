@@ -22,7 +22,7 @@ public class AdminLogin{
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.RED);
+		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -60,6 +60,7 @@ public class AdminLogin{
 
 
 		});
+		btnLogin.setBackground(Color.ORANGE);
 		btnLogin.setBounds(174, 180, 79, 23);
 		frame.getContentPane().add(btnLogin);
 		
@@ -70,10 +71,10 @@ public class AdminLogin{
 		frame.getContentPane().add(lblAdmin);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(Color.ORANGE);
 		btnCancel.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				previousFrame.setVisible(true);
+				cancel();
 			}	
 		});
 		btnCancel.setBounds(263, 180, 79, 23);
@@ -91,6 +92,11 @@ public class AdminLogin{
 		{
 			JOptionPane.showMessageDialog(frame, "Invalid username or password");
 		}
+	}
+	
+	protected void cancel() {
+		frame.setVisible(false);
+		previousFrame.setVisible(true);
 	}
 }
 
