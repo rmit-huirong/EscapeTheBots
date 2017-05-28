@@ -23,7 +23,7 @@ public class DurationMenu {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.RED);
+		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -43,6 +43,7 @@ public class DurationMenu {
 			}	
 		});
 		btnCancel.setBounds(258, 187, 79, 23);
+		btnCancel.setBackground(Color.ORANGE);
 		frame.getContentPane().add(btnCancel);
 		
 		textCurrDuration = new JTextField();
@@ -70,6 +71,7 @@ public class DurationMenu {
 		frame.getContentPane().add(labelCurrDuration);
 		
 		JButton btnChangeDuration = new JButton("Change Duration");
+		btnChangeDuration.setBackground(Color.ORANGE);
 		btnChangeDuration.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				//Change duration
