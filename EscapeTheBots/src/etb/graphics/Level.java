@@ -1,4 +1,3 @@
-
 package etb.graphics;
 
 import java.awt.Graphics;
