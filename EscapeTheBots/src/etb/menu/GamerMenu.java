@@ -1,3 +1,7 @@
+/* 
+ * Author - Muhammad Syafiq - s3596883
+ */
+
 package etb.menu;
 
 import javax.imageio.ImageIO;
