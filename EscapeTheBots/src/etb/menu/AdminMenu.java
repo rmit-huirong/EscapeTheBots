@@ -40,7 +40,7 @@ public class AdminMenu {
 		btnChangeDuration.setBackground(Color.ORANGE);
 		btnChangeDuration.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				DurationMenu durationMenu = new DurationMenu(frame);
+				openDurationMenu();
 			}	
 		});
 		btnChangeDuration.setBounds(134, 109, 159, 23);
@@ -51,7 +51,7 @@ public class AdminMenu {
 		btnDeleteGamer.setBackground(Color.ORANGE);
 		btnDeleteGamer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				DeleteMenu deleteMenu = new DeleteMenu(frame);
+				openDeleteMenu();
 			}	
 		});
 		btnDeleteGamer.setBounds(134, 143, 159, 23);
@@ -69,6 +69,14 @@ public class AdminMenu {
 		btnLogOut.setBounds(134, 177, 159, 23);
 		frame.getContentPane().add(btnLogOut);
 		
+	}
+
+	protected void openDurationMenu() {
+		DurationMenu durationMenu = new DurationMenu(frame);
+	}
+
+	protected void openDeleteMenu() {
+		DeleteMenu deleteMenu = new DeleteMenu(frame);
 	}
 	
 	
