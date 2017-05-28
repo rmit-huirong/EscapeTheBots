@@ -5,49 +5,23 @@ package etb.player;
 
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
+import etb.entity.Entity;
 import etb.food.Food;
 import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
 
-public class Player extends Rectangle {
+public class Player extends Entity {
 
 	private static final long serialVersionUID = 1L;
 	private boolean up, down, right, left = false;
-	private int unit = 1;
-	protected boolean poisoned;
+	
+	
 	protected final int MAX_SPEED = 4;
-	protected int currentSpeed = MAX_SPEED / unit;
 
-	private long poisonTimeOne = 0;
-	private long poisonTimeTwo = 0;
+
 	private int foodCount = 0;
-	private long tEnd = 0;
-	private long timeElapsed = 0;
-
-	public boolean isPoisoned() {
-		return this.poisoned;
-	}
-
-	public boolean isPoisonedTwo() {
-		return this.poisonedTwo;
-	}
-
-	protected boolean poisonedTwo;
-
-	public void setPoisoned(boolean poisoned) {
-		this.poisoned = poisoned;
-	}
-
-	public void setPoisonedTwo(boolean poisonedTwo) {
-		this.poisonedTwo = poisonedTwo;
-	}
-
-	public void setUnit(int unit) {
-		this.unit = unit;
-	}
 
 	public void setUp(boolean up) {
 		this.up = up;
@@ -66,14 +40,14 @@ public class Player extends Rectangle {
 	}
 
 	public void tick() {
-		currentSpeed = MAX_SPEED / unit;
-		movePlayer(currentSpeed);
+		setCurSpeed(MAX_SPEED/unit);
+		movePlayer(curSpeed);
 
 		Level level = Game.level;
 
-		poisonPlayer(level);
+		poisonEntity(level);
 
-		curePlayer();
+		cureEntity();
 
 		
 	}
@@ -101,74 +75,12 @@ public class Player extends Rectangle {
 		}
 	}
 
-	protected void curePlayer() {
-		if (poisoned || poisonedTwo) {
-			if (poisonedTwo) {
-				tEnd = System.currentTimeMillis();
-				if (tEnd - poisonTimeTwo >= 20 * 1000) {
-					setPoisonedTwo(false);
-					foodCount--;
-					this.setUnit(this.unit - 2);
-					poisonTimeOne = System.currentTimeMillis();
-				}
-			} else if (poisoned && poisonedTwo == false) {
-				tEnd = System.currentTimeMillis();
-				if (tEnd - poisonTimeOne >= 20 * 1000 - timeElapsed) {// Removing
-																		// time
-																		// that
-																		// has
-																		// already
-																		// gone
-																		// from
-																		// the
-																		// first
-																		// poison
-																		// time
-					setPoisoned(false);
-					foodCount--;
-					this.setUnit(this.unit - 1);
-				}
-			}
-		}
-	}
 
-	protected void poisonPlayer(Level level) {
-		for (int i = 0; i < level.food.size(); i++) {
-			if (this.intersects(level.food.get(i))) {
-				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
-				if (timeElapsed >= 0.5 * 1000) { // Time delay of 0.5s
 
-					level.food.remove(i);
-					if (foodCount == 1) {
-						poisonTimeTwo = System.currentTimeMillis();
-						tEnd = System.currentTimeMillis();
-						if (tEnd - poisonTimeOne <= 20 * 1000) { // Finding
-																	// timeElapsed
-																	// in order
-																	// to keep
-																	// the time
-																	// from Food
-																	// one
-																	// intact
-							timeElapsed = tEnd - poisonTimeOne;
-						}
-						setPoisonedTwo(true);
-						this.setUnit(this.unit + 2);
-						foodCount++;
-					} else {
-						setPoisoned(true);
-						poisonTimeOne = System.currentTimeMillis();
-						foodCount++;
-						this.setUnit(this.unit + 1);
-					}
 
-				}
-			}
-		}
-	}
 
 	public Player(int x, int y) {
-		setBounds(x, y, 30, 30);
+		super(x,y);
 	}
 
 	public void render(Graphics g) {
@@ -176,29 +88,15 @@ public class Player extends Rectangle {
 		g.drawImage(sheet.getSprite(0, 0), x, y, width, height, null);
 	}
 
-	public boolean canMove(int nextx, int nexty) {
-		Rectangle bounds = new Rectangle(nextx, nexty, width, height);
-		Level level = Game.level;
-
-		for (int xx = 0; xx < level.tiles.length; xx++) {
-			for (int yy = 0; yy < level.tiles[0].length; yy++) {
-				if (level.tiles[xx][yy] != null) {
-					if (bounds.intersects(level.tiles[xx][yy])) {
-						return false;
-					}
-
-				}
-			}
-		}
-		return true;
-	}
 	
 	public boolean dropFood(Level level){
 		Point point = getLocation();
-		Food testFoodObject = new Food(point);
+		int x = (int) point.getX();
+		int y = (int) point.getY();
+		Food testFoodObject = new Food(x,y);
 
 		if (foodCount < 2) {
-			if (testFoodObject.canPlace()) {
+			if (testFoodObject.canMove(x,y)) {
 				level.food.add(testFoodObject);
 				foodCount++;
 				return true;

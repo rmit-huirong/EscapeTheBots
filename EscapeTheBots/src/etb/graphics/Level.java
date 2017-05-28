@@ -21,7 +21,7 @@ public class Level {
 	public int height;
 
 	public Tile[][] tiles;
-
+	
 	public List<Monster> monsters;
 	public List<Food> food;
 	public Player player;

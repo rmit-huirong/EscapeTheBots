@@ -102,10 +102,10 @@ public class PlayerTest {
 		level.food.add(food);
 		level.player = player;
 		level.player.setRight(true);
-		level.player.movePlayer(level.player.currentSpeed);
+		level.player.movePlayer(level.player.getCurSpeed());
 		level.player.setRight(false);
-		level.player.poisonPlayer(level);
-		boolean check = level.player.poisoned;
+		level.player.poisonEntity(level);
+		boolean check = level.player.isPoisoned();
 		assertEquals(true,check);
 		
 	}
@@ -120,8 +120,8 @@ public class PlayerTest {
 		player.setRight(true);
 		player.tick();
 		player.setRight(false);
-		assertEquals(false,player.poisoned);
-		assertEquals(false,player.poisonedTwo);
+		assertEquals(false,player.isPoisoned());
+		assertEquals(false,player.isPoisonedTwo());
 		
 		/*Checking if second food item poisons player again*/ 
 		player.setRight(true);
@@ -130,8 +130,8 @@ public class PlayerTest {
 		player.movePlayer(player.MAX_SPEED);
 		player.tick();
 		player.setRight(false);
-		assertEquals(false,player.poisoned);
-		assertEquals(false,player.poisonedTwo);
+		assertEquals(false,player.isPoisoned());
+		assertEquals(false,player.isPoisonedTwo());
 	}
 
 }

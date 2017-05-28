@@ -2,19 +2,18 @@
 package etb.monster;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.Random;
 
+import etb.entity.Entity;
 import etb.game.Game;
 import etb.graphics.Level;
 import etb.graphics.Spritesheet;
-import etb.player.Player;
 
-public class Monster extends Rectangle {
+public class Monster extends Entity {
 
 	private static final long serialVersionUID = 1L;
 
-	private final int SPEED_MAX = 4;
+	private final int MAX_SPEED = 4;
 
 	private Random randomNum;
 	private int up = 0, down = 1, left = 2, right = 3;
@@ -23,29 +22,7 @@ public class Monster extends Rectangle {
 	private int dir = -1;
 	private int lastDir = -1;
 	private int time = 0;
-	private int curSpeed = 4;
-	private int unit = 1;
 
-	private boolean poisoned = false;
-
-	private boolean poisonedTwo = false;
-	private long poisonTimeOne = 0;
-	private long poisonTimeTwo = 0;
-	private int foodCount = 0;
-	private long tEnd = 0;
-	private long timeElapsed = 0;
-
-	public void setCurSpeed(int unit) {
-		curSpeed = SPEED_MAX / unit;
-	}
-
-	public void setUnit(int unit) {
-		this.unit = unit;
-	}
-
-	public int getCurSpeed() {
-		return curSpeed;
-	}
 
 	public void setLastDir(int lastDir) {
 		this.lastDir = lastDir;
@@ -56,13 +33,13 @@ public class Monster extends Rectangle {
 	}
 
 	public Monster(int x, int y) {
+		super(x,y);
 		randomNum = new Random();
-		setBounds(x, y, 30, 30);
 		dir = randomNum.nextInt(4);
 	}
 
 	public void tick() {
-		int curSpeed = SPEED_MAX / unit;
+		setCurSpeed(MAX_SPEED/unit);
 		Level level = Game.level;
 
 		if (state == random) {
@@ -315,9 +292,9 @@ public class Monster extends Rectangle {
 				}
 			}
 		}
-		poisonMonster(level);
+		poisonEntity(level);
 
-		cureMonster();
+		cureEntity();
 	}
 
 	public void render(Graphics g) {
@@ -325,87 +302,8 @@ public class Monster extends Rectangle {
 		g.drawImage(sheet.getSprite(0, 16), x, y, width, height, null);
 	}
 
-	public boolean canMove(int nextx, int nexty) {
-		Rectangle bounds = new Rectangle(nextx, nexty, width, height);
-		Level level = Game.level;
-
-		for (int xx = 0; xx < level.tiles.length; xx++) {
-			for (int yy = 0; yy < level.tiles[0].length; yy++) {
-				if (level.tiles[xx][yy] != null) {
-					if (bounds.intersects(level.tiles[xx][yy])) {
-						return false;
-					}
-				}
-			}
-		}
-		return true;
-	}
-
 	public void setDirection(int dir) {
 		this.dir = dir;
 	}
 
-	private void cureMonster() {
-		if (poisoned || poisonedTwo) {
-			if (poisonedTwo) {
-				tEnd = System.currentTimeMillis();
-				if (tEnd - poisonTimeTwo >= 20 * 1000) {
-					this.poisonedTwo = false;
-					foodCount--;
-					this.setUnit(this.unit - 2);
-					poisonTimeOne = System.currentTimeMillis();
-				}
-			} else if (poisoned && poisonedTwo == false) {
-				tEnd = System.currentTimeMillis();
-				if (tEnd - poisonTimeOne >= 20 * 1000 - timeElapsed) {// Removing
-																		// time
-																		// that
-																		// has
-																		// already
-																		// gone
-																		// from
-																		// the
-																		// first
-																		// poison
-																		// time
-					this.poisoned = false;
-					foodCount--;
-					this.setUnit(this.unit - 1);
-				}
-			}
-		}
-	}
-
-	private void poisonMonster(Level level) {
-		for (int i = 0; i < level.food.size(); i++) {
-			if (this.intersects(level.food.get(i))) {
-				timeElapsed = System.currentTimeMillis() - level.food.get(i).getTimePlaced();
-
-				level.food.remove(i);
-				if (foodCount == 1) {
-					poisonTimeTwo = System.currentTimeMillis();
-					tEnd = System.currentTimeMillis();
-					if (tEnd - poisonTimeOne <= 20 * 1000) { // Finding
-																// timeElapsed
-																// in order
-																// to keep
-																// the time
-																// from Food
-																// one
-																// intact
-						timeElapsed = tEnd - poisonTimeOne;
-					}
-					this.poisonedTwo = true;
-					this.setUnit(this.unit + 2);
-					foodCount++;
-				} else {
-					this.poisoned = true;
-					poisonTimeOne = System.currentTimeMillis();
-					foodCount++;
-					this.setUnit(this.unit + 1);
-				}
-
-			}
-		}
-	}
 }

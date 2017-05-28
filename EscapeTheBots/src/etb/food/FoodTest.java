@@ -25,19 +25,19 @@ public class FoodTest {
 		x = 11;
 		y = 7; // Grid position
 		Food food = new Food(x,y);
-		assertFalse(food.canPlace());
+		assertFalse(food.canMove(x,y));
 		x = 631;
 		y = 543; // Grid Position
 		food = new Food(x,y);
-		assertFalse(food.canPlace());
+		assertFalse(food.canMove(x,y));
 		x = 500;
 		y = 850; // Normal position (Hollow)
 		food = new Food(x,y);
-		assertTrue(food.canPlace());
+		assertTrue(food.canMove(x,y));
 		x = 420;
 		y = 459; // Normal position (Hollow)
 		food = new Food(x,y);
-		assertTrue(food.canPlace());
+		assertTrue(food.canMove(x,y));
 	}
 
 	@Test
