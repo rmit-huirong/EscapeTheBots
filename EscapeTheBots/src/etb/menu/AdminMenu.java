@@ -62,8 +62,7 @@ public class AdminMenu {
 		btnLogOut.setBackground(Color.ORANGE);
 		btnLogOut.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				previousFrame.setVisible(true);
+				logOut();
 			}	
 		});
 		btnLogOut.setBounds(134, 177, 159, 23);
@@ -79,7 +78,10 @@ public class AdminMenu {
 		DeleteMenu deleteMenu = new DeleteMenu(frame);
 	}
 	
-	
+	protected void logOut() {
+		frame.setVisible(false);
+		previousFrame.setVisible(true);
+	}
 }
 	
 

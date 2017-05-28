@@ -72,8 +72,7 @@ public class AdminLogin{
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				frame.setVisible(false);
-				previousFrame.setVisible(true);
+				cancel();
 			}	
 		});
 		btnCancel.setBounds(263, 180, 79, 23);
@@ -91,6 +90,11 @@ public class AdminLogin{
 		{
 			JOptionPane.showMessageDialog(frame, "Invalid username or password");
 		}
+	}
+	
+	protected void cancel() {
+		frame.setVisible(false);
+		previousFrame.setVisible(true);
 	}
 }
 

@@ -37,9 +37,7 @@ public class DeleteMenu {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				previousFrame.setVisible(true);
-
+			cancel();
 			}
 		});
 		btnCancel.setBounds(258, 187, 79, 23);
@@ -95,5 +93,10 @@ public class DeleteMenu {
 		} else {
 			JOptionPane.showMessageDialog(frame, "Username doesn't exist!");
 		}
+	}
+	
+	protected void cancel() {
+		frame.setVisible(false);
+		previousFrame.setVisible(true);
 	}
 }
