@@ -80,7 +80,6 @@ public class GamerLogin {
 		frame.getContentPane().add(btnCancel);
 
 		JButton btnRegister = new JButton("Register");
-		btnRegister.setBackground(Color.WHITE);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				openRegisterWindow();
@@ -88,7 +87,7 @@ public class GamerLogin {
 			}
 
 		});
-		btnRegister.setBounds(58, 180, 73, 23);
+		btnRegister.setBounds(65, 180, 100, 23);
 		frame.getContentPane().add(btnRegister);
 	}
 

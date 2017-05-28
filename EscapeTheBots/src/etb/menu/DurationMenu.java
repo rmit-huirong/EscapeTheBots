@@ -77,7 +77,7 @@ public class DurationMenu {
 				changeDuration(value);
 			}	
 		});
-		btnChangeDuration.setBounds(78, 187, 113, 23);
+		btnChangeDuration.setBounds(78, 187, 150, 23);
 		frame.getContentPane().add(btnChangeDuration);
 	}
 	
@@ -88,7 +88,7 @@ public class DurationMenu {
 			//value is a valid integer
 			isInteger = true;
 		}catch(NumberFormatException e){
-			//value is not a
+			//value is not an integer
 			isInteger = false;
 		}
 		return isInteger;

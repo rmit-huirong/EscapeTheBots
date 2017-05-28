@@ -76,19 +76,23 @@ public class ScoreMenu {
 		JButton btnDelete = new JButton("Reset Scores");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				HashMap<String,User> users = MainMenu.loadFromFile();
-				user = users.get(user.getUsername());
-				user.resetScores();
-				users.replace(user.getUsername(), user);
-				MainMenu.saveToFile(users);
-				System.out.println(user.getLoseScore());
-				loseScore.setText(user.getLoseScore());
-				winScore.setText(user.getWinScore());
+				resetScores();
 			}
 
 		});
 		btnDelete.setBounds(78, 187, 113, 23);
 		frame.getContentPane().add(btnDelete);
+	}
+
+	protected void resetScores() {
+		HashMap<String,User> users = MainMenu.loadFromFile();
+		user = users.get(user.getUsername());
+		user.resetScores();
+		users.replace(user.getUsername(), user);
+		MainMenu.saveToFile(users);
+		System.out.println(user.getLoseScore());
+		loseScore.setText(user.getLoseScore());
+		winScore.setText(user.getWinScore());
 	}
 
 }

@@ -73,7 +73,7 @@ public class GamerRegister{
 
 
 		});
-		btnRegister.setBounds(174, 180, 79, 23);
+		btnRegister.setBounds(160, 180, 90, 23);
 		frame.getContentPane().add(btnRegister);
 
 		JLabel lblRegistration = new JLabel("Registration");
