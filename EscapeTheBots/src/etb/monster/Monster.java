@@ -18,6 +18,7 @@ public class Monster extends Entity {
 	private int up = 0, down = 1, left = 2, right = 3;
 	private int smart = 1, find_path = 2, find_another_path = 3;
 	private int state = smart;
+	private int dir = -1;
 	private int lastDir = -1;
 
 	public void setLastDir(int lastDir) {
