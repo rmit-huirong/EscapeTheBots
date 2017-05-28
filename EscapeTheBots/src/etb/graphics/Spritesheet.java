@@ -1,4 +1,3 @@
-// Huirong Huang - s3615907
 package etb.graphics;
 
 import java.awt.image.BufferedImage;
