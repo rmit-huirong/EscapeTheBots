@@ -63,7 +63,7 @@ public class MainMenu extends JFrame {
 		btnGamer.setBackground(Color.ORANGE);
 		btnGamer.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				loginGamer();
+				openGamerLoginWindow();
 			}
 
 
@@ -76,7 +76,7 @@ public class MainMenu extends JFrame {
 		btnAdmin.setBackground(Color.ORANGE);
 		btnAdmin.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
-				loginAdmin();
+				openAdminLoginWindow();
 			}	
 		});
 		btnAdmin.setBounds(132, 153, 139, 23);
@@ -120,12 +120,12 @@ public class MainMenu extends JFrame {
 		return mapInFile;
 	}
 	
-	protected void loginGamer() {
+	protected void openGamerLoginWindow() {
 		frame.setVisible(false);
 		gamer = new GamerLogin(frame);
 	}
 
-	protected void loginAdmin() {
+	protected void openAdminLoginWindow() {
 		frame.setVisible(false);
 		admin = new AdminLogin(frame);
 	}	
