@@ -23,18 +23,19 @@ public class DeleteMenu {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.RED);
+		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblDelete = new JLabel("Delete Window");
+		JLabel lblDelete = new JLabel("Delete User");
 		lblDelete.setForeground(Color.YELLOW);
 		lblDelete.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
 		lblDelete.setBounds(146, 57, 133, 14);
 		frame.getContentPane().add(lblDelete);
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(Color.ORANGE);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -68,6 +69,7 @@ public class DeleteMenu {
 		frame.getContentPane().add(labelCurrDuration);
 
 		JButton btnDelete = new JButton("Delete User");
+		btnDelete.setBackground(Color.ORANGE);
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 

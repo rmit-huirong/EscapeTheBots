@@ -28,7 +28,7 @@ public class GamerRegister{
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.RED);
+		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -63,6 +63,7 @@ public class GamerRegister{
 		}
 
 		JButton btnRegister = new JButton("Register");
+		btnRegister.setBackground(Color.ORANGE);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -83,6 +84,7 @@ public class GamerRegister{
 		frame.getContentPane().add(lblRegistration);
 
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setBackground(Color.ORANGE);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);

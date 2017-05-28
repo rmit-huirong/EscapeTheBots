@@ -25,18 +25,19 @@ public class ScoreMenu {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.RED);
+		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblDelete = new JLabel("Score Menu");
-		lblDelete.setForeground(Color.YELLOW);
-		lblDelete.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
-		lblDelete.setBounds(146, 57, 133, 14);
-		frame.getContentPane().add(lblDelete);
+		JLabel lblScore = new JLabel("Score Menu");
+		lblScore.setForeground(Color.YELLOW);
+		lblScore.setFont(new Font("Tekton Pro Ext", Font.BOLD, 17));
+		lblScore.setBounds(146, 57, 133, 14);
+		frame.getContentPane().add(lblScore);
 
 		JButton btnCancel = new JButton("Back");
+		btnCancel.setBackground(Color.ORANGE);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
@@ -73,15 +74,16 @@ public class ScoreMenu {
 		lblWinScore.setBounds(78, 108, 152, 14);
 		frame.getContentPane().add(lblWinScore);
 
-		JButton btnDelete = new JButton("Reset Scores");
-		btnDelete.addActionListener(new ActionListener() {
+		JButton btnReset = new JButton("Reset Scores");
+		btnReset.setBackground(Color.ORANGE);
+		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				resetScores();
 			}
 
 		});
-		btnDelete.setBounds(78, 187, 113, 23);
-		frame.getContentPane().add(btnDelete);
+		btnReset.setBounds(78, 187, 113, 23);
+		frame.getContentPane().add(btnReset);
 	}
 
 	protected void resetScores() {
