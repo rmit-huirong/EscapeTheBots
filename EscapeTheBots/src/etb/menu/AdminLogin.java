@@ -22,7 +22,7 @@ public class AdminLogin{
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(27,91,127));
+		frame.getContentPane().setBackground(Color.RED);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -49,7 +49,6 @@ public class AdminLogin{
 		frame.getContentPane().add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBackground(Color.ORANGE);
 		btnLogin.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO -  add a file and store admin details using MainMenu method
@@ -71,7 +70,6 @@ public class AdminLogin{
 		frame.getContentPane().add(lblAdmin);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBackground(Color.ORANGE);
 		btnCancel.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
