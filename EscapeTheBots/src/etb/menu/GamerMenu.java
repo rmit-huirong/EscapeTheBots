@@ -32,6 +32,7 @@ public class GamerMenu {
 	
 	private void initialize() {
 		frame =new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(27,91,127));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
